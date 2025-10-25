@@ -1,0 +1,81 @@
+\documentclass[12pt, oneside]{amsart}
+\usepackage{amsmath,amsfonts, amssymb, xcolor}
+\usepackage{fullpage}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\R}{\mathbb R}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\spn}{span}
+
+\theoremstyle{definition}
+\newtheorem{prob}{Problem}
+
+\title{Math 223 Fall 2025 - Homework 6}
+\author{due October 28 at 11:59pm}
+\pagenumbering{gobble}
+\begin{document}
+\maketitle
+Each problem is worth 10 points.
+
+\begin{prob}
+    The \emph{transpose} of an $m\times n$ matrix $A$ ($m$ rows, $n$ columns) is the $n\times m$ matrix $A^T$ ($n$ rows, $m$ columns) such that the columns of $A^T$ are the rows of $A$ (and so the rows of $A^T$ are the columns of $A$).
+
+    \begin{enumerate}
+        \item Compute the transpose of $A = \left[\begin{matrix}
+        4 & 0 & 2 & 2 \\
+        0 & 1 & 1 & 2
+        \end{matrix}\right]$.
+    \end{enumerate}
+    Let $A$ be an $m\times n$ matrix and $B$ an $n\times k$ matrix.
+    \begin{enumerate}
+    \setcounter{enumi}{2}
+    \item Check that matrices $(AB)^T$ and $B^T A^T$ have the same size.
+    \item Show that $(AB)^T = B^T A^T$. 
+    (Describe how the $(i,j)$-entry of $(AB)^T$ is obtained from rows/columns of $A$ and $B$, and similarly describe how the $(i,j)$-entry of $B^T A^T$ is obtained, and compare these.)
+    \end{enumerate}
+\end{prob}
+
+
+\begin{prob} Let $A$ be an $n\times n$ matrix. 
+    \begin{enumerate}
+    \item Let $A = E_1\cdots E_\ell$ be the product of elementary matrices. Deduce from Problem 1 that $A^T = E_\ell^T \cdots E_1^T$.
+    
+    \item Show that for every elementary matrix $E$, $E^T$ is also an elementary matrix, and $\det E = \det E^T$.
+    
+    \item Prove that for every $n\times n$ matrix $A$ we have $\det A = \det A^T$.
+    \end{enumerate}
+\end{prob}
+
+\begin{prob} True or False. Justify your answers.
+\begin{enumerate}
+    \item  $$\det (A+B) = \det A  +\det B$$ where $A,B$ are $n\times n$ matrices.
+    
+    \item $$\det c\cdot A = c^n \det A$$ where $A$ is an $n\times n$ matrix, $c\in F$ and $c\cdot A$ is obtained from $A$ by multiplying each entry by $c$.
+\end{enumerate}
+\end{prob}
+
+\begin{prob} Compute the determinant.
+\begin{enumerate}
+    \item $A_1= \left[\begin{matrix}
+        1 & 0 & -2 & 3 \\
+        -3 & 1 & 1 & 2 \\
+        0 & 4 & -1 & 1 \\
+        2 & 3 & 0 & 1
+    \end{matrix}\right]$\\\\
+    
+    \item $A_2= \left[\begin{matrix}
+        -1 & 3 & 2 \\4 & -8 & 1 \\
+        2 & 2 & 5
+    \end{matrix}\right]$\\\\
+
+    \item $A_3= \left[\begin{matrix}
+        0 & 0 & 0 & 0 & 0 & -1 \\
+        0 & 0 & 0 & 0 & 2 & 0 \\ 
+        0 & 0 & 0 & 1 & 0 & 0 \\
+        0 & 0 & 3 & 0 & 0 & 0 \\
+        0 & 4 & 0 & 0 & 0 & 0 \\
+        1 & 0 & 0 & 0 & 0 & 0 
+    \end{matrix}\right]$
+\end{enumerate}
+\end{prob}
+
+\end{document}
