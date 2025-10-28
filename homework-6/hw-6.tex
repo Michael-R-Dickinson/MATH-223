@@ -6,6 +6,17 @@
 \DeclareMathOperator{\id}{id}
 \DeclareMathOperator{\spn}{span}
 
+\usepackage[most]{tcolorbox} % powerful colored boxes
+\usepackage{xcolor}          % colors
+\newtcolorbox{solution}{
+  colframe=green!50!black,   % medium green border
+  coltext=black,             % body text in black for readability
+  boxrule=0.4pt,             % thin, professional border
+  enhanced,                  % enable advanced drawing features
+  left=6pt, right=6pt, top=6pt, bottom=6pt % padding
+}
+
+
 \theoremstyle{definition}
 \newtheorem{prob}{Problem}
 
@@ -31,7 +42,47 @@ Each problem is worth 10 points.
     \item Check that matrices $(AB)^T$ and $B^T A^T$ have the same size.
     \item Show that $(AB)^T = B^T A^T$. 
     (Describe how the $(i,j)$-entry of $(AB)^T$ is obtained from rows/columns of $A$ and $B$, and similarly describe how the $(i,j)$-entry of $B^T A^T$ is obtained, and compare these.)
+    
+    \begin{solution}
+    We will show that $(AB)^T$ and $B^T A^T$ have the same $(i,j)$-entry for all $i,j$.
+    
+    \vspace{0.3cm}
+    \noindent\textbf{The $(i,j)$-entry of $(AB)^T$:} 
+    
+    By definition of transpose, the $(i,j)$-entry of $(AB)^T$ equals the $(j,i)$-entry of $AB$. 
+    
+    The $(j,i)$-entry of $AB$ is computed by taking row $j$ of $A$ and dotting it with column $i$ of $B$:
+    $[(AB)^T]_{i,j} = [AB]_{j,i} = \sum_{\ell=1}^{n} A_{j,\ell} \cdot B_{\ell,i}$
+    
+    \vspace{0.3cm}
+    \noindent\textbf{The $(i,j)$-entry of $B^T A^T$:} 
+    
+    This is computed by taking row $i$ of $B^T$ and dotting it with column $j$ of $A^T$. 
+    
+    Note that:
+    \begin{itemize}
+        \item Row $i$ of $B^T$ = Column $i$ of $B$ = $(B_{1,i}, B_{2,i}, \ldots, B_{n,i})$
+        \item Column $j$ of $A^T$ = Row $j$ of $A$ = $(A_{j,1}, A_{j,2}, \ldots, A_{j,n})$
+    \end{itemize}
+    
+    Therefore:
+    $[B^T A^T]_{i,j} = \sum_{\ell=1}^{n} B_{\ell,i} \cdot A_{j,\ell}$
+    
+    \vspace{0.3cm}
+    \noindent\textbf{Comparison:} 
+    
+    Since multiplication of scalars is commutative, we have 
+    $A_{j,\ell} \cdot B_{\ell,i} = B_{\ell,i} \cdot A_{j,\ell}$
+    for each $\ell$. 
+    
+    Thus:
+    $[(AB)^T]_{i,j} = \sum_{\ell=1}^{n} A_{j,\ell} \cdot B_{\ell,i} = \sum_{\ell=1}^{n} B_{\ell,i} \cdot A_{j,\ell} = [B^T A^T]_{i,j}$
+    
+    Since the $(i,j)$-entries are equal for all $i$ and $j$, we conclude that $(AB)^T = B^T A^T$. \qed
+    \end{solution}
+
     \end{enumerate}
+
 \end{prob}
 
 
