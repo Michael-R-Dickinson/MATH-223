@@ -44,41 +44,50 @@ Each problem is worth 10 points.
     (Describe how the $(i,j)$-entry of $(AB)^T$ is obtained from rows/columns of $A$ and $B$, and similarly describe how the $(i,j)$-entry of $B^T A^T$ is obtained, and compare these.)
     
     \begin{solution}
-    We will show that $(AB)^T$ and $B^T A^T$ have the same $(i,j)$-entry for all $i,j$.
+    We show that $(AB)^T = B^T A^T$ by comparing their $(i,j)$-entries $(AB)^T]_{i,j}$ and $[B^T A^T]_{i,j}$.
     
     \vspace{0.3cm}
-    \noindent\textbf{The $(i,j)$-entry of $(AB)^T$:} 
     
-    By definition of transpose, the $(i,j)$-entry of $(AB)^T$ equals the $(j,i)$-entry of $AB$. 
+    By definition of transpose:
     
-    The $(j,i)$-entry of $AB$ is computed by taking row $j$ of $A$ and dotting it with column $i$ of $B$:
-    $[(AB)^T]_{i,j} = [AB]_{j,i} = \sum_{\ell=1}^{n} A_{j,\ell} \cdot B_{\ell,i}$
+    \[
+    (AB)^T_{j,i} = (A B)_{i,j}
+    \]
+    
+    The $(j,i)$-entry of $(AB)^T$ is computed by taking row $j$ of $A$ and dotting it with column $i$ of $B$:
+    \[
+    [(AB)^T]_{i,j} = [AB]_{j,i} = \sum_{\ell=1}^{n} A_{j,\ell} \cdot B_{\ell,i}
+    \]
     
     \vspace{0.3cm}
-    \noindent\textbf{The $(i,j)$-entry of $B^T A^T$:} 
     
-    This is computed by taking row $i$ of $B^T$ and dotting it with column $j$ of $A^T$. 
+    We compute the $(i,j)$-entry of $B^T A^T$ by taking row $i$ of $B^T$ and dotting it with column $j$ of $A^T$. 
     
-    Note that:
-    \begin{itemize}
-        \item Row $i$ of $B^T$ = Column $i$ of $B$ = $(B_{1,i}, B_{2,i}, \ldots, B_{n,i})$
-        \item Column $j$ of $A^T$ = Row $j$ of $A$ = $(A_{j,1}, A_{j,2}, \ldots, A_{j,n})$
-    \end{itemize}
+    \hspace{2em} Row $i$ of $B^T$ = Column $i$ of $B$ = $(B_{1,i}, B_{2,i}, \ldots, B_{n,i})$
+
+    \hspace{2em} Column $j$ of $A^T$ = Row $j$ of $A$ = $(A_{j,1}, A_{j,2}, \ldots, A_{j,n})$
+
     
     Therefore:
     $[B^T A^T]_{i,j} = \sum_{\ell=1}^{n} B_{\ell,i} \cdot A_{j,\ell}$
     
     \vspace{0.3cm}
-    \noindent\textbf{Comparison:} 
-    
-    Since multiplication of scalars is commutative, we have 
-    $A_{j,\ell} \cdot B_{\ell,i} = B_{\ell,i} \cdot A_{j,\ell}$
-    for each $\ell$. 
+
+    Since $A_{j,\ell}$ and $B_{\ell,i}$ are single elements in their respective matrices and thus are scalars, we know multiplication of these scalars is commutative. Thus:
+    \[
+      A_{j,\ell} \cdot B_{\ell,i} = B_{\ell,i} \cdot A_{j,\ell}
+    \]
+    \[
+    \text{for each: } \ell
+    \]
     
     Thus:
-    $[(AB)^T]_{i,j} = \sum_{\ell=1}^{n} A_{j,\ell} \cdot B_{\ell,i} = \sum_{\ell=1}^{n} B_{\ell,i} \cdot A_{j,\ell} = [B^T A^T]_{i,j}$
+    \[
+    [(AB)^T]_{i,j} = \sum_{\ell=1}^{n} A_{j,\ell} \cdot B_{\ell,i} = \sum_{\ell=1}^{n} B_{\ell,i} \cdot A_{j,\ell} = [B^T A^T]_{i,j}
+    \]
     
-    Since the $(i,j)$-entries are equal for all $i$ and $j$, we conclude that $(AB)^T = B^T A^T$. \qed
+    
+    Because the $(i,j)$-entries are equal for all $i$ and $j$, we conclude that $(AB)^T = B^T A^T$. \qed
     \end{solution}
 
     \end{enumerate}
@@ -89,6 +98,36 @@ Each problem is worth 10 points.
 \begin{prob} Let $A$ be an $n\times n$ matrix. 
     \begin{enumerate}
     \item Let $A = E_1\cdots E_\ell$ be the product of elementary matrices. Deduce from Problem 1 that $A^T = E_\ell^T \cdots E_1^T$.
+    
+    \begin{solution}
+    
+    
+    We write our matrix product as: 
+    
+    \[
+    A = E_1 E_2 \cdots E_\ell = (E_1 E_2 \cdots E_{\ell-1}) E_\ell
+    \]
+
+    Now we can apply the result of problem 1, $(AB)^T = B^T A^T$, with $A = (E_1 \cdots E_{\ell-1})$ and $B = E_\ell$:
+    
+    
+    \[
+      A^T = ((E_1 \cdots E_{\ell-1}) E_\ell)^T = E_\ell^T (E_1 \cdots E_{\ell-1})^T
+    \]
+    
+    Repeatedly applying this step, we remove the rightmost $E_i$ from inside the parenthesis and places its transpose on the left. 
+
+    After applying this to each element, $\ell-1$ times, we get the result:
+
+    \[
+      A^T = E_\ell^T E_{\ell-1}^T \cdots E_2^T E_1^T
+    \]
+    
+    For example with $\ell = 3$:
+    \[
+      A = E_1 E_2 E_3 \implies A^T = ((E_1 E_2) E_3)^T = E_3^T (E_1 E_2)^T = E_3^T E_2^T E_1^T
+    \]
+    \end{solution}
     
     \item Show that for every elementary matrix $E$, $E^T$ is also an elementary matrix, and $\det E = \det E^T$.
     
