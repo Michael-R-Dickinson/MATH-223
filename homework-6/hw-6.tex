@@ -239,6 +239,59 @@ Each problem is worth 10 points.
     \end{solution}
     
     \item Prove that for every $n\times n$ matrix $A$ we have $\det A = \det A^T$.
+    
+    \begin{solution}
+    We prove this by splitting it into two cases: when $A$ is invertible and when $A$ is not invertible.
+    
+    \vspace{0.3cm}
+    
+    \textbf{$A$ is invertible}
+    
+    If $A$ is invertible, then $A$ can be written as a product of elementary matrices:
+    \[
+    A = E_1 E_2 \cdots E_\ell
+    \]
+    
+    We can take the determinant of A, and because determinants can be multiplied linearly, we can split them into determinants of each elementary matrix:
+    \[
+    \det A = \det(E_1 E_2 \cdots E_\ell) = \det(E_1) \cdot \det(E_2) \cdots \det(E_\ell)
+    \]
+    
+    We can do the same split over the transpose of $A$. From part 1 of this problem we have already shown that ;
+    
+    \[A^T = E_\ell^T E_{\ell-1}^T \cdots E_2^T E_1^T\]
+    
+    Now we apply the same splitting of the determinants over multiplication:
+    \[
+    \det A^T = \det(E_\ell^T E_{\ell-1}^T \cdots E_1^T) = \det(E_\ell^T) \cdot \det(E_{\ell-1}^T) \cdots \det(E_1^T)
+    \]
+    
+    From part 2 of this problem, we know $\det(E_i^T) = \det(E_i)$ for any elementary matrix $E_i$. Thus we can substitute:
+    \[
+    \det A^T = \det(E_\ell^T) \cdot \det(E_{\ell-1}^T) \cdots \det(E_1^T) = \det(E_\ell) \cdot \det(E_{\ell-1}) \cdots \det(E_1)
+    \]
+    
+    Finally, as the determinants are just scalars, we can rearrange our product of $\det(A^T)$ to the same form as $\det(A)$:
+    \[
+    \det A^T = \det(E_1) \cdot \det(E_2) \cdots \det(E_\ell) = \det A
+    \]
+    
+    \vspace{0.3cm}
+    
+    \textbf{$A$ is not invertible}
+    
+    If $A$ is not invertible, then $\det A = 0$.
+    
+
+    Therefore $A^T$ is also not invertible, which means:
+    \[
+    \det A^T = 0 = \det A
+    \]
+    
+    \vspace{0.3cm}
+    
+    In both cases, we have $\det A = \det A^T$.
+    \end{solution}
     \end{enumerate}
 \end{prob}
 
@@ -404,5 +457,9 @@ Each problem is worth 10 points.
     \end{solution}
 \end{enumerate}
 \end{prob}
+\noindent \textbf{Generative AI Acknowledgment}
+
+\noindent Generative AI was used in this assignment for help with latex syntax. This includes defining the "solution box" that wraps answers. This also includes transcribing verbatum from handwritten on-paper solutions to first-draft latex code.
+\end{document}
 
 \end{document}
