@@ -53,6 +53,30 @@ Each problem is worth 10 points.
     \begin{enumerate}
     \setcounter{enumi}{2}
     \item Check that matrices $(AB)^T$ and $B^T A^T$ have the same size.
+    
+    \begin{solution}
+    
+    First, we determine the size of $(AB)^T$:
+    
+    Since $A$ is $m \times n$ and $B$ is $n \times k$, the product $AB$ is an $m \times k$ matrix.
+    
+    When we transpose $AB$, the rows and columns are swapped. Therefore $(AB)^T$ is a $k \times m$ matrix.
+    
+    \vspace{0.3cm}
+    
+    Next, we determine the size of $B^T A^T$:
+    
+    Since $B$ is $n \times k$, its transpose $B^T$ is a $k \times n$ matrix.
+    
+    Since $A$ is $m \times n$, its transpose $A^T$ is an $n \times m$ matrix.
+    
+    The product $B^T A^T$ multiplies a $k \times n$ matrix by an $n \times m$ matrix resulting in a $k \times m$ matrix.
+    
+    \vspace{0.3cm}
+    
+    Finally, both $(AB)^T$ and $B^T A^T$ are $k \times m$ matrices, so they have the same size.
+    \end{solution}
+    
     \item Show that $(AB)^T = B^T A^T$. 
     (Describe how the $(i,j)$-entry of $(AB)^T$ is obtained from rows/columns of $A$ and $B$, and similarly describe how the $(i,j)$-entry of $B^T A^T$ is obtained, and compare these.)
     
