@@ -281,16 +281,19 @@ Each problem is worth 10 points.
     \textbf{$A$ is not invertible}
     
     If $A$ is not invertible, then $\det A = 0$.
+    This implies that the rows or columns of $A$ are linearly dependent. 
     
+    Thus when we tranpose $A$, the rows and columns swap, meaning that if the rows were previously linearly dependent, the columns are now linearly dependent (and vice versa).
 
-    Therefore $A^T$ is also not invertible, which means:
+    In either situation, as the rows or columns of $A^T$ are linearly dependent, then $A^T$ is not invertible and we know $\det A^T = 0$.
+    Thus: 
+
     \[
     \det A^T = 0 = \det A
     \]
     
     \vspace{0.3cm}
     
-    In both cases, we have $\det A = \det A^T$.
     \end{solution}
     \end{enumerate}
 \end{prob}
