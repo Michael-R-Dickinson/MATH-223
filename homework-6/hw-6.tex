@@ -207,9 +207,57 @@ Each problem is worth 10 points.
 
 \begin{prob} True or False. Justify your answers.
 \begin{enumerate}
-    \item  $$\det (A+B) = \det A  +\det B$$ where $A,B$ are $n\times n$ matrices.
+    \item  $\det (A+B) = \det A  +\det B$ where $A,B$ are $n\times n$ matrices.
     
-    \item $$\det c\cdot A = c^n \det A$$ where $A$ is an $n\times n$ matrix, $c\in F$ and $c\cdot A$ is obtained from $A$ by multiplying each entry by $c$.
+    \begin{solution}
+    False, which can be proved with the counter example:
+    
+    \[
+    A = \begin{bmatrix} 1 & 0 \\ 0 & 0 \end{bmatrix}, \quad B = \begin{bmatrix} 0 & 0 \\ 0 & 1 \end{bmatrix}
+    \]
+    
+    Finding the determinants of $A$ and $B$:
+    \[
+    \det A = 0 \quad \det B = 0
+    \]
+    \[
+    \det A + \det B = 0 + 0 = 0
+    \]
+    
+    However, when we add the matrices:
+    \[
+    A + B = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}
+    \]
+    
+    \[
+    \det(A+B) = 1 
+    \]
+
+    Finally:
+  \[
+  \det(A+B) \neq 0 = \det A + \det B
+  \]
+
+    \end{solution}
+    
+    \item $\det c\cdot A = c^n \det A$ where $A$ is an $n\times n$ matrix, $c\in F$ and $c\cdot A$ is obtained from $A$ by multiplying each entry by $c$.
+    
+    \begin{solution}
+    TRUE
+    
+    \vspace{0.3cm}
+    
+    We know from the properties of determinants that multiplying a single row by a scalar $c$ multiplies the determinant by $c$.
+    
+    When we compute $c \cdot A$, we are multiplying every entry of $A$ by $c$, which is the same as multiplying each of the $n$ rows by $c$.
+    
+    Since multiplying each row by $c$ contributes a factor of $c$ to the determinant, and we perform this operation $n$ times (once for each row), the determinant is multiplied by $c$ a total of $n$ times:
+    \[
+    \det(c \cdot A) = c^n \det A
+    \]
+    
+    Therefore the statement is true.
+    \end{solution}
 \end{enumerate}
 \end{prob}
 
