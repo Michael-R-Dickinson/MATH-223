@@ -108,11 +108,17 @@ Each problem is worth 10 points.
     A = E_1 E_2 \cdots E_\ell = (E_1 E_2 \cdots E_{\ell-1}) E_\ell
     \]
 
-    Now we can apply the result of problem 1, $(AB)^T = B^T A^T$, with $A = (E_1 \cdots E_{\ell-1})$ and $B = E_\ell$:
+    Taking the transpose of both sides:
+    
+    \[
+      A^T = (E_1 E_2 \cdots E_\ell)^T = ((E_1 E_2 \cdots E_{\ell-1}) E_\ell)^T
+    \]
+    
+    Now we can apply the result of problem 1, $(AB)^T = B^T A^T$, with the product $(E_1 \cdots E_{\ell-1})$ as the first matrix and $E_\ell$ as the second matrix:
     
     
     \[
-      A^T = ((E_1 \cdots E_{\ell-1}) E_\ell)^T = E_\ell^T (E_1 \cdots E_{\ell-1})^T
+      A^T = E_\ell^T (E_1 \cdots E_{\ell-1})^T
     \]
     
     Repeatedly applying this step, we remove the rightmost $E_i$ from inside the parenthesis and places its transpose on the left. 
@@ -130,6 +136,70 @@ Each problem is worth 10 points.
     \end{solution}
     
     \item Show that for every elementary matrix $E$, $E^T$ is also an elementary matrix, and $\det E = \det E^T$.
+    
+    \begin{solution}
+    
+    Elementary matrices come from doing one of three row operations on the identity matrix. We will show that $E^T$ is an elementary matrix and $\det E = \det E^T$ for each of these three cases.
+    
+    \vspace{0.3cm}
+    
+    \textbf{Row swap operation}
+    
+    Consider the elementary matrix, $E$ where rows $i$ and $j$ are swapped from the identity matrix.
+    
+    Because the matrix transpose operation swaps the rows and columns of a matrix, when we transpose $E$ the operation of swapping rows $i$ and $j$ which we performed on the identity matrix, becomes swapping columns $i$ and $j$.
+    
+    Since the identity matrix is symmetric, swapping columns $i$ and $j$ of $I$ produces the same matrix as swapping rows $i$ and $j$ of $I$. Thus:
+    \[
+      E^T = E
+    \]
+
+    As these two matrices are equal, their determinants are equal:
+    \[
+    \det E = \det E^T
+    \]
+    
+    \vspace{0.3cm}
+    
+    \textbf{Row scaling operation}
+    
+    Consider the elementary matrix, $E$, obtained by scaling row $i$ by $c \in F$ in the identity matrix.
+    
+    The matrix $E$ is diagonal as it is equal to the identity matrix with a single entry scaled. 
+
+    Thus its entries along the diagonal are: $1, 1, \ldots, c, \ldots, 1$ where $c$ is in position $(i,i)$.
+    
+    Since $E$ is diagonal, transposing it produces the same matrix:
+    \[
+      E^T = E
+    \]
+    
+    As these two matrices are equal, their determinants are equal:
+    \[
+    \det E = \det E^T
+    \]
+    
+    \vspace{0.3cm}
+    
+    \textbf{Row addition operation}
+    
+    Consider the elementary matrix, $E$ obtained by adding $c$ times row $i$ to row $j$ in the identity matrix.
+    
+    The matrix $E$ has 1's on the diagonal, a $c$ in position $(j, i)$, and 0's elsewhere.
+    
+    When we transpose, the $c$ moves from position $(j, i)$ to position $(i, j)$. Therefore $E^T$ has 1's on the diagonal and a $c$ in position $(i, j)$.
+    
+    This means $E^T$ is equivelant to the identity matrix with the row operation of adding $c$ times row $j$ to row $i$. As that is a single row addition operation performed on the identity matrix, $E^T$ is an elementary matrix.
+    
+    We also know that row addition operations do not change the determinant, so:
+    \[
+    \det E = 1 = \det E^T
+    \]
+    
+    \vspace{0.3cm}
+    
+    We have shown that in all three cases, $E^T$ is an elementary matrix and $\det E = \det E^T$. 
+    \end{solution}
     
     \item Prove that for every $n\times n$ matrix $A$ we have $\det A = \det A^T$.
     \end{enumerate}
