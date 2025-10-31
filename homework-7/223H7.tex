@@ -1,0 +1,163 @@
+\documentclass[12pt, oneside]{amsart}
+\usepackage{amsmath,amsfonts, amssymb, xcolor}
+\usepackage{fullpage}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\R}{\mathbb R}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\spn}{span}
+
+\usepackage[most]{tcolorbox} % powerful colored boxes
+\usepackage{xcolor}          % colors
+\newtcolorbox{solution}{
+  colframe=green!50!black,   % medium green border
+  coltext=black,             % body text in black for readability
+  boxrule=0.4pt,             % thin, professional border
+  enhanced,                  % enable advanced drawing features
+  left=6pt, right=6pt, top=6pt, bottom=6pt % padding
+}
+
+\theoremstyle{definition}
+\newtheorem{prob}{Problem}
+
+\title{Math 223 Fall 2025 - Homework 7}
+\author{due November4 at 11:59pm}
+\pagenumbering{gobble}
+\begin{document}
+\maketitle
+Each problem is worth 10 points.
+
+
+\begin{prob} Let $A$ be an $n\times n$ matrix with entries in $\mathbb R$.
+    \begin{enumerate}
+        \item Show that $0\in \mathbb R$ is an eigenvalue of $A$ if and only if $A$ is not invertible.
+        
+        \begin{solution}
+        
+        ($\Rightarrow$) Suppose $0$ is an eigenvalue of $A$. By definition, this means there exists a non-zero vector $v \neq 0$ such that $Av = 0$. This tells us there is a non-trivial linear combination of the column vectors of $A$ that equals zero, which means the columns of $A$ are linearly dependent. Therefore $\det A = 0$, so $A$ is not invertible.
+        
+        ($\Leftarrow$) Suppose $A$ is not invertible. Then $A$ is not injective, which means $\ker(A) \neq \{0\}$. Therefore there exists some $v \neq 0$ such that
+        \[
+        Av = 0 = 0v
+        \]
+        This shows that $0$ is an eigenvalue of $A$ with eigenvector $v$.
+
+        \end{solution}
+        
+        \item Suppose $A$ is invertible. Prove that $\lambda\in \mathbb R$ is an eigenvalue of $A$ if and only if $\lambda^{-1}$ is an eigenvalue of $A^{-1}$.
+    \end{enumerate}
+\end{prob}
+
+\begin{prob} Let $V$ be a vector space over $F$ with $\dim V = n$.
+Let $\lambda_1, \dots, \lambda_k$ be eigenvalues of $T:V\to V$. For each $i=1, \dots, k$ let $E_i$ be the eigenspace corresponding to the eigenvalue $\lambda_i$, and let $S_i\subseteq E_i$ be a linearly independent subset of $E_i$. Prove that $S = S_1\cup S_2\cup \dots \cup S_k$ is a linearly independent subset of $V$.
+(Hint: Use the fact proven in class that a set of eigenvectors, each corresponding to a distinct eigenvalue, is linearly independent.)
+\end{prob}
+
+\begin{prob}
+    Consider the following linear operator on the space of polynomials with coefficients in $\mathbb R$ of degree $\leq 2$.
+    $T:P_2(\mathbb R) \to P_2(\mathbb R)$
+    $T(p) = (2x+1)p' + x^2\cdot p''$
+    where $p' = \frac{dp}{dx}$ and $p'' = \frac{d^2p}{dx^2}$. Find all the eigenvalues of $T$, and for each eigenvalue find an eigenvector.
+    
+    \begin{solution}
+    
+    We'll find a matrix representation of $T$ with the basis $\{1, x, x^2\}$ for $P_2(\mathbb{R})$.
+
+First, we apply $T$ to each basis element:
+
+For $T(1)$:
+\[
+T(1) = (2x+1) \frac{d}{dx}(1) + x^2 \frac{d^2}{dx^2}(1) = 0
+\]
+
+For $T(x)$:
+\[
+T(x) = (2x+1) \frac{d}{dx}(x) + x^2 \frac{d^2}{dx^2}(x) = (2x+1)(1) + 0 = 2x + 1
+\]
+
+For $T(x^2)$:
+\[
+T(x^2) = (2x+1) \frac{d}{dx}(x^2) + x^2 \frac{d^2}{dx^2}(x^2) = (2x+1)(2x) + x^2(2) = 4x^2 + 2x + 2x^2 = 6x^2 + 2x
+\]
+
+Writing these in terms of the basis $\{1, x, x^2\}$, we have:
+\begin{itemize}
+    \item $T(1) = 0 \cdot 1 + 0 \cdot x + 0 \cdot x^2$
+    \item $T(x) = 1 \cdot 1 + 2 \cdot x + 0 \cdot x^2$
+    \item $T(x^2) = 0 \cdot 1 + 2 \cdot x + 6 \cdot x^2$
+\end{itemize}
+
+Therefore, the matrix representation of $T$ is:
+\[
+A = \begin{bmatrix} 0 & 1 & 0 \\ 0 & 2 & 2 \\ 0 & 0 & 6 \end{bmatrix}
+\]
+
+To find the eigenvalues, we compute the characteristic polynomial by solving for $\lambda$ in $\det(A - \lambda I) = 0$:
+\[
+\det(A - \lambda I) = \det \begin{bmatrix} -\lambda & 1 & 0 \\ 0 & 2-\lambda & 2 \\ 0 & 0 & 6-\lambda \end{bmatrix}
+\]
+
+Computing the determinant using cofactor expansion along the first row:
+\[
+(-\lambda) \det \begin{bmatrix} 2-\lambda & 2 \\ 0 & 6-\lambda \end{bmatrix} - 1 \det \begin{bmatrix} 0 & 2 \\ 0 & 6-\lambda \end{bmatrix} + 0
+\]
+\[
+= (-\lambda)[(2-\lambda)(6-\lambda)] - 1[0] = -\lambda(\lambda^2 - 8\lambda + 12)
+\]
+\[
+= -\lambda^3 + 8\lambda^2 - 12\lambda
+\]
+
+Factoring out $\lambda$:
+\[
+\lambda(\lambda^2 - 8\lambda + 12) = 0
+\]
+\[
+\lambda(\lambda - 6)(\lambda - 2) = 0
+\]
+
+This gives us eigenvalues $\lambda = 0, 2, 6$.
+
+Now we find an eigenvector for each eigenvalue.
+
+For $\lambda = 0$, we solve $(A - 0I)v = 0$:
+\[
+\begin{bmatrix} 0 & 1 & 0 \\ 0 & 2 & 2 \\ 0 & 0 & 6 \end{bmatrix} \begin{bmatrix} v_1 \\ v_2 \\ v_3 \end{bmatrix} = \begin{bmatrix} 0 \\ 0 \\ 0 \end{bmatrix}
+\]
+
+From the third row: $6v_3 = 0$, so $v_3 = 0$.\\
+From the second row: $2v_2 + 2v_3 = 0$, so $v_2 = 0$.\\
+The first row is automatically satisfied.\\
+Taking $v_1 = 1$, we get eigenvector $v = \begin{bmatrix} 1 \\ 0 \\ 0 \end{bmatrix}$, which corresponds to $p(x) = 1$.
+
+For $\lambda = 2$, we solve $(A - 2I)v = 0$:
+\[
+\begin{bmatrix} -2 & 1 & 0 \\ 0 & 0 & 2 \\ 0 & 0 & 4 \end{bmatrix} \begin{bmatrix} v_1 \\ v_2 \\ v_3 \end{bmatrix} = \begin{bmatrix} 0 \\ 0 \\ 0 \end{bmatrix}
+\]
+
+From the second and third rows: $v_3 = 0$.\\
+From the first row: $-2v_1 + v_2 = 0$, so $v_2 = 2v_1$.\\
+Taking $v_1 = 1$, we get eigenvector $v = \begin{bmatrix} 1 \\ 2 \\ 0 \end{bmatrix}$, which corresponds to $p(x) = 1 + 2x$.
+
+For $\lambda = 6$, we solve $(A - 6I)v = 0$:
+\[
+\begin{bmatrix} -6 & 1 & 0 \\ 0 & -4 & 2 \\ 0 & 0 & 0 \end{bmatrix} \begin{bmatrix} v_1 \\ v_2 \\ v_3 \end{bmatrix} = \begin{bmatrix} 0 \\ 0 \\ 0 \end{bmatrix}
+\]
+
+From the second row: $-4v_2 + 2v_3 = 0$, so $v_2 = \frac{v_3}{2}$.\\
+From the first row: $-6v_1 + v_2 = 0$, so $v_1 = \frac{v_2}{6} = \frac{v_3}{12}$.\\
+Taking $v_3 = 12$, we get $v_2 = 6$ and $v_1 = 1$, giving eigenvector $v = \begin{bmatrix} 1 \\ 6 \\ 12 \end{bmatrix}$, which corresponds to $p(x) = 1 + 6x + 12x^2$.
+
+\textbf{Summary:} The eigenvalues are $\lambda = 0, 2, 6$ with corresponding eigenvectors $p(x) = 1$, $p(x) = 1 + 2x$, and $p(x) = 1 + 6x + 12x^2$ respectively.
+    
+    \end{solution}
+\end{prob}
+
+\begin{prob}
+    Determine if the given matrix is diagonalizable. If it is diagonalizable what is the diagonal matrix that is similar to it? Show all your work.
+    \begin{enumerate}
+        \item $A_1 = \left[\begin{matrix} 1 & 1 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 3\end{matrix}\right]$
+
+        \item $A_2 = \left[\begin{matrix} 3 & 1 & 1 \\ 2 & 4 & 2 \\ -1 & -1 & 1\end{matrix}\right]$
+    \end{enumerate}
+\end{prob}
+\end{document}
