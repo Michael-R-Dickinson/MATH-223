@@ -45,6 +45,59 @@ Each problem is worth 10 points.
         \end{solution}
         
         \item Suppose $A$ is invertible. Prove that $\lambda\in \mathbb R$ is an eigenvalue of $A$ if and only if $\lambda^{-1}$ is an eigenvalue of $A^{-1}$.
+        
+        \begin{solution}
+        
+        ($\Rightarrow$) As $\lambda$ is an eigenvalue of $A$ there exists a vector $v \neq 0$ such that:
+        \[
+        Av = \lambda v
+        \]
+
+        As $A$ is invertible, we know:
+        \[
+        A^{-1}A = I
+        \]
+        We multiply both sides by $v$:
+        \[
+        (A^{-1}A)v = Iv
+        \]
+
+        Because matrix multiplcation is associative, we can rearrange the left side and use our known equation $Av = \lambda v$. Additionally, as $Iv = v$, we simplify the right side as well:
+
+        \[
+        A^{-1}(Av) = v
+        \]
+        \[
+        A^{-1}(\lambda v) = v
+        \]
+
+        We know that $\lambda \neq 0$ because $A$ is invertible and we proved in part 1 of this problem that $0$ is not an eigenvalue for invertible matrices. Thus we can divide both sides by $\lambda$:
+        \[
+        A^{-1}v = \frac{1}{\lambda}v = \lambda^{-1}v
+        \]
+        This shows that $\lambda^{-1}$ is an eigenvalue of $A^{-1}$ with eigenvector $v$.
+        
+        ($\Leftarrow$) Because $\lambda^{-1}$ is an eigenvalue of $A^{-1}$, there exists a vector $v \neq 0$ satisfying the equation:
+        \[
+        A^{-1}v = \lambda^{-1}v
+        \]
+        Multiplying both sides by $A$:
+        \[
+        A(A^{-1}v) = A(\lambda^{-1}v)
+        \]
+        \[
+        (AA^{-1})v = \lambda^{-1}(Av)
+        \]
+        \[
+        v = \lambda^{-1}(Av)
+        \]
+        Multiplying both sides by $\lambda$:
+        \[
+        \lambda v = Av
+        \]
+        This shows that $\lambda$ is an eigenvalue of $A$ with eigenvector $v$.
+        
+        \end{solution}
     \end{enumerate}
 \end{prob}
 
