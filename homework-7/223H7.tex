@@ -265,6 +265,35 @@ Finally, we have found eigenvalues $\lambda = 0, 2, 6$ with corresponding eigenv
     Determine if the given matrix is diagonalizable. If it is diagonalizable what is the diagonal matrix that is similar to it? Show all your work.
     \begin{enumerate}
         \item $A_1 = \left[\begin{matrix} 1 & 1 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 3\end{matrix}\right]$
+        
+        \begin{solution}
+        
+        $A_1$ is upper triangular so we can read the eigenvalues off the diagonal: $\lambda = 1$ and $\lambda = 3$.
+
+Now we find the eigenvectors for each eigenvalue.
+
+{For $\lambda = 1$:} We solve $(A - I)v = 0$:
+\[
+\begin{bmatrix} 0 & 1 & 0 \\ 0 & 0 & 0 \\ 0 & 0 & 2 \end{bmatrix} \begin{bmatrix} v_1 \\ v_2 \\ v_3 \end{bmatrix} = \begin{bmatrix} 0 \\ 0 \\ 0 \end{bmatrix}
+\]
+
+From the second row: $v_2 = 0$.\\
+From the third row: $2v_3 = 0$, so $v_3 = 0$.\\
+The first coordinate $v_1$ is free. We set $v_1 = 1$ and get the eigenvector $v = \begin{bmatrix} 1 \\ 0 \\ 0 \end{bmatrix}$.
+
+{For $\lambda = 3$:} We solve $(A_1 - 3I)v = 0$:
+\[
+\begin{bmatrix} -2 & 1 & 0 \\ 0 & -2 & 0 \\ 0 & 0 & 0 \end{bmatrix} \begin{bmatrix} v_1 \\ v_2 \\ v_3 \end{bmatrix} = \begin{bmatrix} 0 \\ 0 \\ 0 \end{bmatrix}
+\]
+
+From the second row: $-2v_2 = 0$, so $v_2 = 0$.\\
+From the first row: $-2v_1 + v_2 = 0$, so $v_1 = 0$.\\
+The third coordinate $v_3$ is free. Taking $v_3 = 1$, we get the eigenvector $v = \begin{bmatrix} 0 \\ 0 \\ 1 \end{bmatrix}$.
+
+Thus the eigenvectors for $A$ are $\begin{bmatrix} 1 \\ 0 \\ 0 \end{bmatrix}$ and $\begin{bmatrix} 0 \\ 0 \\ 1 \end{bmatrix}$. 
+The span of these two eigenvectors is 2-dimensional, which is less than the 3 dimensions we need for a basis of $\mathbb{R}^3$ (the space for $A_1$). Since the eigenvectors do not form a basis for $\mathbb{R}^3$, $A_1$ is not diagonalizable.
+        
+        \end{solution}
 
         \item $A_2 = \left[\begin{matrix} 3 & 1 & 1 \\ 2 & 4 & 2 \\ -1 & -1 & 1\end{matrix}\right]$
     \end{enumerate}
