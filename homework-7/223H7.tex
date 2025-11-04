@@ -128,33 +128,34 @@ We can now rewrite our original equation as:
 u_1 + u_2 + \dots + u_k = 0
 \]
 
-Since $S_i \subseteq E_i$ and $E_i$ is a subspace (being an eigenspace), $E_i$ is closed under linear combinations. Therefore, each $u_i \in E_i$, which means either $u_i = 0$ or $u_i$ is an eigenvector with eigenvalue $\lambda_i$. 
+Since $S_i \subseteq E_i$ and $E_i$ is a subspace (being an eigenspace), $E_i$ is closed under linear combinations. Therefore each $u_i \in E_i$, which means $u_i$ is an eigenvector with eigenvalue $\lambda_i$, or $u_i = 0$.
 
-Now we consider two cases:
+Now we consider two cases based on whether any values of $u_i$ are nonzero.
 
-\textbf{Case 1:} At least one $u_i \neq 0$.
+\vspace{1em}
+Case 1: At least one $u_i \neq 0$.
 
-Without loss of generality, suppose $u_1, u_2, \dots, u_m$ are nonzero (where $m \geq 1$) and the rest are zero. Then we have:
+This means that the linear combination $u_1 + u_2 + \dots + u_m = 0$ has atleast one nonzero term. These non-zero terms, we have established, are eigenvectors corresponding to distinct eigenvalues $\lambda_i$.
+
+Thus the following is a nontrivial linear combination of eigenvectors corresponding to distinct eigenvalues, that equals zero. This contradicts the fact proven in class that eigenvectors corresponding to distinct eigenvalues are linearly independent.
+
 \[
 u_1 + u_2 + \dots + u_m = 0
 \]
-or equivalently,
-\[
-1 \cdot u_1 + 1 \cdot u_2 + \dots + 1 \cdot u_m = 0
-\]
 
-This is a nontrivial linear combination (with nonzero coefficients) of eigenvectors $u_1, u_2, \dots, u_m$ corresponding to distinct eigenvalues $\lambda_1, \lambda_2, \dots, \lambda_m$ that equals zero. This contradicts the fact proven in class that eigenvectors corresponding to distinct eigenvalues are linearly independent.
 
-\textbf{Case 2:} All $u_i = 0$.
+\vspace{1em}
+Case 2: All $u_i = 0$.
 
 This means that for each $i$, we have
 \[
 \sum_{v} c_v v = 0 \text{ for } v \in S_i
 \]
-But each $S_i$ is linearly independent by assumption, so all coefficients $c_v = 0$ for $v \in S_i$. Since this holds for all $i$, all coefficients in our original linear combination are zero.
+But each $S_i$ is linearly independent, so all coefficients $c_v = 0$ for $v \in S_i$. 
 
-But this contradicts our assumption that we had a nontrivial linear combination (not all coefficients zero).
+This applies to all $i$, and thus all sums $u_i$. Thus, all coefficients in our original linear combination are zero. But this contradicts our assumption that we had a nontrivial linear combination (not all coefficients zero) of vectors $u_i$ equal to 0.
 
+\vspace{1em}
 Since both cases lead to contradictions, our assumption that $S$ is linearly dependent must be false. Therefore, $S$ is linearly independent.
 
 \end{solution}
