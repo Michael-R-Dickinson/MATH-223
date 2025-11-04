@@ -104,6 +104,53 @@ Each problem is worth 10 points.
 \begin{prob} Let $V$ be a vector space over $F$ with $\dim V = n$.
 Let $\lambda_1, \dots, \lambda_k$ be eigenvalues of $T:V\to V$. For each $i=1, \dots, k$ let $E_i$ be the eigenspace corresponding to the eigenvalue $\lambda_i$, and let $S_i\subseteq E_i$ be a linearly independent subset of $E_i$. Prove that $S = S_1\cup S_2\cup \dots \cup S_k$ is a linearly independent subset of $V$.
 (Hint: Use the fact proven in class that a set of eigenvectors, each corresponding to a distinct eigenvalue, is linearly independent.)
+
+\begin{solution}
+
+Assume for contradiction that $S$ is linearly dependent. This means that there exists a nontrivial linear combination of vectors in $S$ that equals zero: 
+\[
+\sum_{v} c_v v = 0
+\]
+\[
+\text{with } c_v \in F \text{ and } v \in S
+\]
+
+For each $i = 1, 2, \dots, k$, define
+\[
+u_i = \sum_{v \in S_i} c_v v \text{ for } v \in S_i
+\]
+
+Since $S_i \subseteq E_i$ and $E_i$ is a subspace (being an eigenspace), $E_i$ is closed under linear combinations. Therefore, each $u_i \in E_i$, which means either $u_i = 0$ or $u_i$ is an eigenvector with eigenvalue $\lambda_i$. 
+
+We can now rewrite our original equation as:
+\[
+u_1 + u_2 + \dots + u_k = 0
+\]
+
+Now we consider two cases:
+
+\textbf{Case 1:} At least one $u_i \neq 0$.
+
+Without loss of generality, suppose $u_1, u_2, \dots, u_m$ are nonzero (where $m \geq 1$) and the rest are zero. Then we have:
+\[
+u_1 + u_2 + \dots + u_m = 0
+\]
+or equivalently,
+\[
+1 \cdot u_1 + 1 \cdot u_2 + \dots + 1 \cdot u_m = 0
+\]
+
+This is a nontrivial linear combination (with nonzero coefficients) of eigenvectors $u_1, u_2, \dots, u_m$ corresponding to distinct eigenvalues $\lambda_1, \lambda_2, \dots, \lambda_m$ that equals zero. This contradicts the fact proven in class that eigenvectors corresponding to distinct eigenvalues are linearly independent.
+
+\textbf{Case 2:} All $u_i = 0$.
+
+This means that for each $i$, we have $\sum_{v \in S_i} c_v v = 0$. But each $S_i$ is linearly independent by assumption, so all coefficients $c_v = 0$ for $v \in S_i$. Since this holds for all $i$, all coefficients in our original linear combination are zero.
+
+But this contradicts our assumption that we had a nontrivial linear combination (not all coefficients zero).
+
+Since both cases lead to contradictions, our assumption that $S$ is linearly dependent must be false. Therefore, $S$ is linearly independent.
+
+\end{solution}
 \end{prob}
 
 \begin{prob}
