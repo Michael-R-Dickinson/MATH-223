@@ -277,18 +277,29 @@ Now we find the eigenvectors for each eigenvalue.
 \begin{bmatrix} 0 & 1 & 0 \\ 0 & 0 & 0 \\ 0 & 0 & 2 \end{bmatrix} \begin{bmatrix} v_1 \\ v_2 \\ v_3 \end{bmatrix} = \begin{bmatrix} 0 \\ 0 \\ 0 \end{bmatrix}
 \]
 
-From the second row: $v_2 = 0$.\\
-From the third row: $2v_3 = 0$, so $v_3 = 0$.\\
-The first coordinate $v_1$ is free. We set $v_1 = 1$ and get the eigenvector $v = \begin{bmatrix} 1 \\ 0 \\ 0 \end{bmatrix}$.
+We can write this as a system of equations and solve th get the eigenvectors for this eigenvalue:
+
+\begin{align*}
+v_2 &= 0 \\
+2v_3 &= 0
+\end{align*}
+
+The value $v_1$ is a free variable as it is none of the equations. We can pick $v_1 = 1$ and solve for $v2$ and $v_3$ to get the eigenvector:
+\[v = \begin{bmatrix} 1 \\ 0 \\ 0 \end{bmatrix}\]
 
 {For $\lambda = 3$:} We solve $(A_1 - 3I)v = 0$:
 \[
 \begin{bmatrix} -2 & 1 & 0 \\ 0 & -2 & 0 \\ 0 & 0 & 0 \end{bmatrix} \begin{bmatrix} v_1 \\ v_2 \\ v_3 \end{bmatrix} = \begin{bmatrix} 0 \\ 0 \\ 0 \end{bmatrix}
 \]
 
-From the second row: $-2v_2 = 0$, so $v_2 = 0$.\\
-From the first row: $-2v_1 + v_2 = 0$, so $v_1 = 0$.\\
-The third coordinate $v_3$ is free. Taking $v_3 = 1$, we get the eigenvector $v = \begin{bmatrix} 0 \\ 0 \\ 1 \end{bmatrix}$.
+We get a similar system of equations to the first part and solve for the free variables to get the eigenvector for this eigenvalue:
+
+\begin{align*}
+-2v_1 + v_2 &= 0 \\
+-2v_2 &= 0
+\end{align*}
+
+As $v_3$ is free we can pick it and solve for another eigenvalue. Pick $v_3 = 1$ gets us eigenvector $v = \begin{bmatrix} 0 \\ 0 \\ 1 \end{bmatrix}$.
 
 Thus the eigenvectors for $A$ are $\begin{bmatrix} 1 \\ 0 \\ 0 \end{bmatrix}$ and $\begin{bmatrix} 0 \\ 0 \\ 1 \end{bmatrix}$. 
 The span of these two eigenvectors is 2-dimensional, which is less than the 3 dimensions we need for a basis of $\mathbb{R}^3$ (the space for $A_1$). Since the eigenvectors do not form a basis for $\mathbb{R}^3$, $A_1$ is not diagonalizable.
