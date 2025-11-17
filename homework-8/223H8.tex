@@ -37,22 +37,32 @@ You can use other properties of the norms proven in class.
 
 \begin{solution}
 
-We start by computing $\norm{v+w}^2$:
+We start by computing the left side of the inequality:
 \[
 \norm{v+w}^2 = \langle v+w \mid v+w \rangle
 \]
 
-Expanding using linearity of the inner product in both arguments:
+Using linearity in the first argument we can expand the inner product:
 \[
-= \langle v \mid v \rangle + \langle v \mid w \rangle + \langle w \mid v \rangle + \langle w \mid w \rangle = \norm{v}^2 + 2\langle v \mid w \rangle + \norm{w}^2
+= \langle v \mid v+w \rangle + \langle w \mid v+w \rangle
 \]
 
-By the Cauchy-Schwarz inequality, we know that $\langle v \mid w \rangle \leq \norm{v}\norm{w}$. Thus:
+Now using linearity in the second argument we can expand again:
+\[
+= \langle v \mid v \rangle + \langle v \mid w \rangle + \langle w \mid v \rangle + \langle w \mid w \rangle
+\]
+
+Since we are working over the reals, the inner product is symmetric, so $\langle v \mid w \rangle = \langle w \mid v \rangle$. Thus we can simplify the expression:
+\[
+= \norm{v}^2 + 2\langle v \mid w \rangle + \norm{w}^2
+\]
+
+By the Cauchy-Schwarz inequality, we know that $\langle v \mid w \rangle \leq \norm{v}\norm{w}$. Thus we can write our equation as an inequality:
 \[
 \norm{v+w}^2 = \norm{v}^2 + 2\langle v \mid w \rangle + \norm{w}^2 \leq \norm{v}^2 + 2\norm{v}\norm{w} + \norm{w}^2 = (\norm{v} + \norm{w})^2
 \]
 
-Taking square roots of both sides (valid since norms are non-negative), we obtain:
+Taking square roots of both sides we get the original inequality we wanted to prove:
 \[
 \norm{v+w} \leq \norm{v} + \norm{w}
 \]
