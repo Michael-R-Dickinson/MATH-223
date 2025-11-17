@@ -1,0 +1,97 @@
+\documentclass[12pt, oneside]{amsart}
+\usepackage{amsmath,amsfonts, amssymb, xcolor}
+\usepackage{fullpage}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\R}{\mathbb R}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\spn}{span}
+\DeclareMathOperator{\proj}{proj}
+\newcommand\norm[1]{\left\lVert#1\right\rVert}
+
+\theoremstyle{definition}
+\newtheorem{prob}{Problem}
+
+\usepackage[most]{tcolorbox} % powerful colored boxes
+\usepackage{xcolor}          % colors
+\newtcolorbox{solution}{
+  colframe=green!50!black,   % medium green border
+  coltext=black,             % body text in black for readability
+  boxrule=0.4pt,             % thin, professional border
+  enhanced,                  % enable advanced drawing features
+  left=6pt, right=6pt, top=6pt, bottom=6pt % padding
+}
+
+\title{Math 223 Fall 2025 - Homework 8}
+\author{due November 16 at 11:59pm}
+\pagenumbering{gobble}
+\begin{document}
+\maketitle
+Each problem is worth 10 points.
+
+
+\begin{prob}\item
+\begin{enumerate}
+    \item Prove the \emph{triangle inequality}:
+$\norm{v+w}\leq \norm{v} + \norm{w}$ 
+You can use other properties of the norms proven in class.
+
+\vspace{0.3cm}
+
+We start by computing $\norm{v+w}^2$:
+\[
+\norm{v+w}^2 = \langle v+w \mid v+w \rangle
+\]
+
+Expanding using linearity of the inner product in both arguments:
+\[
+= \langle v \mid v \rangle + \langle v \mid w \rangle + \langle w \mid v \rangle + \langle w \mid w \rangle = \norm{v}^2 + 2\langle v \mid w \rangle + \norm{w}^2
+\]
+
+By the Cauchy-Schwarz inequality, we know that $\langle v \mid w \rangle \leq \norm{v}\norm{w}$. Thus:
+\[
+\norm{v+w}^2 = \norm{v}^2 + 2\langle v \mid w \rangle + \norm{w}^2 \leq \norm{v}^2 + 2\norm{v}\norm{w} + \norm{w}^2 = (\norm{v} + \norm{w})^2
+\]
+
+Taking square roots of both sides (valid since norms are non-negative), we obtain:
+\[
+\norm{v+w} \leq \norm{v} + \norm{w}
+\]
+
+    \item Prove the \emph{parallelogram law}:
+$$\norm{v+w}^2+ \norm{v-w}^2 = 2 (\norm{v}^2 +\norm{w}^2)$$
+    \item What does the parallelogram law say about parallelograms in $\mathbb R^2$?
+\end{enumerate}
+\end{prob}
+
+\begin{prob}
+    Let $V$ be a real vectors space with an orthogonal basis $(v_1, \dots, v_n)$. Prove that for every $w\in V$ we have
+
+    $$w = \proj_{v_1}(w) + \proj_{v_2}(w) + \dots \proj_{v_n}(w) = \frac{\langle v_1 \mid w \rangle}{\norm{v_1}^2} v_1+\frac{\langle v_2 \mid w \rangle}{\norm{v_2}^2} v_2 + \dots \frac{\langle v_n \mid w \rangle}{\norm{v_n}^2} v_n$$
+\end{prob}
+
+\begin{prob}\item
+\begin{enumerate}
+    \item 
+    Apply the Gram-Schmidt process to the following basis $\mathcal B$ of $\mathbb R^3$ to obtain an orthonormal basis $\mathcal B'$ of $\mathbb R^3$
+    $$\mathcal B = \left(\left[\begin{matrix} 1 \\0 \\1
+    \end{matrix}\right], \left[\begin{matrix} 0 \\1 \\1 
+    \end{matrix}\right],\left[\begin{matrix} 1 \\3 \\3
+    \end{matrix}\right] \right)$$.
+    \item Find the coefficients of the vectors $w = \left[\begin{matrix} 1 \\1 \\2 
+    \end{matrix}\right]$ in the basis $\mathcal B'$
+\end{enumerate}
+\end{prob}
+
+\begin{prob}
+Consider the inner product on the space $\mathcal P_2(\mathbb R)$ of polynomials of degree $\leq 2$ with real coefficients given by
+$$
+\langle f \mid g \rangle = \int_0^1 f(x)g(x) dx.
+$$
+\begin{enumerate}
+    \item 
+    Apply the Gram-Schmidt process to the basis $\mathcal B = (1,x, x^2)$ of $P_2(\mathbb R)$ to produce an orthonormal basis.    
+    \item Find the coefficients of $h(x) = 1+x$ in the obtained basis.
+\end{enumerate}
+\end{prob}
+
+\end{document}
