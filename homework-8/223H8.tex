@@ -119,7 +119,54 @@ So finally we have:
 \begin{prob}
     Let $V$ be a real vectors space with an orthogonal basis $(v_1, \dots, v_n)$. Prove that for every $w\in V$ we have
 
-    $$w = \proj_{v_1}(w) + \proj_{v_2}(w) + \dots \proj_{v_n}(w) = \frac{\langle v_1 \mid w \rangle}{\norm{v_1}^2} v_1+\frac{\langle v_2 \mid w \rangle}{\norm{v_2}^2} v_2 + \dots \frac{\langle v_n \mid w \rangle}{\norm{v_n}^2} v_n$$
+    $w = \proj_{v_1}(w) + \proj_{v_2}(w) + \dots \proj_{v_n}(w) = \frac{\langle v_1 \mid w \rangle}{\norm{v_1}^2} v_1+\frac{\langle v_2 \mid w \rangle}{\norm{v_2}^2} v_2 + \dots \frac{\langle v_n \mid w \rangle}{\norm{v_n}^2} v_n$
+
+\begin{solution}
+
+Because $w \in V$, $w$ can be written as a linear combination of the basis vectors of $V$:
+\[
+w = a_1 v_1 + a_2 v_2 + \cdots + a_n v_n
+\]
+\[
+\text{with } a_i \in \mathbb{R}
+\]
+
+\vspace{0.3cm}
+
+Now we can find the values of each coefficient $a_i$ by taking the inner product of both sides with each $v_i$ value then determining the value of the corresponding coefficient $a_i$:
+\[
+\langle w \mid v_i \rangle = \langle a_1 v_1 + a_2 v_2 + \cdots + a_n v_n \mid v_i \rangle
+\]
+
+We can split this inner product into a sum of products using linearity:
+\[
+\langle w \mid v_i \rangle = a_1 \langle v_1 \mid v_i \rangle + a_2 \langle v_2 \mid v_i \rangle + \cdots + a_i \langle v_i \mid v_i \rangle + \cdots + a_n \langle v_n \mid v_i \rangle
+\]
+
+Because we know each $v_i \in V$ is is orthogonal, we know that $\langle v_j \mid v_i \rangle = 0$ for all $j \neq i$. 
+
+Therefore all terms in the sum above are zero except for the term with the inner product of $v_i$ and itself: $a_i \langle v_i \mid v_i \rangle$:
+\[
+\langle w \mid v_i \rangle = a_i \langle v_i \mid v_i \rangle = a_i \norm{v_i}^2
+\]
+
+Now we can isolate and solve for $a_i$:
+\[
+a_i = \frac{\langle w \mid v_i \rangle}{\norm{v_i}^2}
+\]
+
+Therefore in our original linear combination  we can substitute this value for $a_i$:
+\[
+a_i v_i = \frac{\langle v_i \mid w \rangle}{\norm{v_i}^2} v_i = \proj_{v_i}(w)
+\]
+
+Substituting back into our expression for $w$ which gives the equation we were trying to prove:
+\[
+w = a_1 v_1 + a_2 v_2 + \cdots + a_n v_n = \proj_{v_1}(w) + \proj_{v_2}(w) + \cdots + \proj_{v_n}(w)
+\]
+
+
+\end{solution}
 \end{prob}
 
 \begin{prob}\item
