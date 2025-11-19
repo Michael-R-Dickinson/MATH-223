@@ -92,18 +92,14 @@ $$\norm{v+w}^2+ \norm{v-w}^2 = 2 (\norm{v}^2 +\norm{w}^2)$$
 
 \begin{solution}
 
-We apply the Gram-Schmidt process to obtain an orthonormal basis $\mathcal{B}'$ from $\mathcal{B}$.
-
-First, we normalize the first vector:
+First, we normalize the first vector to get the first vector in our new basis:
 \[
 e_1 = \frac{v_1}{\norm{v_1}} = \frac{1}{\sqrt{2}}\begin{bmatrix} 1 \\ 0 \\ 1 \end{bmatrix} = \begin{bmatrix} 1/\sqrt{2} \\ 0 \\ 1/\sqrt{2} \end{bmatrix}
 \]
 
-For the remaining vectors, we subtract the projections onto the previous orthonormal vectors and then normalize.
+For the remaining vectors, we subtract the projections onto the previous vectors in our new orthonormal set and then normalize them as well. 
 
-\vspace{0.3cm}
-
-For the second vector, we compute:
+For $u_2$:
 \[
 u_2 = v_2 - \proj_{e_1}(v_2)
 \]
@@ -112,11 +108,11 @@ u_2 = v_2 - \proj_{e_1}(v_2)
 = \begin{bmatrix} 0 \\ 1 \\ 1 \end{bmatrix} - \langle v_2, e_1 \rangle e_1 = \begin{bmatrix} 0 \\ 1 \\ 1 \end{bmatrix} - \frac{1}{\sqrt{2}}\begin{bmatrix} 1/\sqrt{2} \\ 0 \\ 1/\sqrt{2} \end{bmatrix} = \begin{bmatrix} -1/2 \\ 1 \\ 1/2 \end{bmatrix}
 \]
 
-Normalizing: $e_2 = \frac{u_2}{\norm{u_2}} = \frac{2}{\sqrt{6}}\begin{bmatrix} -1/2 \\ 1 \\ 1/2 \end{bmatrix} = \begin{bmatrix} -1/\sqrt{6} \\ 2/\sqrt{6} \\ 1/\sqrt{6} \end{bmatrix}$
+Normalizing $e_2 = \frac{u_2}{\norm{u_2}} = \frac{2}{\sqrt{6}}\begin{bmatrix} -1/2 \\ 1 \\ 1/2 \end{bmatrix} = \begin{bmatrix} -1/\sqrt{6} \\ 2/\sqrt{6} \\ 1/\sqrt{6} \end{bmatrix}$
 
 \vspace{0.3cm}
 
-For the third vector:
+For $u_3$:
 \[
 u_3 = v_3 - \proj_{e_1}(v_3) - \proj_{e_2}(v_3)
 \]
@@ -127,7 +123,7 @@ u_3 = v_3 - \proj_{e_1}(v_3) - \proj_{e_2}(v_3)
 
 Normalizing: $e_3 = \frac{u_3}{\norm{u_3}} = \sqrt{3}\begin{bmatrix} 1/3 \\ 1/3 \\ -1/3 \end{bmatrix} = \begin{bmatrix} 1/\sqrt{3} \\ 1/\sqrt{3} \\ -1/\sqrt{3} \end{bmatrix}$
 
-Therefore, the orthonormal basis is:
+Therefore, the orthonormal basis is the set of these three vectors:
 \[
 \mathcal{B}' = \left(\begin{bmatrix} 1/\sqrt{2} \\ 0 \\ 1/\sqrt{2} \end{bmatrix}, \begin{bmatrix} -1/\sqrt{6} \\ 2/\sqrt{6} \\ 1/\sqrt{6} \end{bmatrix}, \begin{bmatrix} 1/\sqrt{3} \\ 1/\sqrt{3} \\ -1/\sqrt{3} \end{bmatrix}\right)
 \]
