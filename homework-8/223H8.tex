@@ -70,7 +70,44 @@ Taking square roots of both sides we get the original inequality we wanted to pr
 \end{solution}
 
     \item Prove the \emph{parallelogram law}:
-$$\norm{v+w}^2+ \norm{v-w}^2 = 2 (\norm{v}^2 +\norm{w}^2)$$
+$\norm{v+w}^2+ \norm{v-w}^2 = 2 (\norm{v}^2 +\norm{w}^2)$
+
+\begin{solution}
+
+We prove the parallelogram law by expanding both sides using the inner product.
+
+Starting with the left side, we compute $\norm{v+w}^2$:
+\[
+\norm{v+w}^2 = \langle v+w \mid v+w \rangle = \langle v\mid v \rangle + \langle v\mid w \rangle + \langle w\mid v \rangle + \langle w\mid w \rangle
+\]
+
+Since we are working over the reals, $\langle v\mid w \rangle = \langle w\mid v \rangle$, so:
+\[
+\norm{v+w}^2 = \norm{v}^2 + 2\langle v\mid w \rangle + \norm{w}^2
+\]
+
+Similarly, we compute $\norm{v-w}^2$:
+\[
+\norm{v-w}^2 = \langle v-w \mid v-w \rangle = \langle v\mid v \rangle - \langle v\mid w \rangle - \langle w\mid v \rangle + \langle w\mid w \rangle
+\]
+
+Again using symmetry:
+\[
+\norm{v-w}^2 = \norm{v}^2 - 2\langle v\mid w \rangle + \norm{w}^2
+\]
+
+Adding these two expressions:
+\[
+\norm{v+w}^2 + \norm{v-w}^2 = (\norm{v}^2 + 2\langle v\mid w \rangle + \norm{w}^2) + (\norm{v}^2 - 2\langle v\mid w \rangle + \norm{w}^2)
+\]
+
+The inner product terms cancel:
+\[
+= 2\norm{v}^2 + 2\norm{w}^2 = 2(\norm{v}^2 + \norm{w}^2)
+\]
+
+\end{solution}
+
     \item What does the parallelogram law say about parallelograms in $\mathbb R^2$?
 \end{enumerate}
 \end{prob}
