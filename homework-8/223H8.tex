@@ -85,10 +85,55 @@ $$\norm{v+w}^2+ \norm{v-w}^2 = 2 (\norm{v}^2 +\norm{w}^2)$$
 \begin{enumerate}
     \item 
     Apply the Gram-Schmidt process to the following basis $\mathcal B$ of $\mathbb R^3$ to obtain an orthonormal basis $\mathcal B'$ of $\mathbb R^3$
-    $$\mathcal B = \left(\left[\begin{matrix} 1 \\0 \\1
+    $\mathcal B = \left(\left[\begin{matrix} 1 \\0 \\1
     \end{matrix}\right], \left[\begin{matrix} 0 \\1 \\1 
     \end{matrix}\right],\left[\begin{matrix} 1 \\3 \\3
-    \end{matrix}\right] \right)$$.
+    \end{matrix}\right] \right)$.
+
+\begin{solution}
+
+We apply the Gram-Schmidt process to obtain an orthonormal basis $\mathcal{B}'$ from $\mathcal{B}$.
+
+First, we normalize the first vector:
+\[
+e_1 = \frac{v_1}{\norm{v_1}} = \frac{1}{\sqrt{2}}\begin{bmatrix} 1 \\ 0 \\ 1 \end{bmatrix} = \begin{bmatrix} 1/\sqrt{2} \\ 0 \\ 1/\sqrt{2} \end{bmatrix}
+\]
+
+For the remaining vectors, we subtract the projections onto the previous orthonormal vectors and then normalize.
+
+\vspace{0.3cm}
+
+For the second vector, we compute:
+\[
+u_2 = v_2 - \proj_{e_1}(v_2)
+\]
+
+\[
+= \begin{bmatrix} 0 \\ 1 \\ 1 \end{bmatrix} - \langle v_2, e_1 \rangle e_1 = \begin{bmatrix} 0 \\ 1 \\ 1 \end{bmatrix} - \frac{1}{\sqrt{2}}\begin{bmatrix} 1/\sqrt{2} \\ 0 \\ 1/\sqrt{2} \end{bmatrix} = \begin{bmatrix} -1/2 \\ 1 \\ 1/2 \end{bmatrix}
+\]
+
+Normalizing: $e_2 = \frac{u_2}{\norm{u_2}} = \frac{2}{\sqrt{6}}\begin{bmatrix} -1/2 \\ 1 \\ 1/2 \end{bmatrix} = \begin{bmatrix} -1/\sqrt{6} \\ 2/\sqrt{6} \\ 1/\sqrt{6} \end{bmatrix}$
+
+\vspace{0.3cm}
+
+For the third vector:
+\[
+u_3 = v_3 - \proj_{e_1}(v_3) - \proj_{e_2}(v_3)
+\]
+
+\[
+= \begin{bmatrix} 1 \\ 3 \\ 3 \end{bmatrix} - \langle v_3, e_1 \rangle e_1 - \langle v_3, e_2 \rangle e_2 = \begin{bmatrix} 1 \\ 3 \\ 3 \end{bmatrix} - 2\sqrt{2} \begin{bmatrix} 1/\sqrt{2} \\ 0 \\ 1/\sqrt{2} \end{bmatrix} - \frac{4\sqrt{6}}{3}\begin{bmatrix} -1/\sqrt{6} \\ 2/\sqrt{6} \\ 1/\sqrt{6} \end{bmatrix} = \begin{bmatrix} 1/3 \\ 1/3 \\ -1/3 \end{bmatrix}
+\]
+
+Normalizing: $e_3 = \frac{u_3}{\norm{u_3}} = \sqrt{3}\begin{bmatrix} 1/3 \\ 1/3 \\ -1/3 \end{bmatrix} = \begin{bmatrix} 1/\sqrt{3} \\ 1/\sqrt{3} \\ -1/\sqrt{3} \end{bmatrix}$
+
+Therefore, the orthonormal basis is:
+\[
+\mathcal{B}' = \left(\begin{bmatrix} 1/\sqrt{2} \\ 0 \\ 1/\sqrt{2} \end{bmatrix}, \begin{bmatrix} -1/\sqrt{6} \\ 2/\sqrt{6} \\ 1/\sqrt{6} \end{bmatrix}, \begin{bmatrix} 1/\sqrt{3} \\ 1/\sqrt{3} \\ -1/\sqrt{3} \end{bmatrix}\right)
+\]
+
+\end{solution}
+
     \item Find the coefficients of the vectors $w = \left[\begin{matrix} 1 \\1 \\2 
     \end{matrix}\right]$ in the basis $\mathcal B'$
 \end{enumerate}
