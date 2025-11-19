@@ -74,36 +74,40 @@ $\norm{v+w}^2+ \norm{v-w}^2 = 2 (\norm{v}^2 +\norm{w}^2)$
 
 \begin{solution}
 
-We prove the parallelogram law by expanding both sides using the inner product.
-
-Starting with the left side, we compute $\norm{v+w}^2$:
+We start by expanding out the left side of the equation $\norm{v+w}^2 + \norm{v-w}^2$. First we expand the first term $\norm{v+w}^2$ and because we're working over the reals $\langle v \mid w \rangle = \langle w \mid v \rangle$ we can combine these terms as well:
 \[
 \norm{v+w}^2 = \langle v+w \mid v+w \rangle = \langle v\mid v \rangle + \langle v\mid w \rangle + \langle w\mid v \rangle + \langle w\mid w \rangle
 \]
 
-Since we are working over the reals, $\langle v\mid w \rangle = \langle w\mid v \rangle$, so:
+Now combining the middle two terms and writing the inner products of vectors with themselves as norms:
 \[
-\norm{v+w}^2 = \norm{v}^2 + 2\langle v\mid w \rangle + \norm{w}^2
+\norm{v}^2 + 2\langle v\mid w \rangle + \norm{w}^2
 \]
 
-Similarly, we compute $\norm{v-w}^2$:
+We can also expand out the second term of our original equation's left side $\norm{v-w}^2$:
 \[
 \norm{v-w}^2 = \langle v-w \mid v-w \rangle = \langle v\mid v \rangle - \langle v\mid w \rangle - \langle w\mid v \rangle + \langle w\mid w \rangle
 \]
 
-Again using symmetry:
+Combining terms again, using symmetry and the fact that we are working over the reals:
 \[
 \norm{v-w}^2 = \norm{v}^2 - 2\langle v\mid w \rangle + \norm{w}^2
 \]
 
-Adding these two expressions:
+Finally we can combine the two expanded terms and rearrange to get the right side of the parallelogram law which we are trying to prove:
 \[
 \norm{v+w}^2 + \norm{v-w}^2 = (\norm{v}^2 + 2\langle v\mid w \rangle + \norm{w}^2) + (\norm{v}^2 - 2\langle v\mid w \rangle + \norm{w}^2)
 \]
 
-The inner product terms cancel:
+The inner product terms cancel from each and we get what we were intending to prove:
 \[
-= 2\norm{v}^2 + 2\norm{w}^2 = 2(\norm{v}^2 + \norm{w}^2)
+= 2\norm{v}^2 + 2\norm{w}^2 = 2(\norm{v}^2 + \norm{w}^2) 
+\]
+
+So finally we have:
+\[
+\norm{v+w}^2 + \norm{v-w}^2 
+= 2 (\norm{v}^2 + \norm{w}^2)
 \]
 
 \end{solution}
