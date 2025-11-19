@@ -336,7 +336,47 @@ Finally, putting these three orthonormal vectors together, we get the orthonorma
 \end{solution}
     
     \item Find the coefficients of $h(x) = 1+x$ in the obtained basis.
+
+\begin{solution}
+
+To find the coefficients of $h(x) = 1 + x$ in the orthonormal basis, we write it as a linear combination of our basis vectors and solve the system for the coefficients:
+\[
+h(x) = c_1 e_1 + c_2 e_2 + c_3 e_3
+\]
+
+Substituting in the basis vectors we get the following equation. We can rearrange this to factor out each power of x and solve for each coefficient:
+\[
+1 + x = c_1(1) + c_2(2\sqrt{3}x - \sqrt{3}) + c_3(6\sqrt{5}x^2 - 6\sqrt{5}x + \sqrt{5})
+\]
+
+\[
+1 + x = (c_1 - \sqrt{3}c_2 + \sqrt{5}c_3) + (2\sqrt{3}c_2 - 6\sqrt{5}c_3)x + (6\sqrt{5}c_3)x^2
+\]
+
+This gives us the system of equations by matching coefficients:
+\[
+c_1 - \sqrt{3}c_2 + \sqrt{5}c_3 = 1
+\]
+\[
+2\sqrt{3}c_2 - 6\sqrt{5}c_3 = 1
+\]
+\[
+6\sqrt{5}c_3 = 0
+\]
+
+Finally, we solve the equation to get the following coefficients for the vector $h(x)$ in our new basis
+\[
+c_1 = \frac{3}{2}, \quad c_2 = \frac{\sqrt{3}}{6}, \quad c_3 = 0
+\]
+
+\end{solution}
+
 \end{enumerate}
 \end{prob}
+
+\noindent \textbf{Generative AI Acknowledgment}
+
+\noindent Generative AI was used in this assignment for help with latex syntax. This includes defining the "solution box" that wraps answers. This also includes transcribing verbatum from handwritten on-paper solutions to first-draft latex code.
+It was also used to check answers before submission.
 
 \end{document}
