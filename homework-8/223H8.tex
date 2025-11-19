@@ -265,7 +265,83 @@ $$
 $$
 \begin{enumerate}
     \item 
-    Apply the Gram-Schmidt process to the basis $\mathcal B = (1,x, x^2)$ of $P_2(\mathbb R)$ to produce an orthonormal basis.    
+    Apply the Gram-Schmidt process to the basis $\mathcal B = (1,x, x^2)$ of $P_2(\mathbb R)$ to produce an orthonormal basis.
+
+\begin{solution}
+
+We apply the Gram-Schmidt process to the basis $(1, x, x^2)$ of $\mathcal{P}_2(\mathbb{R})$ with the inner product $\langle f \mid g \rangle = \int_0^1 f(x)g(x) dx$.
+
+First, we normalize the first polynomial:
+\[
+\norm{1} = \sqrt{\int_0^1 1 \cdot 1 \, dx} = 1
+\]
+
+So $e_1 = 1$.
+
+For the remaining polynomials, we subtract the projections onto the previous orthonormal polynomials and then normalize.
+
+\vspace{0.3cm}
+
+For the second polynomial, we compute:
+\[
+u_2 = x - \proj_{e_1}(x) = x - \langle x, 1 \rangle \cdot 1
+\]
+
+We calculate:
+\[
+\langle x, 1 \rangle = \int_0^1 x \, dx = \frac{1}{2}
+\]
+
+Thus $u_2 = x - \frac{1}{2}$.
+
+Normalizing:
+\[
+\norm{u_2} = \sqrt{\int_0^1 \left(x - \frac{1}{2}\right)^2 dx} = \frac{1}{2\sqrt{3}}
+\]
+
+Therefore:
+\[
+e_2 = 2\sqrt{3}\left(x - \frac{1}{2}\right) = 2\sqrt{3}x - \sqrt{3}
+\]
+
+\vspace{0.3cm}
+
+For the third polynomial:
+\[
+u_3 = x^2 - \proj_{e_1}(x^2) - \proj_{e_2}(x^2)
+\]
+
+Computing the projections:
+\[
+\langle x^2, 1 \rangle = \int_0^1 x^2 \, dx = \frac{1}{3}
+\]
+
+\[
+\langle x^2, 2\sqrt{3}x - \sqrt{3} \rangle = \int_0^1 x^2(2\sqrt{3}x - \sqrt{3}) \, dx = \frac{\sqrt{3}}{6}
+\]
+
+Thus:
+\[
+u_3 = x^2 - \frac{1}{3} - \frac{\sqrt{3}}{6}(2\sqrt{3}x - \sqrt{3}) = x^2 - x + \frac{1}{6}
+\]
+
+Normalizing:
+\[
+\norm{u_3} = \sqrt{\int_0^1 \left(x^2 - x + \frac{1}{6}\right)^2 dx} = \frac{1}{6\sqrt{5}}
+\]
+
+Therefore:
+\[
+e_3 = 6\sqrt{5}\left(x^2 - x + \frac{1}{6}\right) = 6\sqrt{5}x^2 - 6\sqrt{5}x + \sqrt{5}
+\]
+
+The orthonormal basis is:
+\[
+\left(1, \, 2\sqrt{3}x - \sqrt{3}, \, 6\sqrt{5}x^2 - 6\sqrt{5}x + \sqrt{5}\right)
+\]
+
+\end{solution}
+    
     \item Find the coefficients of $h(x) = 1+x$ in the obtained basis.
 \end{enumerate}
 \end{prob}
