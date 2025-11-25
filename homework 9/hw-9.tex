@@ -259,9 +259,22 @@ Let $V$ be a finite dimensional inner product space.
 \begin{solution}
 We first show that $(v_1, \ldots, v_k)$ is an orthonormal basis of $U$.
 
-By the construction of the Gram-Schmidt procedure, each $v_i$ is formed by taking $u_i$ and subtracting off projections onto the previous vectors, then normalizing. This means $v_i$ is a linear combination of $u_1, \ldots, u_i$. In particular, for $i \leq k$, the vector $v_i$ is a linear combination of $u_1, \ldots, u_i$, all of which are in $U$. Since $U$ is a subspace, $v_i \in U$ for all $i \leq k$.
+We know that the Grahm-Schmidt procedure is processed in order on each vector, such that each vector has removed its components of all previous vectors in the orthonormal set. Therefore, in the set we applied Grahm Schmidt to $(v_1, \ldots, v_n)$, the first $k$ vectors $(v_1, \ldots, v_k)$ are the result of applying Grahm-Schmidt to the vectors $(u_1, \ldots, u_k)$ which are the first $k$ vectors in our original set.
 
-Thus $(v_1, \ldots, v_k)$ is a list of $k$ orthonormal vectors contained in $U$. Since $\dim U = k$ (because $(u_1, \ldots, u_k)$ is a basis), and any $k$ orthonormal vectors in a $k$-dimensional space must be a basis, we conclude that $(v_1, \ldots, v_k)$ is an orthonormal basis of $U$.
+We know that $(u_1, \ldots, u_k)$ is a basis of $U$, which means that is spans $U$:
+\[
+U = \spn(u_1, \ldots, u_k).
+\]
+
+The Grahm-Schmidt procedure preserves the span of the vectors it is applied to.
+Therefore, our resulting vectors of this procedure $(v_1, \ldots, v_k)$ still spans $U$:
+\[
+U = \spn(v_1, \ldots, v_k).
+\]
+
+Finally, because the Grahm-Schmidt procedure produces orthonormal vectors, we know that $(v_1, \ldots, v_k)$ are orthonormal.
+Thus as we have shown that $(v_1, \ldots, v_k)$ is an orthonormal set with $\spn(v_1, \ldots, v_k) = U$, $(v_1, \ldots, v_k)$ is an orthonormal basis of $U$.
+
 
 \vspace{0.3cm}
 
