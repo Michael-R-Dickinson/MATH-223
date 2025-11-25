@@ -5,6 +5,7 @@
 \usepackage[most]{tcolorbox} % powerful colored boxes
 \usepackage{xcolor}          % colors
 \newtcolorbox{solution}{
+    breakable,                 % allow page breaks inside the box
   colframe=green!50!black,   % medium green border
   coltext=black,             % body text in black for readability
   boxrule=0.4pt,             % thin, professional border
@@ -44,42 +45,51 @@ Let $V =\mathbb R^n$ with the standard inner product (the dot product). Find $\t
 \end{prob}
 
 \begin{solution}
-Let $u_1 = \begin{bmatrix} 1\\2\\3\\-4\end{bmatrix}$ and $u_2 = \begin{bmatrix} -5\\4\\3\\2\end{bmatrix}$. We apply the Gram--Schmidt procedure to these spanning vectors to obtain an orthonormal basis of $U$.
+To find an orthonormal basis of $U$ we take our existing basis for $U$ and apply the Gram-Schmidt procedure. We start with $u_1$ and normalize it, then compute all remaining orthonormal vectors by subtracing the projections onto the previous vectors and normalizing.
 
-\vspace{0.3cm}
-
-First, we normalize $u_1$. We have
+First we normalize $u_1$ to get our first orthonormal vector $e_1$:
 \[
 \norm{u_1}^2 = 1 + 4 + 9 + 16 = 30
 \]
-so we set
+
 \[
 e_1 = \frac{1}{\sqrt{30}} \begin{bmatrix} 1\\2\\3\\-4\end{bmatrix}.
 \]
 
-Next, we orthogonalize $u_2$ against $u_1$ by subtracting off its projection onto $u_1$. We compute the inner product
-\[
-\langle u_2, u_1 \rangle = (-5)(1) + (4)(2) + (3)(3) + (2)(-4) = -5 + 8 + 9 - 8 = 4.
-\]
-Thus the component of $u_2$ orthogonal to $u_1$ is
+Next we get an orthogonal vector $w_2$ by subtracing the component of $u_1$ from $u_2$ to orthagonalize it:
+
 \[
 w_2 = u_2 - \frac{\langle u_2, u_1 \rangle}{\norm{u_1}^2} u_1 = u_2 - \frac{4}{30} u_1 = u_2 - \frac{2}{15} u_1.
 \]
-Computing each entry, we get
+
 \[
-w_2 = \begin{bmatrix} -5 - 2/15 \\ 4 - 4/15 \\ 3 - 6/15 \\ 2 + 8/15 \end{bmatrix} = \begin{bmatrix} -77/15 \\ 56/15 \\ 39/15 \\ 38/15 \end{bmatrix} = \frac{1}{15} \begin{bmatrix} -77 \\ 56 \\ 39 \\ 38 \end{bmatrix}.
+\langle u_2, u_1 \rangle = 4.
 \]
 
-Now we normalize $w_2$. We have
 \[
-\norm{w_2}^2 = \frac{1}{225}(77^2 + 56^2 + 39^2 + 38^2) = \frac{1}{225}(5929 + 3136 + 1521 + 1444) = \frac{12030}{225} = \frac{802}{15}
+w_2 = \begin{bmatrix} -5 - 2/15 \\ 4 - 4/15 \\ 3 - 6/15 \\ 2 + 8/15 \end{bmatrix} =
+\frac{1}{15} \begin{bmatrix} -77 \\ 56 \\ 39 \\ 38 \end{bmatrix}.
 \]
-so $\norm{w_2} = \sqrt{802/15} = \frac{\sqrt{12030}}{15}$. Thus
+
+Finally we normalize $w_2$ to get $e_2$:
+\[
+e_2 = \frac{w_2}{\norm{w_2}}
+\]
+
+\[
+\norm{w_2}^2
+= \frac{1}{225}(77^2 + 56^2 + 39^2 + 38^2) 
+= \frac{802}{15}
+\]
+\[
+\norm{w_2} = \sqrt{802/15} = \frac{\sqrt{12030}}{15}
+\]
+
 \[
 e_2 = \frac{w_2}{\norm{w_2}} = \frac{1}{\sqrt{12030}} \begin{bmatrix} -77 \\ 56 \\ 39 \\ 38 \end{bmatrix}.
 \]
 
-Therefore, an orthonormal basis of $U$ is
+Finally, we have applied the Grahm Schmidt procedure to all vectors in our bass to obtain an orthonormal basis of $U$. Our basis is the set of vectors $(e_1, e_2)$:
 \[
 \left( \frac{1}{\sqrt{30}} \begin{bmatrix} 1\\2\\3\\-4\end{bmatrix}, \frac{1}{\sqrt{12030}} \begin{bmatrix} -77\\56\\39\\38\end{bmatrix} \right).
 \]
