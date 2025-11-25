@@ -251,11 +251,74 @@ Finally we have two orthonormal vectors $e_1$ and $e_2$ which form an orthonorma
 \begin{prob}
 Let $V$ be a finite dimensional inner product space. 
 \begin{enumerate}
+
     \item Let $U\subseteq V$ a subspace with a basis $(u_1,\dots, u_k)$. Show that if we complete $(u_1,\dots, u_k)$ to a basis $(u_1,\dots, u_k, u_{k+1}, \dots, u_n)$ of $V$ and apply the Gram-Schmidt procedure to get an orthonormal basis $(v_1, \dots, v_n)$ of $V$, then $(v_1, \dots, v_k)$ is an orthonormal basis of $U$, and $(v_{k+1}, \dots, v_n)$ is an orthonormal basis of $U^{\perp}$. 
-    \item Deduce that $$\dim U + \dim U^{\perp} = \dim V.$$
+
+
+
+\begin{solution}
+We first show that $(v_1, \ldots, v_k)$ is an orthonormal basis of $U$.
+
+By the construction of the Gram-Schmidt procedure, each $v_i$ is formed by taking $u_i$ and subtracting off projections onto the previous vectors, then normalizing. This means $v_i$ is a linear combination of $u_1, \ldots, u_i$. In particular, for $i \leq k$, the vector $v_i$ is a linear combination of $u_1, \ldots, u_i$, all of which are in $U$. Since $U$ is a subspace, $v_i \in U$ for all $i \leq k$.
+
+Thus $(v_1, \ldots, v_k)$ is a list of $k$ orthonormal vectors contained in $U$. Since $\dim U = k$ (because $(u_1, \ldots, u_k)$ is a basis), and any $k$ orthonormal vectors in a $k$-dimensional space must be a basis, we conclude that $(v_1, \ldots, v_k)$ is an orthonormal basis of $U$.
+
+\vspace{0.3cm}
+
+Now we show that $(v_{k+1}, \ldots, v_n)$ is an orthonormal basis of $U^\perp$.
+
+First, we show that each $v_j \in U^\perp$ for $j > k$. Take any $u \in U$. Since $(v_1, \ldots, v_k)$ is a basis of $U$, we can write $u = c_1 v_1 + \cdots + c_k v_k$ for some scalars $c_1, \ldots, c_k$. Then
+\[
+\langle v_j \mid u \rangle = \langle v_j \mid c_1 v_1 + \cdots + c_k v_k \rangle = c_1 \langle v_j \mid v_1 \rangle + \cdots + c_k \langle v_j \mid v_k \rangle.
+\]
+Since $(v_1, \ldots, v_n)$ is orthonormal and $j > k$, we have $\langle v_j \mid v_i \rangle = 0$ for all $i \leq k$. Thus $\langle v_j \mid u \rangle = 0$, which means $v_j \perp u$. Since this holds for all $u \in U$, we have $v_j \in U^\perp$.
+
+This shows that $\spn(v_{k+1}, \ldots, v_n) \subseteq U^\perp$.
+
+\vspace{0.3cm}
+
+Next, we show the reverse containment: $U^\perp \subseteq \spn(v_{k+1}, \ldots, v_n)$.
+
+Take any $w \in U^\perp$. Since $(v_1, \ldots, v_n)$ is a basis of $V$, we can write
+\[
+w = a_1 v_1 + a_2 v_2 + \cdots + a_n v_n
+\]
+for some scalars $a_1, \ldots, a_n$. We claim that $a_i = 0$ for all $i \leq k$.
+
+For any $i \leq k$, the vector $v_i$ is in $U$ (as shown above). Since $w \in U^\perp$, we have $\langle w \mid v_i \rangle = 0$. On the other hand, using orthonormality:
+\[
+\langle w \mid v_i \rangle = \langle a_1 v_1 + \cdots + a_n v_n \mid v_i \rangle = a_1 \langle v_1 \mid v_i \rangle + \cdots + a_n \langle v_n \mid v_i \rangle = a_i.
+\]
+Thus $a_i = 0$ for all $i \leq k$, which means
+\[
+w = a_{k+1} v_{k+1} + \cdots + a_n v_n \in \spn(v_{k+1}, \ldots, v_n).
+\]
+This shows $U^\perp \subseteq \spn(v_{k+1}, \ldots, v_n)$.
+
+\vspace{0.3cm}
+
+Combining both containments, we have $U^\perp = \spn(v_{k+1}, \ldots, v_n)$. Since $(v_{k+1}, \ldots, v_n)$ is an orthonormal list (being part of an orthonormal basis of $V$), it is linearly independent and spans $U^\perp$. Therefore $(v_{k+1}, \ldots, v_n)$ is an orthonormal basis of $U^\perp$.
+
+\vspace{0.3cm}
+
+\end{solution}
+
+
+\item Deduce that $\dim U + \dim U^{\perp} = \dim V.$
 \end{enumerate}
 
 \end{prob}
+
+\begin{solution}
+From part 1 we know that $(v_1, \ldots, v_k)$ is a basis of $U$ and $(v_{k+1}, \ldots, v_n)$ is a basis of $U^\perp$. Thus
+\[
+\dim U = k \quad \text{and} \quad \dim U^\perp = n - k.
+\]
+Adding these together:
+\[
+\dim U + \dim U^\perp = k + (n - k) = n = \dim V.
+\]
+\end{solution}
 
 \begin{prob}
     Let $V= \mathcal P_2(\mathbb R)$ with the inner product $\langle f,g\rangle = \int_0^1 f(x)g(x)dx$. Consider the functional $F:V\to \mathbb R$ given by $F(f) = f(0) + f'(1)$. Find $g\in \mathcal P_2(\mathbb R)$ representing $F$ in the Riesz representation theorem, i.e.\ such that $F(f) = \langle f\mid g\rangle$.
