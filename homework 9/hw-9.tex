@@ -36,9 +36,19 @@ Each problem is worth 10 points.
 Let $V =\mathbb R^n$ with the standard inner product (the dot product). Find $\text{proj}_{U}(v)$ where
 \begin{enumerate}
     \item $n= 2$, $U = \{(x,y)\in \mathbb R^2\mid y=4x\}$, and $v = \left[\begin{matrix} 2\\6\end{matrix}\right]$.
+
+\begin{solution}
+  
+The subspace $U = \{(x,y) \in \mathbb R^2 \mid y = 4x\}$ is a line through the origin with direction vector $u = \begin{bmatrix} 1 \\ 4 \end{bmatrix}$. Thus
+\[
+\proj_U(v) = \frac{\langle v, u \rangle}{\norm{u}^2} u = \frac{2 + 24}{1 + 16} \begin{bmatrix} 1 \\ 4 \end{bmatrix} = \frac{26}{17} \begin{bmatrix} 1 \\ 4 \end{bmatrix} = \begin{bmatrix} 26/17 \\ 104/17 \end{bmatrix}.
+\]
+
+\end{solution}
     \item $n=3$, $U = \{(x,y,z)\in \mathbb R^3\mid x+3y-2z=0\}$, and $v = \left[\begin{matrix} 2\\1\\3\end{matrix}\right]$.
 \end{enumerate}
 \end{prob}
+
 
 \begin{prob}
     Let $U = \spn \left(\left[\begin{matrix} 1\\2\\3\\-4\end{matrix}\right], \left[\begin{matrix} -5\\4\\3\\2\end{matrix}\right]\right)$ be a subspace of $\mathbb R^4$. Find an orthonormal basis of $U$ and an orthonormal basis of $U^{\perp}$.
