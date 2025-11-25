@@ -39,9 +39,12 @@ Let $V =\mathbb R^n$ with the standard inner product (the dot product). Find $\t
 
 \begin{solution}
   
-The subspace $U = \{(x,y) \in \mathbb R^2 \mid y = 4x\}$ is a line through the origin with direction vector $u = \begin{bmatrix} 1 \\ 4 \end{bmatrix}$. Thus
+From the equation we can find a single basis vector for the one-dimensional subspace $U$. 
+
+We pick $x = 1$ and get the basis vector $u = \begin{bmatrix} 1 \\ 4 \end{bmatrix}$. We can now project $v$ onto this subspace by projecting it onto its single basis vector:
+
 \[
-\proj_U(v) = \frac{\langle v, u \rangle}{\norm{u}^2} u = \frac{2 + 24}{1 + 16} \begin{bmatrix} 1 \\ 4 \end{bmatrix} = \frac{26}{17} \begin{bmatrix} 1 \\ 4 \end{bmatrix} = \begin{bmatrix} 26/17 \\ 104/17 \end{bmatrix}.
+\proj_U(v) = \frac{\langle v, u \rangle}{\norm{u}^2} u = \frac{26}{17} \begin{bmatrix} 1 \\ 4 \end{bmatrix} = \begin{bmatrix} 26/17 \\ 104/17 \end{bmatrix}.
 \]
 
 \end{solution}
