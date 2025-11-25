@@ -49,6 +49,72 @@ We pick $x = 1$ and get the basis vector $u = \begin{bmatrix} 1 \\ 4 \end{bmatri
 
 \end{solution}
     \item $n=3$, $U = \{(x,y,z)\in \mathbb R^3\mid x+3y-2z=0\}$, and $v = \left[\begin{matrix} 2\\1\\3\end{matrix}\right]$.
+
+\begin{solution}
+The subspace $U$ is defined by the equation $x + 3y - 2z = 0$ so we can get two basis vectors for the space by picking values for $y$ and $z$ and taking the resulting solutions as vectors. 
+
+Setting $y=1, z=0$ results in $u_1 = \begin{bmatrix} -3\\1\\0\end{bmatrix}$, and setting $y=0, z=1$ gives $u_2 = \begin{bmatrix} 2\\0\\1\end{bmatrix}$. Thus $(u_1, u_2)$ is a basis for $U$.
+
+These vectors are not orthogonal, so we use the Gram-Schmidt process to compute an orthonormal basis. 
+
+\vspace{0.3cm}
+
+We start by normalizing $u_1$ to get our first basis vector $e_1$:
+\[
+e_1 = \frac{u_1}{\norm{u_1}}.
+\]
+\[
+\norm{u_1}^2 = 9 + 1 + 0 = 10
+\]
+\[
+e_1 = \frac{1}{\sqrt{10}}\begin{bmatrix} -3\\1\\0\end{bmatrix}.
+\]
+
+Next, we compute our second orthogonal vector in the basis $w_2$ by subtracting the projection of $u_2$ onto $u_1$ from $u_2$:
+\[
+w_2 = u_2 - \frac{\langle u_2, u_1 \rangle}{\norm{u_1}^2}u_1 = u_2 - \frac{-6}{10}u_1 = u_2 + \frac{3}{5}u_1.
+\]
+\[
+\langle u_2, u_1 \rangle = -6.
+\]
+
+We compute the final value of $w_2$:
+\[
+w_2 = \begin{bmatrix} 2 - 9/5 \\ 3/5 \\ 1 \end{bmatrix} = \frac{1}{5}\begin{bmatrix} 1\\3\\5\end{bmatrix}.
+\]
+
+Now we normalize $w_2$:
+\[
+\norm{w_2}^2 = \frac{1}{25}(1 + 9 + 25) = \frac{35}{25} = \frac{7}{5}
+\]
+\[\norm{w_2} = \frac{\sqrt{35}}{5}\]
+\[
+e_2 = \frac{1}{\sqrt{35}}\begin{bmatrix} 1\\3\\5\end{bmatrix}.
+\]
+
+\vspace{0.3cm}
+
+As we have now orthagonalized and normalized all vectors in our basis, we have an orthonormal basis of $U$ given by $(e_1, e_2)$.
+
+We can now compute the projection of $v = \begin{bmatrix} 2\\1\\3\end{bmatrix}$ onto $U$ by taking its projection onto onto each orthonormal basis vector (we disregard the $\norm{e_i}^2$ denominators as they are all 1 because the basis has been normalized):
+\[
+\proj_U(v) = \langle v, e_1 \rangle e_1 + \langle v, e_2 \rangle e_2.
+\]
+
+We compute each inner product and substitute them into the projection formula:
+\[
+\langle v, e_1 \rangle =  \frac{-5}{\sqrt{10}} \quad \langle v, e_2 \rangle = \frac{20}{\sqrt{35}}.
+\]
+
+\[
+\proj_U(v) = \frac{-5}{\sqrt{10}} \cdot \frac{1}{\sqrt{10}}\begin{bmatrix} -3\\1\\0\end{bmatrix} + \frac{20}{\sqrt{35}} \cdot \frac{1}{\sqrt{35}}\begin{bmatrix} 1\\3\\5\end{bmatrix} = -\frac{1}{2}\begin{bmatrix} -3\\1\\0\end{bmatrix} + \frac{4}{7}\begin{bmatrix} 1\\3\\5\end{bmatrix} = \frac{1}{14}\begin{bmatrix} 29\\17\\40\end{bmatrix}.
+\]
+
+This gives our final answer:
+\[\proj_U(v) = \frac{1}{14}\begin{bmatrix} 29\\17\\40\end{bmatrix}\] 
+
+\end{solution}
+
 \end{enumerate}
 \end{prob}
 
