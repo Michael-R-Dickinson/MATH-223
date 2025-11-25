@@ -1,0 +1,159 @@
+\documentclass[12pt, oneside]{amsart}
+\usepackage{amsmath,amsfonts, amssymb, xcolor}
+\usepackage{fullpage}
+
+\usepackage[most]{tcolorbox} % powerful colored boxes
+\usepackage{xcolor}          % colors
+\newtcolorbox{solution}{
+  colframe=green!50!black,   % medium green border
+  coltext=black,             % body text in black for readability
+  boxrule=0.4pt,             % thin, professional border
+  enhanced,                  % enable advanced drawing features
+  left=6pt, right=6pt, top=6pt, bottom=6pt % padding
+}
+
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\R}{\mathbb R}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\spn}{span}
+\DeclareMathOperator{\proj}{proj}
+\newcommand\norm[1]{\left\lVert#1\right\rVert}
+
+\theoremstyle{definition}
+\newtheorem{prob}{Problem}
+
+\title{Math 223 Fall 2025 - Homework 9}
+\author{due November 25 at 11:59pm}
+\pagenumbering{gobble}
+\begin{document}
+\maketitle
+Each problem is worth 10 points.
+
+
+
+\begin{prob}
+Let $V =\mathbb R^n$ with the standard inner product (the dot product). Find $\text{proj}_{U}(v)$ where
+\begin{enumerate}
+    \item $n= 2$, $U = \{(x,y)\in \mathbb R^2\mid y=4x\}$, and $v = \left[\begin{matrix} 2\\6\end{matrix}\right]$.
+    \item $n=3$, $U = \{(x,y,z)\in \mathbb R^3\mid x+3y-2z=0\}$, and $v = \left[\begin{matrix} 2\\1\\3\end{matrix}\right]$.
+\end{enumerate}
+\end{prob}
+
+\begin{prob}
+    Let $U = \spn \left(\left[\begin{matrix} 1\\2\\3\\-4\end{matrix}\right], \left[\begin{matrix} -5\\4\\3\\2\end{matrix}\right]\right)$ be a subspace of $\mathbb R^4$. Find an orthonormal basis of $U$ and an orthonormal basis of $U^{\perp}$.
+\end{prob}
+
+\begin{solution}
+Let $u_1 = \begin{bmatrix} 1\\2\\3\\-4\end{bmatrix}$ and $u_2 = \begin{bmatrix} -5\\4\\3\\2\end{bmatrix}$. We apply the Gram--Schmidt procedure to these spanning vectors to obtain an orthonormal basis of $U$.
+
+\vspace{0.3cm}
+
+First, we normalize $u_1$. We have
+\[
+\norm{u_1}^2 = 1 + 4 + 9 + 16 = 30
+\]
+so we set
+\[
+e_1 = \frac{1}{\sqrt{30}} \begin{bmatrix} 1\\2\\3\\-4\end{bmatrix}.
+\]
+
+Next, we orthogonalize $u_2$ against $u_1$ by subtracting off its projection onto $u_1$. We compute the inner product
+\[
+\langle u_2, u_1 \rangle = (-5)(1) + (4)(2) + (3)(3) + (2)(-4) = -5 + 8 + 9 - 8 = 4.
+\]
+Thus the component of $u_2$ orthogonal to $u_1$ is
+\[
+w_2 = u_2 - \frac{\langle u_2, u_1 \rangle}{\norm{u_1}^2} u_1 = u_2 - \frac{4}{30} u_1 = u_2 - \frac{2}{15} u_1.
+\]
+Computing each entry, we get
+\[
+w_2 = \begin{bmatrix} -5 - 2/15 \\ 4 - 4/15 \\ 3 - 6/15 \\ 2 + 8/15 \end{bmatrix} = \begin{bmatrix} -77/15 \\ 56/15 \\ 39/15 \\ 38/15 \end{bmatrix} = \frac{1}{15} \begin{bmatrix} -77 \\ 56 \\ 39 \\ 38 \end{bmatrix}.
+\]
+
+Now we normalize $w_2$. We have
+\[
+\norm{w_2}^2 = \frac{1}{225}(77^2 + 56^2 + 39^2 + 38^2) = \frac{1}{225}(5929 + 3136 + 1521 + 1444) = \frac{12030}{225} = \frac{802}{15}
+\]
+so $\norm{w_2} = \sqrt{802/15} = \frac{\sqrt{12030}}{15}$. Thus
+\[
+e_2 = \frac{w_2}{\norm{w_2}} = \frac{1}{\sqrt{12030}} \begin{bmatrix} -77 \\ 56 \\ 39 \\ 38 \end{bmatrix}.
+\]
+
+Therefore, an orthonormal basis of $U$ is
+\[
+\left( \frac{1}{\sqrt{30}} \begin{bmatrix} 1\\2\\3\\-4\end{bmatrix}, \frac{1}{\sqrt{12030}} \begin{bmatrix} -77\\56\\39\\38\end{bmatrix} \right).
+\]
+
+\vspace{0.3cm}
+
+Now we find an orthonormal basis of $U^\perp$. The orthogonal complement $U^\perp$ consists of all vectors in $\R^4$ that are orthogonal to both $u_1$ and $u_2$. We set up the system
+\[
+\begin{bmatrix} 1 & 2 & 3 & -4 \\ -5 & 4 & 3 & 2 \end{bmatrix} \begin{bmatrix} x_1 \\ x_2 \\ x_3 \\ x_4 \end{bmatrix} = \begin{bmatrix} 0 \\ 0 \end{bmatrix}
+\]
+where the rows are the spanning vectors of $U$. We row reduce by applying $R_2 \to R_2 + 5R_1$:
+\[
+\begin{bmatrix} 1 & 2 & 3 & -4 \\ 0 & 14 & 18 & -18 \end{bmatrix}.
+\]
+From the second row, $14x_2 + 18x_3 - 18x_4 = 0$, which gives $x_2 = \frac{9(x_4 - x_3)}{7}$. Substituting into the first row, we get
+\[
+x_1 = -2x_2 - 3x_3 + 4x_4 = -\frac{18(x_4 - x_3)}{7} - 3x_3 + 4x_4 = \frac{10x_4 - 3x_3}{7}.
+\]
+Setting $(x_3, x_4) = (7, 0)$ gives $x_1 = -3$ and $x_2 = -9$, so $v_1 = \begin{bmatrix} -3 \\ -9 \\ 7 \\ 0 \end{bmatrix}$.
+
+Setting $(x_3, x_4) = (0, 7)$ gives $x_1 = 10$ and $x_2 = 9$, so $v_2 = \begin{bmatrix} 10 \\ 9 \\ 0 \\ 7 \end{bmatrix}$.
+
+Thus $(v_1, v_2)$ is a basis for $U^\perp$. We now apply Gram--Schmidt to obtain an orthonormal basis.
+
+\vspace{0.3cm}
+
+First, we normalize $v_1$. We have
+\[
+\norm{v_1}^2 = 9 + 81 + 49 + 0 = 139
+\]
+so we set
+\[
+e_1 = \frac{1}{\sqrt{139}} \begin{bmatrix} -3 \\ -9 \\ 7 \\ 0 \end{bmatrix}.
+\]
+
+Next, we orthogonalize $v_2$ against $v_1$. We compute
+\[
+\langle v_2, v_1 \rangle = (10)(-3) + (9)(-9) + (0)(7) + (7)(0) = -30 - 81 = -111.
+\]
+Thus
+\[
+w_2 = v_2 - \frac{\langle v_2, v_1 \rangle}{\norm{v_1}^2} v_1 = v_2 - \frac{-111}{139} v_1 = v_2 + \frac{111}{139} v_1.
+\]
+Computing each entry, we get
+\[
+w_2 = \begin{bmatrix} 10 - 333/139 \\ 9 - 999/139 \\ 777/139 \\ 7 \end{bmatrix} = \frac{1}{139} \begin{bmatrix} 1057 \\ 252 \\ 777 \\ 973 \end{bmatrix} = \frac{7}{139} \begin{bmatrix} 151 \\ 36 \\ 111 \\ 139 \end{bmatrix}.
+\]
+
+Now we normalize $w_2$. We have
+\[
+\norm{w_2}^2 = \frac{49}{139^2}(151^2 + 36^2 + 111^2 + 139^2) = \frac{49}{139^2}(22801 + 1296 + 12321 + 19321) = \frac{49 \cdot 55739}{139^2}
+\]
+so $\norm{w_2} = \frac{7\sqrt{55739}}{139}$. Thus
+\[
+e_2 = \frac{w_2}{\norm{w_2}} = \frac{1}{\sqrt{55739}} \begin{bmatrix} 151 \\ 36 \\ 111 \\ 139 \end{bmatrix}.
+\]
+
+Therefore, an orthonormal basis of $U^\perp$ is
+\[
+\left( \frac{1}{\sqrt{139}} \begin{bmatrix} -3\\-9\\7\\0\end{bmatrix}, \frac{1}{\sqrt{55739}} \begin{bmatrix} 151\\36\\111\\139\end{bmatrix} \right).
+\]
+\end{solution}
+
+\begin{prob}
+Let $V$ be a finite dimensional inner product space. 
+\begin{enumerate}
+    \item Let $U\subseteq V$ a subspace with a basis $(u_1,\dots, u_k)$. Show that if we complete $(u_1,\dots, u_k)$ to a basis $(u_1,\dots, u_k, u_{k+1}, \dots, u_n)$ of $V$ and apply the Gram-Schmidt procedure to get an orthonormal basis $(v_1, \dots, v_n)$ of $V$, then $(v_1, \dots, v_k)$ is an orthonormal basis of $U$, and $(v_{k+1}, \dots, v_n)$ is an orthonormal basis of $U^{\perp}$. 
+    \item Deduce that $$\dim U + \dim U^{\perp} = \dim V.$$
+\end{enumerate}
+
+\end{prob}
+
+\begin{prob}
+    Let $V= \mathcal P_2(\mathbb R)$ with the inner product $\langle f,g\rangle = \int_0^1 f(x)g(x)dx$. Consider the functional $F:V\to \mathbb R$ given by $F(f) = f(0) + f'(1)$. Find $g\in \mathcal P_2(\mathbb R)$ representing $F$ in the Riesz representation theorem, i.e.\ such that $F(f) = \langle f\mid g\rangle$.
+\end{prob}
+
+\end{document}
