@@ -59,6 +59,10 @@ e_1 = \frac{1}{\sqrt{30}} \begin{bmatrix} 1\\2\\3\\-4\end{bmatrix}.
 Next we get an orthogonal vector $w_2$ by subtracing the component of $u_1$ from $u_2$ to orthagonalize it:
 
 \[
+w_2 = u_2 - \text{proj}_{u_1}(u_2)
+\]
+
+\[
 w_2 = u_2 - \frac{\langle u_2, u_1 \rangle}{\norm{u_1}^2} u_1 = u_2 - \frac{4}{30} u_1 = u_2 - \frac{2}{15} u_1.
 \]
 
@@ -96,53 +100,65 @@ Finally, we have applied the Grahm Schmidt procedure to all vectors in our bass 
 
 \vspace{0.3cm}
 
-Now we find an orthonormal basis of $U^\perp$. The orthogonal complement $U^\perp$ consists of all vectors in $\R^4$ that are orthogonal to both $u_1$ and $u_2$. We set up the system
+Now we find an orthonormal basis of $U^\perp$. 
+
+By the lemma shown in lecture, we know that vectors in $U^\perp$ are in the kernel of the matrix whose rows are the basis of $U$.
+
+\[
+\forall v\in U^\perp \; v\in\text{ker} \begin{bmatrix} 1 & 2 & 3 & -4 \\ -5 & 4 & 3 & 2 \end{bmatrix}
+\]
+
+Therefore, to find the basis of $U^\perp$, we will find two linearly independent vectors in $U^\perp$ by solving the equation:
+
 \[
 \begin{bmatrix} 1 & 2 & 3 & -4 \\ -5 & 4 & 3 & 2 \end{bmatrix} \begin{bmatrix} x_1 \\ x_2 \\ x_3 \\ x_4 \end{bmatrix} = \begin{bmatrix} 0 \\ 0 \end{bmatrix}
 \]
-where the rows are the spanning vectors of $U$. We row reduce by applying $R_2 \to R_2 + 5R_1$:
-\[
-\begin{bmatrix} 1 & 2 & 3 & -4 \\ 0 & 14 & 18 & -18 \end{bmatrix}.
-\]
-From the second row, $14x_2 + 18x_3 - 18x_4 = 0$, which gives $x_2 = \frac{9(x_4 - x_3)}{7}$. Substituting into the first row, we get
-\[
-x_1 = -2x_2 - 3x_3 + 4x_4 = -\frac{18(x_4 - x_3)}{7} - 3x_3 + 4x_4 = \frac{10x_4 - 3x_3}{7}.
-\]
-Setting $(x_3, x_4) = (7, 0)$ gives $x_1 = -3$ and $x_2 = -9$, so $v_1 = \begin{bmatrix} -3 \\ -9 \\ 7 \\ 0 \end{bmatrix}$.
 
-Setting $(x_3, x_4) = (0, 7)$ gives $x_1 = 10$ and $x_2 = 9$, so $v_2 = \begin{bmatrix} 10 \\ 9 \\ 0 \\ 7 \end{bmatrix}$.
+We pick $x_3=7$ and $x_4=0$ to get our first vector (which leads to the solutions $x_1 = -3$ and $x_2 = -9$) so $v_1 = \begin{bmatrix} -3 \\ -9 \\ 7 \\ 0 \end{bmatrix}$.
 
-Thus $(v_1, v_2)$ is a basis for $U^\perp$. We now apply Gram--Schmidt to obtain an orthonormal basis.
+We pick $x_3 = 0$ and $x_4 = 7$ which leads to the solutions $x_1 = 10$ and $x_2 = 9$, so $v_2 = \begin{bmatrix} 10 \\ 9 \\ 0 \\ 7 \end{bmatrix}$.
 
-\vspace{0.3cm}
+By finding two independent vectors in $U^\perp$, we have a basis for $U^\perp$ - $(v_1, v_2)$:
 
-First, we normalize $v_1$. We have
+\[(\begin{bmatrix} -3 \\ -9 \\ 7 \\ 0 \end{bmatrix}, \begin{bmatrix} 10 \\ 9 \\ 0 \\ 7 \end{bmatrix})\] 
+
+We now apply the Gram-Schmidt procedure to transform this into an orthonormal basis.
+
+First, we normalize $v_1$:
 \[
 \norm{v_1}^2 = 9 + 81 + 49 + 0 = 139
 \]
-so we set
+
 \[
 e_1 = \frac{1}{\sqrt{139}} \begin{bmatrix} -3 \\ -9 \\ 7 \\ 0 \end{bmatrix}.
 \]
 
-Next, we orthogonalize $v_2$ against $v_1$. We compute
+Next, we find the second vector $w_2$ by removing the component of $v_1$ from $v_2$:
+
 \[
-\langle v_2, v_1 \rangle = (10)(-3) + (9)(-9) + (0)(7) + (7)(0) = -30 - 81 = -111.
-\]
-Thus
-\[
-w_2 = v_2 - \frac{\langle v_2, v_1 \rangle}{\norm{v_1}^2} v_1 = v_2 - \frac{-111}{139} v_1 = v_2 + \frac{111}{139} v_1.
-\]
-Computing each entry, we get
-\[
-w_2 = \begin{bmatrix} 10 - 333/139 \\ 9 - 999/139 \\ 777/139 \\ 7 \end{bmatrix} = \frac{1}{139} \begin{bmatrix} 1057 \\ 252 \\ 777 \\ 973 \end{bmatrix} = \frac{7}{139} \begin{bmatrix} 151 \\ 36 \\ 111 \\ 139 \end{bmatrix}.
+w_2 = v_2 - \text{proj}_{v_1}(v_2) = v_2 - \frac{\langle v_2, v_1 \rangle}{\norm{v_1}^2} v_1
 \]
 
-Now we normalize $w_2$. We have
 \[
-\norm{w_2}^2 = \frac{49}{139^2}(151^2 + 36^2 + 111^2 + 139^2) = \frac{49}{139^2}(22801 + 1296 + 12321 + 19321) = \frac{49 \cdot 55739}{139^2}
+\langle v_2, v_1 \rangle = -111.
 \]
-so $\norm{w_2} = \frac{7\sqrt{55739}}{139}$. Thus
+
+\[
+w_2 = v_2 - \frac{-111}{139} v_1 = v_2 + \frac{111}{139} v_1.
+\]
+
+\[
+w_2 = \begin{bmatrix} 10 - 333/139 \\ 9 - 999/139 \\ 777/139 \\ 7 \end{bmatrix} = \frac{7}{139} \begin{bmatrix} 151 \\ 36 \\ 111 \\ 139 \end{bmatrix}.
+\]
+
+Finally we normalize $w_2$ to get our second orthonormal basis vector $e_2$:
+\[
+\norm{w_2}^2 = \frac{49}{139^2}(151^2 + 36^2 + 111^2 + 139^2) = \frac{2731221}{139^2}
+\]
+
+\[
+\norm{w_2} = \frac{7\sqrt{55739}}{139}
+\]
 \[
 e_2 = \frac{w_2}{\norm{w_2}} = \frac{1}{\sqrt{55739}} \begin{bmatrix} 151 \\ 36 \\ 111 \\ 139 \end{bmatrix}.
 \]
