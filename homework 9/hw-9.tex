@@ -276,41 +276,65 @@ Finally, because the Grahm-Schmidt procedure produces orthonormal vectors, we kn
 Thus as we have shown that $(v_1, \ldots, v_k)$ is an orthonormal set with $\spn(v_1, \ldots, v_k) = U$, $(v_1, \ldots, v_k)$ is an orthonormal basis of $U$.
 
 
-\vspace{0.3cm}
+\vspace{0.9cm}
 
-Now we show that $(v_{k+1}, \ldots, v_n)$ is an orthonormal basis of $U^\perp$.
+Now we show that $(v_{k+1}, \ldots, v_n)$ is an orthonormal basis of $U^\perp$. We start by showing that $\spn(v_{k+1}, \ldots, v_n) \subseteq U^\perp$.
 
-First, we show that each $v_j \in U^\perp$ for $j > k$. Take any $u \in U$. Since $(v_1, \ldots, v_k)$ is a basis of $U$, we can write $u = c_1 v_1 + \cdots + c_k v_k$ for some scalars $c_1, \ldots, c_k$. Then
+
+We do this by showing that every vector in $\spn(v_{k+1}, \ldots, v_n)$ is orthogonal to every vector in $U$. Thus each vector in $\spn(v_{k+1}, \ldots, v_n)$ is in $U^\perp$.
+
+Consider a $u \in U$.
+Since $(v_1, \ldots, v_k)$ is a basis of $U$, we can write each $u \in U$ as a linear combination of these vectors:
+
+
+\[
+u = c_1 v_1 + \cdots + c_k v_k
+\]
+\[
+c_1, \ldots, c_k \in \mathbb{F}
+\]
+
+Taking the inner product of both sides with an element $v_j$ from $(v_{k+1}, \ldots, v_n)$: 
 \[
 \langle v_j \mid u \rangle = \langle v_j \mid c_1 v_1 + \cdots + c_k v_k \rangle = c_1 \langle v_j \mid v_1 \rangle + \cdots + c_k \langle v_j \mid v_k \rangle.
 \]
-Since $(v_1, \ldots, v_n)$ is orthonormal and $j > k$, we have $\langle v_j \mid v_i \rangle = 0$ for all $i \leq k$. Thus $\langle v_j \mid u \rangle = 0$, which means $v_j \perp u$. Since this holds for all $u \in U$, we have $v_j \in U^\perp$.
+Since $(v_1, \ldots, v_n)$ is orthonormal, we know that each inner product is $0$ (there is no $\langle v_j \mid v_j \rangle$ term since $j > k$). With all terms equal to zero our equation simplifies to:
+\[
+\langle v_j \mid u \rangle = c_1 \cdot 0 + \cdots + c_k \cdot 0 = 0.
+\]
 
+As the inner product is $0$ this means that $v_j \perp u$. Since this holds for all $u \in U$, $v_j$ is perpendicular to all vectors in $U$. Therefore $v_j \in U^\perp$.
+
+As all vectors in $\spn(v_{k+1}, \ldots, v_n)$ are linear combinations of the vectors $v_j$, and each $v_j$ is in $U^\perp$, all vectors in $\spn(v_{k+1}, \ldots, v_n)$ are also in $U^\perp$.
 This shows that $\spn(v_{k+1}, \ldots, v_n) \subseteq U^\perp$.
 
 \vspace{0.3cm}
 
-Next, we show the reverse containment: $U^\perp \subseteq \spn(v_{k+1}, \ldots, v_n)$.
+Next, we show the reverse inclusion: $U^\perp \subseteq \spn(v_{k+1}, \ldots, v_n)$ by showing that all vectors in $U^\perp$ can be written as linear combinations of the vectors $(v_{k+1}, \ldots, v_n)$.
 
-Take any $w \in U^\perp$. Since $(v_1, \ldots, v_n)$ is a basis of $V$, we can write
+Consider $w \in U^\perp$. Since $(v_1, \ldots, v_n)$ is a basis of $V$, we can write:
 \[
 w = a_1 v_1 + a_2 v_2 + \cdots + a_n v_n
 \]
-for some scalars $a_1, \ldots, a_n$. We claim that $a_i = 0$ for all $i \leq k$.
+\[a_1, \ldots, a_n \in \mathbb{F}\]
 
-For any $i \leq k$, the vector $v_i$ is in $U$ (as shown above). Since $w \in U^\perp$, we have $\langle w \mid v_i \rangle = 0$. On the other hand, using orthonormality:
+For any $i \leq k$, the vector $v_i$ is in $U$ (as we proved earlier). Since $w \in U^\perp$, we have $\langle w \mid v_i \rangle = 0$. Therefore when we take the inner product of both sides in the equation with $v_i$, the left hand side of the equation is equal to $0$. Additionally, because all vectors in $(v_1, \ldots, v_n)$ are orthonormal, all inner products on the right hand side are $0$ except for $\langle v_i \mid v_i \rangle = 1$. Thus we can simplify it as follows:
 \[
 \langle w \mid v_i \rangle = \langle a_1 v_1 + \cdots + a_n v_n \mid v_i \rangle = a_1 \langle v_1 \mid v_i \rangle + \cdots + a_n \langle v_n \mid v_i \rangle = a_i.
 \]
 Thus $a_i = 0$ for all $i \leq k$, which means
 \[
-w = a_{k+1} v_{k+1} + \cdots + a_n v_n \in \spn(v_{k+1}, \ldots, v_n).
+w 
+= 0 v_1 + 0 v_2 \cdots 0 v_k +  a_{k+1} v_{k+1} + \cdots + a_n v_n= a_{k+1} v_{k+1} + \cdots + a_n v_n
 \]
-This shows $U^\perp \subseteq \spn(v_{k+1}, \ldots, v_n)$.
+
+Therefore $w \in \spn(v_{k+1}, \ldots, v_n)$ for all $w \in U^\perp$. 
+
+Finally, we can conclude: \[U^\perp \subseteq \spn(v_{k+1}, \ldots, v_n)\]
 
 \vspace{0.3cm}
 
-Combining both containments, we have $U^\perp = \spn(v_{k+1}, \ldots, v_n)$. Since $(v_{k+1}, \ldots, v_n)$ is an orthonormal list (being part of an orthonormal basis of $V$), it is linearly independent and spans $U^\perp$. Therefore $(v_{k+1}, \ldots, v_n)$ is an orthonormal basis of $U^\perp$.
+As we have shown both inclusions, we know that $U^\perp = \spn(v_{k+1}, \ldots, v_n)$. Since $(v_{k+1}, \ldots, v_n)$ is an orthonormal set (being part of an orthonormal basis of $V$), it is linearly independent and spans $U^\perp$. Therefore $(v_{k+1}, \ldots, v_n)$ is an orthonormal basis of $U^\perp$.
 
 \vspace{0.3cm}
 
