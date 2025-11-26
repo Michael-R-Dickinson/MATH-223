@@ -5,12 +5,22 @@
 \usepackage[most]{tcolorbox} % powerful colored boxes
 \usepackage{xcolor}          % colors
 \newtcolorbox{solution}{
-    breakable,                 % allow page breaks inside the box
-  colframe=green!50!black,   % medium green border
-  coltext=black,             % body text in black for readability
-  boxrule=0.4pt,             % thin, professional border
-  enhanced,                  % enable advanced drawing features
-  left=6pt, right=6pt, top=6pt, bottom=6pt % padding
+  breakable,              % allow page breaks
+  enhanced,               % better control of title etc.
+  colback=white,          % white background
+  colframe=gray,          % solid gray border
+  boxrule=0.5pt,          % border thickness
+  left=6pt, right=6pt, top=6pt, bottom=6pt, % padding
+  title=\textbf{Solution},
+  coltitle=black,
+  fonttitle=\normalsize\bfseries,
+  attach boxed title to top left={yshift=-2pt, xshift=4pt},
+  boxed title style={
+    colback=white,
+    colframe=white,
+    boxrule=0pt,
+    sharp corners
+  }
 }
 
 \newcommand{\Z}{\mathbb Z}
@@ -406,5 +416,10 @@ g(x) = 33 - 204x + 210x^2.
 \]
 By solving this system for the $g$, we have found a function such that $F(f) = \langle f \mid g \rangle$ for all $f \in V$, which is the function required by the Riesz representation theorem.
 \end{solution}
+
+\noindent \textbf{Generative AI Acknowledgment}
+
+\noindent Generative AI was used in this assignment for help with latex syntax. This includes defining the solution box that wraps answers. This also includes transcribing verbatum from handwritten on-paper solutions to first-draft latex code.
+It was also used to check answers before submission.
 
 \end{document}
