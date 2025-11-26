@@ -362,54 +362,49 @@ Adding these together:
 \end{prob}
 
 \begin{solution}
-We want to find $g \in \mathcal P_2(\mathbb R)$ such that $\langle f \mid g \rangle = F(f)$ for all $f \in \mathcal P_2(\mathbb R)$.
-
-Since both $F$ and the inner product are linear in the first argument, it suffices to check this equality on a basis. We use the standard basis $(1, x, x^2)$ for $\mathcal P_2(\mathbb R)$.
+As a linear operator is uniquely defined by its operations on a basis, we can compute $F$ on the standard basis for $\mathcal P_2(\mathbb R)$ and find a function $g$ that satisfies $\langle \text{basis} \mid g \rangle = F(\text{basis})$.
 
 First, we compute $F$ on each basis element:
-\[
-F(1) = 1 + 0 = 1, \quad F(x) = 0 + 1 = 1, \quad F(x^2) = 0 + 2 = 2.
-\]
+\begin{align*}
+F(1) = 1 + 0 = 1 \\ F(x) = 0 + 1 = 1 \\ F(x^2) = 0 + 2 = 2
+\end{align*}
 
-Now we write $g(x) = a + bx + cx^2$ and compute $\langle \text{basis} \mid g \rangle$ for each basis element. We require these to equal $F(\text{basis})$.
+To find a $g$, we can write it as a polynomial and compute its inner product with each basis vector. Then we can solve the system of equations such that each inner product produces the same values from the basis vectors as $F$.
 
-For the constant polynomial 1:
+First, we write $g(x) = a + bx + cx^2$ and compute the inner product of $g$ with each basis vector, setting them equal to the corresponding $F$ value:
+
 \[
 \langle 1 \mid g \rangle = \int_0^1 (a + bx + cx^2)\,dx = a + \frac{b}{2} + \frac{c}{3} = 1.
 \]
 
-For $x$:
 \[
 \langle x \mid g \rangle = \int_0^1 x(a + bx + cx^2)\,dx = \frac{a}{2} + \frac{b}{3} + \frac{c}{4} = 1.
 \]
 
-For $x^2$:
 \[
 \langle x^2 \mid g \rangle = \int_0^1 x^2(a + bx + cx^2)\,dx = \frac{a}{3} + \frac{b}{4} + \frac{c}{5} = 2.
 \]
 
-This gives us a system of three equations. Clearing denominators:
+This gives us a system of equations. We can simplify each equation by multiplying out the denominators:
+\begin{align*}
+6a + 3b + 2c = 6 \\
+6a + 4b + 3c = 12 \\
+20a + 15b + 12c = 120
+\end{align*}
+
+Finally we can solve this system of equations to get:
+
 \[
-6a + 3b + 2c = 6, \quad 6a + 4b + 3c = 12, \quad 20a + 15b + 12c = 120.
+a = 33 \quad
+b = -204 \quad
+c = 210
 \]
 
-Subtracting the first equation from the second gives $b + c = 6$.
-
-\vspace{0.3cm}
-
-Multiplying the first equation by 10 and the third by 3, then subtracting, gives $15b + 16c = 300$.
-
-Substituting $b = 6 - c$ into this equation:
-\[
-15(6 - c) + 16c = 300 \implies 90 + c = 300 \implies c = 210.
-\]
-
-Then $b = 6 - 210 = -204$, and from the first equation $a = \frac{6 - 3(-204) - 2(210)}{6} = 33$.
-
-Thus
+Lastly, we can rewrite $g$ with these coefficients:
 \[
 g(x) = 33 - 204x + 210x^2.
 \]
+By solving this system for the $g$, we have found a function such that $F(f) = \langle f \mid g \rangle$ for all $f \in V$, which is the function required by the Riesz representation theorem.
 \end{solution}
 
 \end{document}
