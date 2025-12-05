@@ -51,9 +51,49 @@ Each problem is worth 10 points.
 
 \begin{prob}
   Let $T:V\to W$ be a linear map between finite dimensional inner product spaces. Let $\mathcal B = (v_1, \dots, v_n), \mathcal C = (w_1, \dots, w_m)$ be orthonormal bases of $V,W$ respectively. Prove that
-  $$
-  \norm{T(v_1)}^2 +\dots +\norm{T(v_n)}^2 = \norm{T^*(w_1)}^2+ \dots + \norm{T^*(w_m)}^2.$$\\
+  $$\norm{T(v_1)}^2 +\dots +\norm{T(v_n)}^2 = \norm{T^*(w_1)}^2+ \dots + \norm{T^*(w_m)}^2.$$\\
 \end{prob}
+
+\begin{solution}
+  Let $A$ be the $m \times n$ matrix of $T$ with respect to the orthonormal bases $\mathcal{B}$ and $\mathcal{C}$.
+
+  \vspace{0.3cm}
+
+  For the left-hand side, by definition, the $j$-th column of $A$ is the result of $T(v_j)$ because $v_j$ is in the basis of the domain of $T$, expressed as coordinates in the basis $\mathcal{C}$. Thus we write $T(v_j)$ as the linear combination of the basis vectors in $\mathcal{C}$:
+
+  \[
+    T(v_j) = A_{1j}w_1 + A_{2j}w_2 + \cdots + A_{mj}w_m.
+  \]
+  Since $\mathcal{C}$ is orthonormal, we can compute the norm of $T(v_j)$ from these coordinates (shown in class that we can do this only if the basis is orthonormal - probably):
+  \[
+    \norm{T(v_j)}^2 = |A_{1j}|^2 + |A_{2j}|^2 + \cdots + |A_{mj}|^2.
+  \]
+  Now we can do this for all basis vector $v_1, \ldots, v_n$ to get the left-hand side of our equation:
+  \[
+    \norm{T(v_1)}^2 + \cdots + \norm{T(v_n)}^2 = \sum_{i,j} |A_{ij}|^2.
+  \]
+
+  \vspace{0.3cm}
+
+  For the right-hand side, the matrix of $T^*$ with respect to $\mathcal{C}$ and $\mathcal{B}$ is $A^*$. The $i$-th column of $A^*$ is the conjugate of the $i$-th row of $A$, so:
+  \[
+    T^*(w_i) = \overline{A_{i1}}v_1 + \overline{A_{i2}}v_2 + \cdots + \overline{A_{in}}v_n.
+  \]
+  Since $\mathcal{B}$ is orthonormal, we can compute the norm directly from these coordinates and then sum over all basis vectors $w_1, \ldots, w_m$ with the same logic as we used for the left-hand side:
+  \[
+    \norm{T^*(w_i)}^2 = |\overline{A_{i1}}|^2 + |\overline{A_{i2}}|^2 + \cdots + |\overline{A_{in}}|^2 = |A_{i1}|^2 + |A_{i2}|^2 + \cdots + |A_{in}|^2.
+  \]
+  Summing all basis vectors $w_1, \ldots, w_m$:
+  \[
+    \norm{T^*(w_1)}^2 + \cdots + \norm{T^*(w_m)}^2 = \sum_{i,j} |A_{ij}|^2.
+  \]
+
+  As we have shown that both sides equal to $\sum_{i,j} |A_{ij}|^2$, we conclude that:
+  \[
+    \norm{T(v_1)}^2 + \cdots + \norm{T(v_n)}^2 = \norm{T^*(w_1)}^2 + \cdots + \norm{T^*(w_m)}^2.
+  \]
+
+\end{solution}
 
 \begin{prob}
   Which of these matrices are similar? Justify.
