@@ -101,9 +101,25 @@ Each problem is worth 10 points.
         \]
 
         which is what we wanted to prove.
+
+        \vspace{0.3cm}
+
       \end{solution}
 
     \item $S^* S = \id_V$
+      \begin{solution}
+
+        (2) $\implies$ (3):
+        Using the definition of the adjoint, we can move $S$ from the first argument to the second:
+        \[
+          \langle S(v), S(v') \rangle = \langle S^*S(v), v' \rangle.
+        \]
+        Since $S^*S = \id_V$, $S^*S(v) = v$:
+        \[
+          \langle S^*S(v), v' \rangle = \langle v, v' \rangle.
+        \]
+        Which is what we wanted to prove.
+      \end{solution}
     \item $\langle S(v)\mid S(v')\rangle = \langle v \mid v' \rangle$ for all $v,v'\in V$\\
   \end{enumerate}
 \end{prob}
