@@ -46,31 +46,61 @@ Each problem is worth 10 points.
     \item $S$ is an isometry
 
       \begin{solution}
-        (1) $\implies$ (2): We want to show that if $S$ is an isometry, then $S^*S = \id_V$. To show two operators are equal, we need to show $\langle S^*S(v), w \rangle = \langle v, w \rangle$ for all $v, w \in V$.
+        (1) $\implies$ (2):
+
+        To show that $S^*S(v) = v$ for all $v \in V$ we can show that the inner product of $S^*S(v)$ with any vector $w \in V$ equals the inner product of $v$ with $w$:
+
+        \[
+          \langle S^*S(v), w \rangle = \langle v, w \rangle
+        \]
+        \[
+          v, w \in V
+        \]
 
         \vspace{0.3cm}
 
-        First, we use the definition of the adjoint to rewrite the left side:
+        First, we use the adjoint to rewrite the left side:
         \[
           \langle S^*S(v), w \rangle = \langle S(v), S(w) \rangle.
         \]
-        So really we just need to show that $\langle S(v), S(w) \rangle = \langle v, w \rangle$.
 
         \vspace{0.3cm}
 
-        Since $S$ is an isometry, we know $\norm{S(u)}^2 = \norm{u}^2$ for any vector $u$. We can apply this to $u = v + w$:
+        We know $\norm{S(u)}^2 = \norm{u}^2$ for any vector $u$. We can apply this to $u = v + w$:
         \[
           \norm{S(v + w)}^2 = \norm{v + w}^2.
         \]
-        Since $S$ is linear, $S(v + w) = S(v) + S(w)$, so the left side is $\norm{S(v) + S(w)}^2$. Now we expand both sides:
+        Now, we can expand both sides using the properties of inner products and rearrange to get both sides of our desired result.
+
+        First, the left hand side:
+
+        Since $S$ is linear we can expand out the left side:
         \[
-          \norm{S(v)}^2 + 2\langle S(v), S(w) \rangle + \norm{S(w)}^2 = \norm{v}^2 + 2\langle v, w \rangle + \norm{w}^2.
+          \norm{v + w}^2 =
+          \norm{S(v) + S(w)}^2
         \]
-        Since $S$ is an isometry, $\norm{S(v)}^2 = \norm{v}^2$ and $\norm{S(w)}^2 = \norm{w}^2$. These terms cancel from both sides, leaving:
+
+        Then using the definition of the norm as an inner product we can expand this further, and use the fact that $S$ is an isometry to simplify $\norm{S(v)}$ and $\norm{S(w)}$:
         \[
-          2\langle S(v), S(w) \rangle = 2\langle v, w \rangle.
+          \norm{S(v)}^2 + 2\langle S(v), S(w) \rangle + \norm{S(w)}^2 = \norm{v}^2 + 2\langle S(v), S(w) \rangle + \norm{w}^2
         \]
-        Thus $\langle S(v), S(w) \rangle = \langle v, w \rangle$. Going back to our original goal, this means $\langle S^*S(v), w \rangle = \langle v, w \rangle$ for all $w$, so $S^*S(v) = v$ for all $v$. Therefore $S^*S = \id_V$.
+
+        Now for the right hand side we can similarly expand using the definition of the norm as an inner product:
+        \[
+          \norm{v + w}^2 = \norm{v}^2 + 2\langle v, w \rangle + \norm{w}^2.
+        \]
+
+        Setting the two sides equal to eachother we now have the equation:
+        \[
+          \norm{v}^2 + 2\langle S(v), S(w) \rangle + \norm{w}^2
+          = \norm{v}^2 + 2\langle v, w \rangle + \norm{w}^2.
+        \]
+        We can cancel $\norm{v}^2$ and $\norm{w}^2$ from both sides and divide by 2 to get:
+        \[
+          \langle S(v), S(w) \rangle = \langle v, w \rangle.
+        \]
+
+        which is what we wanted to prove.
       \end{solution}
 
     \item $S^* S = \id_V$
