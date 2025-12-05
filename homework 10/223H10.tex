@@ -112,15 +112,26 @@ Each problem is worth 10 points.
         (2) $\implies$ (3):
         Using the definition of the adjoint, we can move $S$ from the first argument to the second:
         \[
-          \langle S(v), S(v') \rangle = \langle S^*S(v), v' \rangle.
+          \langle S(v), S(v') \rangle = \langle S^*S(v), v' \rangle
         \]
         Since $S^*S = \id_V$, $S^*S(v) = v$:
         \[
-          \langle S^*S(v), v' \rangle = \langle v, v' \rangle.
+          \langle S^*S(v), v' \rangle = \langle v, v' \rangle
         \]
         Which is what we wanted to prove.
       \end{solution}
-    \item $\langle S(v)\mid S(v')\rangle = \langle v \mid v' \rangle$ for all $v,v'\in V$\\
+    \item $\langle S(v)\mid S(v')\rangle = \langle v \mid v' \rangle$ for all $v,v'\in V$
+      \begin{solution}
+        (3) $\implies$ (1):
+        Setting $v' = v$, we get:
+        \[
+          \norm{S(v)}^2 =
+          \langle S(v), S(v) \rangle =
+          \langle v, v \rangle =
+          \norm{v}^2.
+        \]
+        Taking the square root of both sides, we get $\norm{S(v)} = \norm{v}$ for all $v \in V$. Thus $S$ is an isometry.
+      \end{solution}
   \end{enumerate}
 \end{prob}
 
