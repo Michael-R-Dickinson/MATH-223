@@ -1,0 +1,81 @@
+\documentclass[12pt, oneside]{amsart}
+\usepackage{amsmath,amsfonts, amssymb, xcolor}
+\usepackage{fullpage}
+
+\usepackage[most]{tcolorbox} % powerful colored boxes
+\usepackage{xcolor}          % colors
+\newtcolorbox{solution}{
+  breakable,              % allow page breaks
+  enhanced,               % better control of title etc.
+  colback=white,          % white background
+  colframe=gray,          % solid gray border
+  boxrule=0.5pt,          % border thickness
+  left=6pt, right=6pt, top=6pt, bottom=6pt, % padding
+  title=\textbf{Solution},
+  coltitle=black,
+  fonttitle=\normalsize\bfseries,
+  attach boxed title to top left={yshift=-2pt, xshift=4pt},
+  boxed title style={
+    colback=white,
+    colframe=white,
+    boxrule=0pt,
+    sharp corners
+  }
+}
+
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\R}{\mathbb R}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\spn}{span}
+\DeclareMathOperator{\proj}{proj}
+\newcommand\norm[1]{\left\lVert#1\right\rVert}
+
+\theoremstyle{definition}
+\newtheorem{prob}{Problem}
+
+\title{Math 223 Fall 2025 - Homework 10}
+\author{due December 4 at 11:59pm}
+\pagenumbering{gobble}
+\begin{document}
+\maketitle
+Each problem is worth 10 points.
+
+\begin{prob}
+  A map $T: V\to W$ is an isometry if $\norm{S(v)} = \norm{v}$ for all $v\in V$. Show that the following conditions are equivalent:
+  \begin{enumerate}
+    \item $S$ is an isometry
+    \item $S^* S = \id_V$
+    \item $\langle S(v)\mid S(v')\rangle = \langle v \mid v' \rangle$ for all $v,v'\in V$\\
+  \end{enumerate}
+\end{prob}
+
+\begin{prob}
+  Let $T:V\to W$ be a linear map between finite dimensional inner product spaces. Let $\mathcal B = (v_1, \dots, v_n), \mathcal C = (w_1, \dots, w_m)$ be orthonormal bases of $V,W$ respectively. Prove that
+  $$
+  \norm{T(v_1)}^2 +\dots +\norm{T(v_n)}^2 = \norm{T^*(w_1)}^2+ \dots + \norm{T^*(w_m)}^2.$$\\
+\end{prob}
+
+\begin{prob}
+  Which of these matrices are similar? Justify.
+  $$A = \left[
+    \begin{matrix} 1& 0 &1& 0\\0& 1&0&1\\1&0&1&0\\0&1&0&1
+  \end{matrix}\right] \qquad
+  B= \left[
+    \begin{matrix} 2& 1 &0& 0\\0& 2&0&0\\0&0&0&0\\0&0&1&0
+  \end{matrix}\right]\qquad
+  C= \left[
+    \begin{matrix} 2& 0 &0& 0\\0& 0&0&0\\0&0&0&0\\0&0&0&2
+  \end{matrix}\right] \qquad
+  D = \left[
+    \begin{matrix} 1& 1 &0& 0\\1& 1&0&0\\0&0&1&1\\0&0&1&1
+  \end{matrix}\right]
+  $$ \\
+\end{prob}
+
+\begin{prob}
+  Find $\det A$ using the eigenvalues of $A$, where $$A = \left[
+    \begin{matrix} 7& 2 &2& 2& 2\\2& 7&2&2&2\\2&2&7&2&2\\2&2&2&7&2 \\ 2&2&2&2&7
+  \end{matrix}\right].$$
+  (Hint: there exists $\lambda$ such that the rows of $(A - \lambda\cdot I)$ sum up to $0$.)
+\end{prob}
+\end{document}
