@@ -49,6 +49,34 @@ Each problem is worth 10 points.
   \end{enumerate}
 \end{prob}
 
+\begin{solution}
+(1) $\implies$ (2): We want to show that if $S$ is an isometry, then $S^*S = \id_V$. To show two operators are equal, we need to show $\langle S^*S(v), w \rangle = \langle v, w \rangle$ for all $v, w \in V$.
+
+\vspace{0.3cm}
+
+First, we use the definition of the adjoint to rewrite the left side:
+\[
+\langle S^*S(v), w \rangle = \langle S(v), S(w) \rangle.
+\]
+So really we just need to show that $\langle S(v), S(w) \rangle = \langle v, w \rangle$.
+
+\vspace{0.3cm}
+
+Since $S$ is an isometry, we know $\norm{S(u)}^2 = \norm{u}^2$ for any vector $u$. We can apply this to $u = v + w$:
+\[
+\norm{S(v + w)}^2 = \norm{v + w}^2.
+\]
+Since $S$ is linear, $S(v + w) = S(v) + S(w)$, so the left side is $\norm{S(v) + S(w)}^2$. Now we expand both sides:
+\[
+\norm{S(v)}^2 + 2\langle S(v), S(w) \rangle + \norm{S(w)}^2 = \norm{v}^2 + 2\langle v, w \rangle + \norm{w}^2.
+\]
+Since $S$ is an isometry, $\norm{S(v)}^2 = \norm{v}^2$ and $\norm{S(w)}^2 = \norm{w}^2$. These terms cancel from both sides, leaving:
+\[
+2\langle S(v), S(w) \rangle = 2\langle v, w \rangle.
+\]
+Thus $\langle S(v), S(w) \rangle = \langle v, w \rangle$. Going back to our original goal, this means $\langle S^*S(v), w \rangle = \langle v, w \rangle$ for all $w$, so $S^*S(v) = v$ for all $v$. Therefore $S^*S = \id_V$.
+\end{solution}
+
 \begin{prob}
   Let $T:V\to W$ be a linear map between finite dimensional inner product spaces. Let $\mathcal B = (v_1, \dots, v_n), \mathcal C = (w_1, \dots, w_m)$ be orthonormal bases of $V,W$ respectively. Prove that
   $$\norm{T(v_1)}^2 +\dots +\norm{T(v_n)}^2 = \norm{T^*(w_1)}^2+ \dots + \norm{T^*(w_m)}^2.$$\\
