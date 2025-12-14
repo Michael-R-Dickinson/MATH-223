@@ -1,0 +1,363 @@
+\documentclass[12pt, oneside]{amsart}
+\usepackage{amsmath,amsfonts, amssymb, xcolor}
+\usepackage{fullpage}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\R}{\mathbb R}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\spn}{span}
+
+\usepackage[most]{tcolorbox} % powerful colored boxes
+\usepackage{xcolor}          % colors
+\newtcolorbox{solution}{
+  colframe=green!50!black,   % medium green border
+  coltext=black,             % body text in black for readability
+  boxrule=0.4pt,             % thin, professional border
+  enhanced,                  % enable advanced drawing features
+  left=6pt, right=6pt, top=6pt, bottom=6pt % padding
+}
+
+\theoremstyle{definition}
+\newtheorem{prob}{Problem}
+
+\title{Math 223 Fall 2025 - Homework 4}
+\author{due October 9 (Thursday not Tuesday) at 11:59pm}
+\pagenumbering{gobble}
+\begin{document}
+\maketitle
+
+Each problem is worth 10 points.
+
+\begin{prob} Let $V, W$ be finite dimensional vector spaces.
+\begin{enumerate}
+    \item Prove that every linearly independent subset $S\subseteq V$ can be extended to a basis, i.e.\ there exists a basis $B$ such that $S\subseteq B$. (Use the theorem we proved on Friday, Sep 26.)
+\begin{solution}
+Consider a basis \( B \) of \( V \).  
+
+Using the theorem from the 26th, since \( S \) is a linearly independent subset of \( V \), and \( B \) is a finite set spanning \( V \), there exists a set \( H \subseteq B \) such that  
+\[
+H \cup S \text{ spans } V
+\]
+and
+\[
+|H| = |B| - |S|.
+\]
+
+We can show that \( |H \cup S| = \dim(V) \) as follows:
+
+Because $H \cup S$ spans $V$:
+\[|H\cup S| \ge \dim(V)\]
+
+Also, we know that $|H|=|B|-|S|$. We can rearrange this and use the fact that the number of vectors in $|H\cup S|\le |H| + |S|$:
+\[
+|B| = |H| + |S|\ge |H \cup S|
+\]
+
+Combining these two results we have:
+\[
+|B|\le |H\cup S| \;\text{and } |B|\ge|H\cup S| \quad\implies\quad 
+|H\cup S|
+= |B|
+\]
+
+And \( |B| = \dim(V) \) (because \( B \) is a basis for \( V \)),  
+\[
+\dim(V) = |H \cup S|.
+\]
+
+As \( H \cup S \) spans \( V \) and has exactly as many elements as \( \dim(V) \),  
+\( H \cup S \) is a basis for \( V \), extending \( S \) as required.
+\end{solution}
+
+
+    \item Show that if $W$ is a subspace of $V$, then $\dim W\leq\dim V$.
+
+\begin{solution}
+Since \( W \) is a subspace of \( V \), we have
+\[
+W \subseteq V.
+\]
+Let \( B_W \) be a basis of \( W \) so that
+\[
+\text{span}(B_W) = W \quad \text{and} \quad B_W \subseteq W \subseteq V.
+\]
+
+From Proof \#1, any linearly independent subset of \( V \) can be extended to a basis of \( V \).
+
+Because \( B_W \) is linearly independent (by definition of a basis) and \( B_W \subseteq V \),
+\( B_W \) satisfies these conditions and can be extended to a basis of \( V \).
+
+We call this extended basis \( B_V \).
+
+Since we only added vectors to \( B_W \) to obtain \( B_V \), we know:
+\[
+B_W \subseteq B_V.
+\]
+Thus $B_W$ is guaranteed to have either as many or fewer elements as $B_V$. As an extension, because $B_W$ is a basis of $W$ and $B_V$ is a basis of V:
+\[
+\dim(W) \leq \dim(V),
+\]
+
+as required.
+
+\end{solution}
+    \item Show that if $W$ is a subspace of $V$ and $\dim W = \dim V$, then $W=V$.
+
+\begin{solution}
+\noindent
+From Proof \#1, every linearly independent subset of a vector space can be extended to a basis for that space.
+
+\medskip
+\noindent
+The basis for $W$, $B_W$, fits these conditions. It is linearly independent (by definition of a basis), and it is a subset of $V$:
+\[
+B_W \subseteq W \subseteq V
+\]
+\[
+\text{(because $W$ is a subspace of $V$).}
+\]
+
+\medskip
+Therefore, by adding some number of vectors $n$, it can be extended to be a basis for $V$ (denoted $B_V$)
+
+However, as $\dim(W) = \dim(V)$, the basis for $W$ must have the same number of elements as the basis for $V$.
+
+\medskip
+\noindent
+Thus, extending $B_W$ to be a basis for $V$ requires adding zero new elements.  Equivalently, we are saying that it is already a basis for $V$. 
+As $B_W$ is a basis for $V$ it satisfies the condition
+\[
+\spn(B_W) = V.
+\]
+
+
+This establishes the following equality:
+\[
+W = \operatorname{span}(B_W) = \operatorname{span}(B_V) = V
+\]
+which shows that $W=V$ as required.
+\end{solution}
+    
+\end{enumerate} 
+\end{prob}
+
+\begin{prob}
+Find a basis of the given subspace of $\mathbb R^4$, and then extend it to a basis of $\mathbb R^4$.
+    \begin{enumerate}
+        \item $W_1 = \{(x_1, x_2, x_3, x_4)\in\mathbb R^4 \mid x_1-x_3+x_4 = 0\}$
+\begin{solution}
+As the following equation defines all vectors in the subspace, only one parameter is constrained and thus we have 3 free parameters in the space. 
+\[
+x_3 = x_1 + x_4
+\]
+Thus to form a basis, we define 3 linearly independent vectors:
+\[
+v_1 = (0, 1, 0, 0)
+\]
+\[
+v_2 = (0, 0, 1, 1)
+\]
+\[
+v_3 = (1, 0, 1, 0)
+\]
+Such that $\{v_1,v_2,v_3\}$ is a basis for the subspace $W_1$.
+
+To be a basis for \(\mathbb{R}^4\), we need four vectors that are all linearly independent.  
+So far our basis for the subspace only has 3. We add one more linearly independent vector to the set:
+
+\[
+v_4 = (1, 0, 0, 1)
+\]
+
+Thus the extended set that spans $\mathbb{R}^4$ is: $\{v_1,v_2,v_3,v_4\}$ as required.
+
+\end{solution}
+
+        \item $W_2 = \{(x_1, x_2, x_3, x_4)\in\mathbb R^4 \mid x_1-x_3+x_4 = 0, 2x_3+x_4=0\}$
+\begin{solution}
+Simplifying the equations defining this set, we get:
+\[
+x_3 = x_1 + x_4
+\]
+\[
+x_4 = -2x_3
+\]
+
+If we parameterize \(x_3\), it gives the value for \(x_4\), and as \(x_1\) is determined by \(x_3\) and \(x_4\), its value is also dependent on \(x_3\).  
+Thus, we have only two free variables: \(x_2, x_3\).
+
+We write the basis of \(W_2\) using two free parameters, defining two linearly independent vectors that satisfy our equations:
+\[
+v_1 = (-3, 0, -1, 2)
+\]
+\[
+v_2 = (0, 1, 0, 0)
+\]
+\[
+B = \{v_1, v_2\}
+\]
+
+Extending this to a basis for \(\mathbb{R}^4\), we just need to add two more linearly independent vectors:
+\[
+v_3 = (0, 0, 1, 0)
+\]
+\[
+v_4 = (0, 0, 0, 1)
+\]
+
+$B = \{v_1, v_2, v_3, v_4\}$ is our extended basis for \(\mathbb{R}^4\).
+\end{solution}
+
+    \end{enumerate}
+\end{prob}
+
+\begin{prob} \item 
+\begin{enumerate}
+    \item Let $T:\mathbb R^3\to \mathbb R^2$ be a linear map. 
+    Can it be true that $T(\left[\begin{array}{c} 1\\0\\-3\end{array}\right]) = \left[\begin{array}{c} 1\\2\end{array}\right]$ and $T(\left[\begin{array}{c} -2\\0\\6\end{array}\right]) = \left[\begin{array}{c} 2\\1\end{array}\right]$?
+
+\begin{solution}
+No, this can’t be true.
+
+We know that since $T$ is a linear map:
+\[
+T\!\left(\begin{bmatrix} -2 \\ 0 \\ 6 \end{bmatrix}\right)
+= -2\,T\!\left(\begin{bmatrix} 1 \\ 0 \\ -3 \end{bmatrix}\right)
+\]
+
+Using the given result for $T\!\left(\begin{bmatrix} 1 \\ 0 \\ -3 \end{bmatrix}\right)$, we get:
+\[
+T\!\left(\begin{bmatrix} -2 \\ 0 \\ 6 \end{bmatrix}\right)
+= -2\,T\!\left(\begin{bmatrix} 1 \\ 0 \\ -3 \end{bmatrix}\right)
+= -2 \begin{bmatrix} 1 \\ 2 \end{bmatrix}
+= \begin{bmatrix} -2 \\ -4 \end{bmatrix}.
+\]
+
+However this result is inconsistent with $T(\left[\begin{array}{c} -2\\0\\6\end{array}\right]) = \left[\begin{array}{c} 2\\1\end{array}\right]$:
+\[
+\begin{bmatrix} -2 \\ -4 \end{bmatrix} \ne
+\begin{bmatrix} 2 \\ 1 \end{bmatrix}.
+\]
+Therefore, the given values for $T$ cannot both be true at the same time.
+\end{solution}
+
+
+    \item Let $T:\mathbb R^2\to \mathbb R^3$ be a linear map. 
+    Suppose that $T(\left[\begin{array}{c} 1\\0 \end{array}\right]) = \left[\begin{array}{c} 2\\1\\ -3 \end{array}\right]$ and $T(\left[\begin{array}{c} 2\\1 \end{array}\right]) = \left[\begin{array}{c} -1\\7\\4 \end{array}\right]$. 
+    What is $T(\left[\begin{array}{c} 4\\3 \end{array}\right])$?
+
+\begin{solution}
+To find \( T\!\left(\begin{bmatrix}4 \\ 3\end{bmatrix}\right) \),  
+we can express it as a unique linear combination of the basis vectors for our set:
+
+\[
+\begin{bmatrix}4 \\ 3\end{bmatrix}
+= a_1 \begin{bmatrix}2 \\ 1\end{bmatrix}
++ a_2 \begin{bmatrix}1 \\ 0\end{bmatrix}
+\]
+
+Solving, we get
+\[
+a_1 = 3, \quad a_2 = -2.
+\]
+
+With these coefficients, we can write $T\!\left(\begin{bmatrix}4 \\ 3\end{bmatrix}\right)$ as a sum of our known results for T.
+
+
+\[
+\begin{aligned}
+T\!\left(\begin{bmatrix}4 \\ 3\end{bmatrix}\right)
+&= T\!\left(3\begin{bmatrix}2 \\ 1\end{bmatrix}
+- 2\begin{bmatrix}1 \\ 0\end{bmatrix}\right) 
+\end{aligned}
+\]
+We can simplify as well using the additive and scaling properties of linear maps:
+\[
+\begin{aligned}
+T\!\left(3\begin{bmatrix}2 \\ 1\end{bmatrix}
+- 2\begin{bmatrix}1 \\ 0\end{bmatrix}\right) 
+&= 3T\!\left(\begin{bmatrix}2 \\ 1\end{bmatrix}\right)
+- 2T\!\left(\begin{bmatrix}1 \\ 0\end{bmatrix}\right) = 3\begin{bmatrix}-1 \\ 7 \\ 4\end{bmatrix}
+- 2\begin{bmatrix}2 \\ 1 \\ -3\end{bmatrix} = \begin{bmatrix}-7 \\ 19 \\ 18\end{bmatrix}
+\end{aligned}
+\]
+
+As required
+
+
+\end{solution}
+\end{enumerate}
+\end{prob}
+
+\begin{prob} 
+Let $V, U$ be $F$-vector spaces and let $W\subseteq V$ be a subspace. 
+Let $T:W\to U$ be a linear map. 
+Prove that $T$ can be extended to a linear map $\hat T:V\to U$ (i.e.\ there exists $\hat T:V\to U$  such that $\hat T (w) = T(w)$ for all $w\in W$).
+\end{prob}
+
+\begin{solution}
+Let \(B_W\) be a basis for \(W\). Then for any \(w \in W\), we can write:
+\[
+w = a_1 b_1 + a_2 b_2 + \dots + a_n b_n,
+\]
+\[
+a_i \in F \quad \text{and }\quad b_i \in B_W
+\]
+ 
+
+We know that \(B_W\) can be extended to a basis for \(V\), since it is linearly independent and a subset of $V$ ($B_W\subseteq W \subseteq V$).
+
+
+Let \(B_V = B_W \cup \{d_1, \dots, d_m\}\) be the expanded set that is a basis for $V$, with added vectors $d_i$.
+
+Now we can express all vectors \(v \in V\) as linear combinations of the elements of the expanded basis:
+\[
+v = a_1 b_1 + \dots + a_n b_n + c_1 d_1 + \dots + c_m d_m,
+\]
+\[
+b_i \in B_W \quad d_i \in B_V - B_W \quad a_i, c_j \in F
+\]
+
+
+Note that we can still express all \(w \in W\) with the same linear combinations of vectors \(b_i\) in \(B_W\)
+(in which case all \(c_j = 0\)).
+
+Now we define \(\widehat{T}\) to be a linear map for all values of our basis $B_V$:
+\[
+\widehat{T}(b_i) = T(b_i) \quad \text{for } b_i \in B_W,
+\]
+\[
+\widehat{T}(d_j) = 0 \quad \text{for } d_j \in B_V - B_W
+\]
+Because linear maps can be unique determined by their results for the basis vectors, we can simplify any $T(v)$ to be a result of these previously defined values from our basis.
+
+We do this by using the properties of linear maps (additivity and scalability) and the fact that $v$ can be written as a linear combination of vectors in the basis:
+\[
+\hat{T}(v)
+=\widehat{T}(a_1 b_1 + \dots + a_n b_n + c_1 d_1 + \dots + c_m d_m)
+\]
+\[
+= a_1 \widehat{T}(b_1) + \dots + a_n \widehat{T}(b_n)
++ c_1 \widehat{T}(d_1) + \dots + c_m \widehat{T}(d_m)
+\]
+
+For any \(w \in W\), we have \(w = a_1 b_1 + \dots + a_n b_n\) with all \(c_j = 0\), so
+\[
+\widehat{T}(w)
+= a_1 \widehat{T}(b_1) + \dots + a_n \widehat{T}(b_n)
++ 0 \widehat{T}(d_1) + \dots + 0\widehat{T}(d_m)
+\]
+Thus as all coefficients $c_j$ have vanished, we can now simplify this expression of $\hat{T}$ to equal $T(w)$:
+\[
+a_1 \widehat{T}(b_1) + \dots + a_n \widehat{T}(b_n)
+= a_1 T(b_1) + \dots + a_n T(b_n)
+= T(a_1 b_1 + \dots + a_n b_n)
+= T(w)
+\]
+
+Thus for all values in $W$ $\hat{T}(w)=T(w)$ and is a linear map that accepts all $V$ as required.
+\end{solution}
+
+\noindent \textbf{Generative AI Acknowledgment}
+
+\noindent Generative AI was used in this assignment for help with latex syntax. This includes defining the "solution box" that wraps answers. This also includes transcribing verbatum from handwritten on-paper solutions to first-draft latex code.
+\end{document}

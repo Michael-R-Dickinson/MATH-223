@@ -1,0 +1,410 @@
+\documentclass[12pt, oneside]{amsart}
+\usepackage{amsmath,amsfonts, amssymb, xcolor}
+\usepackage{fullpage}
+\usepackage[most]{tcolorbox}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\R}{\mathbb R}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\spn}{span}
+
+\theoremstyle{definition}
+\newtheorem{prob}{Problem}
+
+\title{Math 223 Fall 2025 - Homework 2}
+\author{due September 23 at 11:59pm}
+\usepackage[most]{tcolorbox} % powerful colored boxes
+\usepackage{xcolor}          % colors
+
+\pagenumbering{gobble}
+\begin{document}
+\maketitle
+
+
+
+\newtcolorbox{solution}{
+  colframe=green!50!black,   % medium green border
+  coltext=black,             % body text in black for readability
+  boxrule=0.4pt,             % thin, professional border
+  enhanced,                  % enable advanced drawing features
+  left=6pt, right=6pt, top=6pt, bottom=6pt % padding
+}
+
+Each problem is worth 10 points. In all the problem that state that $F$ is a field, you can assume that $F=\mathbb R$. {\color{teal}Comments in teal are additional information or review of some concepts.}
+
+
+
+
+\begin{prob}
+Let $V$ be a vector space over a field $F$. 
+For each $i=1, \dots, n$ let $W_i\subseteq V$ be a subspace. Prove that the intersection $\displaystyle \bigcap_{i=1}^n W_i = W_1\cap W_2\cap \dots \cap W_n$ is also a subspace. \\
+
+{\color{teal}The above statement is true for an arbitrary---possibly infinite---collection of subspaces. Your proof most likely works in general.}
+\end{prob}
+
+\begin{solution}
+Let $S = \bigcap_{i=1}^n W_i$. I will show that $S$ is a subspace by checking that it is closed under addition and scalar multiplication.
+
+\vspace{1em}
+\textbf{Closed under addition}
+By definition of intersection, every element in $A\cap B$ is in both sets $A$ and $B$.
+
+Applied to the intersection of many sets $S=\displaystyle \bigcap_{i=1}^n W_i$, every element in the resultant set $S$ must be in all sets $W_i$.
+
+\vspace{1em}
+Consider 2 elements, $a,b \in S$.
+Then $a,b \in W_i$ for every $i$. Since each $W_i$ is a subspace which is closed under addition, $a+b \in W_i$ for every $i$. As a result, taking the intersection of all $W_i$, the set $S$ contains $a+b$. 
+
+Because $S$ contains the sum of any two of its elements $a,b\in S,\; a+b \in S$, $S$ is closed under addition.
+\vspace{1em}
+
+\textbf{Closed under scalar multiplication}
+
+Consider  $a \in S$, $c \in F$. 
+
+By the same logic as the previous proof, because $S$ contains $a$, $W_i$ contains $a$ for all $i$. 
+
+Because all $W_i$ are subspaces over $F$, they are closed on scalar multiplication and contain the product $c\cdot a \in W_i$. 
+
+As a result, taking the intersection of all $W_i$, the set $S$ contains $a\cdot c$.
+Because $S$ contains all products $a\in S,\: c\in F\mid c\cdot a \in S$, $S$ is closed under scalar multiplication.
+
+\end{solution}
+
+
+\begin{prob}
+Let $F$ be a field. 
+\begin{enumerate}
+    \item For each of the following subsets of $F^3$ determine whether it is a subspace of the vector space $F^3$. Justify your answers.
+    \begin{enumerate}
+        \item $W_1 = \{(x_1, x_2, x_3)\in F^3 \mid 2x_1 -3x_2 = 0 \text{ and }  x_2 + 5x_3 = 0\}$
+\begin{solution}
+
+I will prove that $W_1$ is a subspace of $F^3$ by showing that it is closed under addition and scalar multiplication.
+
+\textbf{Closed Under Addition}
+
+Consider two vectors in $F^3$. 
+
+\[
+u = (x_1,x_2,x_3) \in W_1 \quad v = (y_1,y_2,y_3) \in W_1
+\]
+
+Adding these vectors we have:
+\[
+    u + v = (x_1+y_1,\; x_2+y_2,\; x_3+y_3)
+\]
+
+We can plug this new added vector into the equations that specify the subset $W_1$ to validate whether it is in the set.
+
+First Equation:
+\[
+    2(x_1+y_1) - 3(x_2+y_2) 
+\]
+Expand and combine $x$ and $y$ terms:
+\[
+= (2x_1 - 3x_2) + (2y_1 - 3y_2) 
+\]
+We already know that $2x_1 -3x_2 =0$ from the definition of $(x_1,x_2,x_3)\in W_1$. The same is true for $2y_1 -3y_2 =0$. Thus both terms are zero and thus the expression is equal to zero:
+\[
+= (2x_1 - 3x_2) + (2y_1 - 3y_2) = 0 + 0=0
+\]
+
+This satisfies the original equation $2x_1 -3x_2 = 0$.
+
+We can apply the exact same process to the second equation and see that it also equals zero. 
+\[
+(x_2+y_2) + 5(x_3+y_3) 
+= (x_2+5x_3) + (y_2+5y_3) 
+= 0 + 0 = 0.
+\]
+Thus it satisfies its original equation: $x_2 + 5x_3 = 0$. As both equations are satisfied by $u+v$, $u+v$ is in the set and, $W_1$ is closed under addition.
+
+\textbf{Closed Under Scalar Multiplication}
+
+Consider a vector in $W_1$ and a scalar in $F$ 
+\[
+u = (x_1, x_2, x_3) \in W_1\quad c\in F
+\]
+We can multiply these together and check if the resulting vector is in $W_1$ to determine if it is closed under scalar multiplication:
+\[
+c u = (c x_1,\, c x_2,\, c x_3).
+\]
+Now we substitute these values into the equations for $W_1$ and see if they still hold:
+
+Equation 1:
+\[
+2(c x_1) - 3(c x_2)
+\]
+\[
+= c(2x_1 - 3x_2).
+\]
+
+Because $u \in W_1$, we know $2x_1 - 3x_2 = 0$. Thus the expression simplifies to:
+\[
+c \cdot 0 = 0.
+\]
+
+We apply the same process for the second equation and see that it also holds. 
+\[
+(c x_2) + 5(c x_3) = c(x_2 + 5x_3).
+\]
+
+From the equation for $W_i$ we have $x_2 + 5x_3 = 0$. Substituting this result in:
+\[
+c \cdot 0 = 0.
+\]
+
+Thus, as $cu$ satisfies both equations for $W_1$, $cu \in W_1$ and $W_1$ is closed under scalar multiplication. 
+Finally, as $W_1$ is closed under addition and scalar multiplication, it is a subspace. 
+
+\end{solution}
+        \item $W_2 = \{(x_1, x_2, x_3)\in F^3 \mid 2x_1 -3x_2 + 9x_3 = 4\}$
+
+
+\begin{solution}
+$W_2$ is not a subspace because it is not closed under addition. I will show this by example:
+
+\[
+a = (2, 3, 1), \quad b = (2, 6, 2)
+\]
+
+\[
+a+b = (4, 9, 3)
+\]
+Plug into the equation for $W_2$
+\[
+2(4) - 3(9) + 9(3) = 8 - 27 + 27 = 8 \neq 4
+\]
+
+As $a+b$ is not in $W_2$, $W_2$ is not closed on addition thus is not a subspace. 
+
+\end{solution}
+
+
+        \item $W_3 = \{(x_1, x_2, x_3)\in F^3 \mid x_1x_2x_3=0\}$
+
+\begin{solution}
+$W_3$ is not a subspace because it is not closed under addition. I will show this by example:
+
+\[
+a=(1,0,1), \quad b=(0,1,0)
+\]
+
+\[
+a+b=(1,1,1)
+\]
+
+Plug into the equation for $W_3$ ($x_1x_2x_3=0$):
+
+\[
+(1)(1)(1)=1 \neq 0
+\]
+
+As $a+b$ is not in $W_3$, $W_3$ is not closed on addition thus is not a subspace.
+
+\end{solution}
+        \item $W_4 = \{(x_1, x_2, x_3)\in F^3 \mid 2x_1 = x_3\}$
+
+\begin{solution}
+We can use the same process as in $W_1$ to show that this is a subspace. I will show that it is closed under addition and scalar multiplication.
+Beginning with addition, we take two vectors satisfying $W_4$ and add them.
+\[
+u=(a_1,a_2,a_3)\in W_4 \quad v=(b_1,b_2,b_3)\in W_4
+\]
+\[
+u+v=(a_1+b_1,a_2+b_2,a_3+b_3)
+\]
+Plugging back into the equation for $W_4$, we can determine if it is closed under addition if adding two vectors in $W_4$, $u+v$, satisfies the equation. This implies that $W_4$ is closed under addition:
+\[
+2(a_1+b_1)=a_3+b_3,
+\]
+\[
+=2a_1+2b_1=a_3+b_3,
+\]
+
+
+Since \( u \in W_4 \), we have \( 2a_1 = a_3 \), and since \( v \in W_4 \), we have \( 2b_1 = b_3 \). Therefore,
+\[
+2a_1 + 2b_1 = a_3 + b_3,
+\]
+which shows that \( 2(a_1 + b_1) = a_3 + b_3 \). Thus, \( u + v = (a_1 + b_1, a_2 + b_2, a_3 + b_3) \in W_4 \), and \( W_4 \) is closed under addition.
+
+\medskip
+ 
+To verify that $W_4$ is closed under scalar multiplication we multiply an arbitrary vector in $W_4$ by a scalar and check that the result is still in $W_4$.
+\[
+    u = (a_1, a_2, a_3) \in W_4  \quad c\in F
+\]
+\[
+c u = (c a_1, c a_2, c a_3).
+\]
+Substituting into the equation for $W_4$, \( 2x_1 = x_3 \):
+\[
+2(c a_1) = c a_3.
+\]
+We can cancel out $c$ terms:
+\[
+2(c a_1) = c a_3. \implies2a_1=a_3
+\]
+Because $u\in W_4$ we know its terms $(a_1,a_2,a_3)$ satisfy the equation $2a_1 = a_3$ and the equation holds. Thus, $c\cdot u \in W_4$ and $W_4$ is closed under scalar multiplication.
+
+\end{solution}
+    \end{enumerate}
+    \item Describe the intersection $W_1\cap W_4$ using set-builder notation (i.e., the same notation as used for describing $W_1,W_2,W_3,W_4$). 
+\end{enumerate}
+\end{prob}
+
+
+\begin{solution}
+$W_1\cap W_4 = \{(x_1,x_2,x_3)\in F^3 \mid x_1=0,\; x_2=0,\; x_3=0\}$, i.e., only the zero vector.
+\end{solution}
+
+
+\begin{prob}
+Let $F$ be a field. 
+A function $p: F\to F$ is a \emph{polynomial} with coefficients in $F$ if there exist $a_0, \dots, a_n \in F$ such that $p$ is given by 
+$$p(x) = a_0 + a_1\cdot x + a_2 \cdot x^2 + \dots +a_n \cdot x^n$$ for all $x\in F$.
+Let $\mathcal P(F)$ denotes the set of all polynomials with coefficients in $F$. 
+\begin{enumerate}
+    \item Show that $\mathcal P(F)$ is a subspace of the vector space $Map(F, F)$ (over $F$) of all functions from $F$ to $F$.
+\end{enumerate}
+{\color{teal}We discussed the operations in $Map(F, F)$ in class, but here is a reminder.
+For functions $f,g\in Map(F,F)$ and a scalar $a\in F$ we defined functions $f+g$ and $a\cdot f$ as follows:
+$$
+(f+g)(x) = f(x) + g(x)
+$$
+$$
+(a\cdot f)(x) = a\cdot f(x)$$
+for all $x\in F$. The \emph{zero} of $Map(F,F)$ is the constant zero function $0(x) = 0$.\\}
+
+The \emph{degree} of a polynomial $p$ is the maxinal $n$ such that $a_n\neq 0$. E.g. $p(x) = 2x^2-3$ has degree $2$. Let $\mathcal P_n(F)$ denote the subset of $\mathcal P(F)$ of polynomials of degree at most $n$.
+
+
+\begin{solution}
+I will prove that $\mathcal P(F)$ is a subspace by showing that it is closed under addition and scalar multiplication.
+
+\medskip
+\textbf{Closed under addition.}  
+
+Consider $f, g \in \mathcal P(F)$ with coefficients $(a_0, a_1, \dots, a_n)$ and $(b_0, b_1, \dots, b_n)$. 
+
+Adding these vectors to check if $f+g \in \mathcal P(F)$:
+\[
+f+g = (a_0+b_0) + (a_1+b_1)x + \dots + (a_n+b_n)x^n.
+\]
+Since $F$ is closed under addition, each coefficient $(a_i+b_i) \in F$. 
+This satisfies the definition for a polynomial $\mathcal P(F)$. Thus $f+g\in \mathcal P(F)$ and $\mathcal P(F)$ is closed under addition.
+
+Hence $f+g \in \mathcal P(F)$ and $\mathcal P(F)$ is closed under addition.
+
+\medskip
+\textbf{Closed under scalar multiplication.}  
+
+Consider $f(x) = a_0 + a_1x + \dots + a_nx^n$ and $b \in F$. 
+
+Multiplying these:
+\[
+b \cdot f(x) = (ba_0) + (ba_1)x + \dots + (ba_n)x^n.
+\]
+Since $F$ is closed under multiplication, each $ba_i \in F$. 
+
+This satisfies the definition for a polynomial $\mathcal P(F)$. Thus $b\cdot f(x)\in \mathcal P(F)$ and $\mathcal P(F)$ is closed under scalar multiplication.
+
+\medskip
+As $\mathcal P(F)$ is closed under addition and scalar multiplication, $\mathcal P(F)$ is a subspace of $Map(F,F)$.
+\end{solution}
+
+
+
+
+
+
+
+\begin{enumerate}
+\setcounter{enumi}{1}
+    \item Show that $\mathcal P_n(F)$ is a subspace of $\mathcal P(F)$.\\
+\end{enumerate}
+\end{prob}
+
+\begin{solution}
+I will prove that $\mathcal P_n(F)$ is a subspace over $F$ by showing that it is closed on addition and scalar multiplication.
+
+\textbf{Closed on Addition}  
+Consider $f,g\in P_n(F)$ with degree at most $n$. 
+
+Taking their sum, the coefficients combine and the degree of the resulting polynomial has a degree at most $n$.
+\[
+f+g = (a_0+b_0) + (a_1+b_1)x + \dots + (a_n+b_n)x^n.
+\]
+As $F$ is closed on addition, the coefficients, $a_i +b_i\in F$. Thus $f+g$ satisfies the definition for a polynomial $\mathcal P_n(F)$ and $\mathcal P_n(F)$ is closed on addition.
+
+\vspace{1em}
+\textbf{Closed on Scalar Multiplication}
+
+Consider a polynomial $f(x)$ in $\mathcal P_n(F)$ and a scalar $c$.
+\[
+f(x) = a_0 + a_1x + \dots + a_nx^n \in \mathcal P_n(F),\quad c \in F
+\] 
+Multiplying:
+\[
+c \cdot f(x) = (ca_0) + (ca_1)x + \dots + (ca_n)x^n.
+\]
+As $F$ is closed on multiplication, each $ca_i \in F$. The degree of the polynomial is unchanged by the scalar multiplication. 
+
+Thus, $c\cdot f$ is in the set, $c\cdot f(x)\in \mathcal P_n(F)$ and $\mathcal P_n(F)$ is closed on scalar multiplication.
+
+As $\mathcal P_n(F)$ is closed under addition and scalar multiplication, $\mathcal P_n(F)$ is a subspace.
+
+\end{solution}
+
+
+\begin{prob}
+Let $V$ be a vector space over $F$. Let $S\subseteq V$. Prove that
+\begin{enumerate}
+    \item $S\subseteq \spn(S)$
+
+\begin{solution}
+$\spn(S)$ is the set of all linear combinations of $S$. Thus it contains $1\cdot s$ for every $s\in S$. So $\forall s\in S, s\in \spn(S)$. Therefore $S\subseteq \spn(S)$.  
+
+\end{solution}
+
+    \item $\spn(S)$ is a subspace of $V$
+\begin{solution}
+By definition, $\spn(S)$ is the set of all linear combinations of $S$. This includes the linear combination $v + w$ for any arbitrary $v,w\in S$. Thus $\spn(s)$ is closed on addition.
+
+\medskip
+As $\spn(S)$ contains all linear combinations of $S$, it includes the product $c\cdot v$ for $c\in F, \;v\in S$. Thus it is closed on scalar multiplication.
+
+As $\spn(S)$ satisfies both closure under addition and scalar multiplication, it is a subspace.
+\end{solution}
+    \item if $W\subseteq V$ is a subspace, and $S\subseteq W$, then $\spn(S)\subseteq W$.
+
+\begin{solution}
+Because $W$ is a subspace, it is closed on addition and scalar multiplication, meaning it contains all linear combinations of its elements. 
+
+$S \subseteq W$ so all elements of $S$ are necessarily also in $W$. 
+
+Because $W$ contains all linear combinations of its elements, and all members of $S$ are in $W$, then $W$ also contains all linear combinations of $S$. Thus $\spn(S)\subseteq W$.
+
+\end{solution}
+    \item $\spn(S) = \bigcap\{W\mid W\subseteq V \text{ is a subspace, and }S\subseteq W\}$
+\end{enumerate}
+\end{prob}
+
+\begin{solution}
+The set $A=\{W\mid W\subseteq V \text{ is a subspace, and }S\subseteq W\}$ is the set of all subspaces containing $S$. All such subspaces are closed on addition and scalar multiplication, thus they all contain the set of all linear combinations of $S$. 
+When we take the intersection of this set $\bigcap A$, all elements that are not linear combinations of $S$ are not shared by all subspaces and they are not required for the condition $S\subseteq W$.
+Thus we are left with only the set of all linear combinations of $S$, which is the definition of $\spn (S)$. 
+As a result we have:
+\[
+\spn(S) = \bigcap A =\bigcap\{W\mid W\subseteq V \text{ is a subspace, and }S\subseteq W\}
+\]
+
+
+
+\end{solution}
+
+\noindent \textbf{Generative AI Acknowledgment}
+
+\noindent Generative AI was used in this assignment for help with latex syntax. This includes defining the "solution box" that wraps answers. This also includes transcribing verbatum from handwritten on-paper solutions to first-draft latex code.
+\end{document}

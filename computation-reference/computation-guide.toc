@@ -1,0 +1,16 @@
+\contentsline {section}{\tocsection {}{}{Introduction}}{1}{}%
+\contentsline {section}{\tocsection {}{1}{Matrix Operations}}{1}{}%
+\contentsline {section}{\tocsection {}{2}{Determinant Computations}}{2}{}%
+\contentsline {section}{\tocsection {}{3}{Eigenvalue and Eigenvector Computations}}{3}{}%
+\contentsline {section}{\tocsection {}{4}{Diagonalizability}}{4}{}%
+\contentsline {section}{\tocsection {}{5}{Gram-Schmidt Orthogonalization}}{5}{}%
+\contentsline {section}{\tocsection {}{6}{Projections}}{6}{}%
+\contentsline {section}{\tocsection {}{7}{Finding Bases and Coordinates}}{7}{}%
+\contentsline {section}{\tocsection {}{8}{Inner Product Space Computations}}{7}{}%
+\contentsline {section}{\tocsection {}{9}{Special Computational Tricks Summary}}{8}{}%
+\contentsline {section}{\tocsection {}{10}{Problem Index by Homework}}{8}{}%
+\contentsline {subsection}{\tocsubsection {}{}{Homework 6}}{8}{}%
+\contentsline {subsection}{\tocsubsection {}{}{Homework 7}}{8}{}%
+\contentsline {subsection}{\tocsubsection {}{}{Homework 8}}{9}{}%
+\contentsline {subsection}{\tocsubsection {}{}{Homework 9}}{9}{}%
+\contentsline {subsection}{\tocsubsection {}{}{Homework 10}}{9}{}%

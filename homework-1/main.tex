@@ -1,0 +1,201 @@
+\documentclass[12pt, oneside]{amsart}
+\usepackage{amsmath,amsfonts, amssymb}
+\usepackage{fullpage}
+\usepackage{enumitem}
+\newcommand{\Z}{\mathbb Z}
+
+\usepackage[most]{tcolorbox} % powerful colored boxes
+\usepackage{xcolor}          % colors
+
+% Solution box defined using generative AI:
+\newtcolorbox{solution}{
+  colframe=green!50!black,   % medium green border
+  coltext=black,             % body text in black for readability
+  boxrule=0.4pt,             % thin, professional border
+  enhanced,                  % enable advanced drawing features
+  left=6pt, right=6pt, top=6pt, bottom=6pt % padding
+}
+
+
+\title{Math 223 Homework 1}
+\author{due September 16, 2025 at 11:59pm}
+\pagenumbering{gobble}
+\begin{document}
+\maketitle
+Each problem is worth 10 points.\\
+
+\begin{enumerate}[label=\underline{Problem \arabic*}:]
+\item  Let $F$ be a field. Derive the following statements directly from the axioms of a field. You can also refer to the facts that we proved in class (i.e.\ $a\cdot 0 = 0$ for all $a\in F$, and the cancellation law).
+\begin{enumerate}
+    \item For every $a\in F$, its additive inverse is unique. (Hint: assume $b,c\in F$ both satisfy the property of being the additive inverse of $a$, and deduce that $b=c$.)
+    
+\begin{solution}
+Assume that there exist a $b$ and $b'$ that are both additive inverses of $a$:
+\[
+\exists b,b' \in F : a + b = 0 \;\land \:a + b' = 0
+\]
+As the right side of both equations are equal to 0, we can set the two equations equal:
+\[
+a + b = a + b'
+\]
+We have already proved the cancellation rule for equations in a field:
+\[
+a+b=a+c \implies b=c
+\]
+Therefore we can cancel the $a$'s in the equation and we are left with the equation:
+\[
+b=b'
+\]
+This implies that any two additive inverses of $a$ are in fact the same element. Thus each additive inverse of $a$ is unique.
+
+\end{solution}
+
+
+    \item For every $a,b\in F$, we have $(-a)\cdot b = -(a\cdot b)$\\
+
+\begin{solution}
+Consider the equation:
+\[
+(-a)\cdot b + a\cdot b
+\]
+
+
+We can use the distributive property over addition to simplify the expression:
+\[
+b\cdot (-a + a)
+\]
+Because $-a$ is the additive inverse of $a$, their sum is 0. 
+And, because the product of zero and any element of the field is 0, the entire expression evaluates to 0:
+\[
+b\cdot(-a + a)
+= b\cdot 0
+= 0
+\]
+
+Tracing this result back to our original expression:
+\[
+(-a)\cdot b + (b \cdot a) = 0
+\]
+Because this sum evaluates to $0$ it is clear that $(-a)\cdot b$ is the additive inverse of $a \cdot b$.
+
+Because we established in the previous proof that additive inverses are unique and we know that $-(a\cdot b)$ is also the additive inverse of $a\cdot b$ by the definition of additive inverses, $-(a\cdot b)$ must be equal to $(-a)\cdot b$.
+
+
+\end{solution}
+
+
+\end{enumerate}
+
+\noindent Below are more facts that are true in every field. You can prove them for practice, but do not submit those proofs. They are proven in the appendix C of Freidberg-Insel-Spence.
+Please make sure that you understand their statements. From now on, you can use those facts without proving them.
+\begin{enumerate}[label=(\alph*), start=3]
+    \item $0$ is unique.
+    \item $1$ is unique.
+    \item For every $a\in F$ such that $a\neq 0$, its multiplicative inverse is unique.
+    \item $0$ has no multiplicative inverse.
+    \item For every $a\in F$ we have $-(-a) = a$ (i.e.\ the additive inverse of the additive inverse of $a$ is $a$).
+    \item For every non-zero $a\in F$ we have $(a^{-1})^{-1} = a$.
+    \item For every $a, b,c \in F$ where $a\neq 0$ $$a\cdot b = a\cdot c\implies b=c.$$
+    \item For every $a,b\in F$, if $a\cdot b = 0$, then $a=0$ or $b=0$.\\
+\end{enumerate}
+
+\item (Integers mod $n$) 
+Let $a,b,c,n\in \mathbb Z$. We say $a$ and $b$ are \emph{congurent mod n} and write $ a \equiv b \!\!\mod n$, if $a = c\cdot n + b$.
+
+For every natural number $n\geq 1$ we define $\mathbb Z_n$ as the set $\{0,1,2,\dots, n-1\}$ where the addition and multiplication are taken mod $n$.
+For example, in $\mathbb Z_5$,
+\begin{align*}
+2 + 4 &\equiv 1 \!\!\mod 5  &(\text{since }2+4 = 6 \equiv 1 \mod 5)\\
+4\cdot 3 &\equiv 2\!\!\mod 5 &(\text{since }4\cdot 3 = 12  \equiv 2 \mod 5)\\
+(-2) &\equiv 3 \!\! \mod 5& (\text{since }2 + 3 = 5 \equiv 0 \mod 5)\\
+\end{align*}
+
+\begin{enumerate}
+\item For each elements in $\mathbb Z_5$, list its additive inverse.
+
+\begin{solution}
+Additive inverses separated by ":":
+ 
+1: 4
+
+2: 3
+
+3: 2
+
+4: 1
+
+0: 0
+\end{solution}
+
+\item For each \underline{non-zero} elements in $\mathbb Z_5$, list its multiplicative inverse.
+
+\begin{solution}
+Multiplicative inverses separated by ":":
+
+1: 1
+
+2: 3
+
+3: 2
+
+4: 4
+
+\end{solution}
+
+Convince yourself that $\mathbb Z_5$ is a field (you do not need to write it down).
+
+\item Prove that $\mathbb Z_4$ is not a field.\\
+\end{enumerate}
+\begin{solution}
+    Assume for contradiction that $\mathbb Z_4$ is a field. Thus, every non-zero element has a multiplicative inverse satisfying the equation:
+    \[
+        a \cdot a^{-1} = 1
+    \]
+    So in this field, 2 must have a multiplicative inverse $a$ (and 2 is in the field because it is between 0 and $4-1=3$):
+    \[
+        2\cdot a \equiv 1 \mod{4}
+    \]
+    Multiply both sides by 2:
+    \[
+        2\cdot a \equiv 1 \bmod{4} \implies 
+        4a \equiv 2 \bmod{4}
+    \]
+
+
+    For an integer $a$, in $\mathbb Z_4$ 
+    \[
+        4a \equiv 0 \mod{4}
+    \]
+    Because $4a$ is divisible by 4 for every integer $a$.
+
+    
+    However we already had that 
+    \[
+        4a \equiv 2 \mod{4}
+    \]
+    Thus we have contradiction. Therefore $\mathbb Z_4$ is not a field. 
+    
+\end{solution}
+
+\noindent \emph{Bonus} (not graded, do not submit): Prove that $\mathbb Z_n$ is a field if and only if $n$ is a \emph{prime} number (i.e.\ $n$ is a natural number greater than $1$ and its only divisors are $1$ and $n$).\\
+
+\item Computational practice with vectors in $\mathbb R^n$: \\
+\begin{enumerate}
+    \item Find a vector $\vec{v} = (v_1, v_2, v_3, v_4)$ in $\mathbb R^4$ such that $$(2,1,7,-11) + 2\vec{v} = (4,3,1,-3)$$
+
+    \begin{solution}
+        $$
+        \vec{v}=(1,1,-3,4)
+        $$
+    \end{solution}
+    \item Does there exist $a\in \mathbb R$ such that this vector equality holds in $\mathbb R^3$? Explain your answer.
+    $$
+    a(2,-1,0) = (4,2,5)
+    $$
+    \begin{solution}
+        There is no $a \in \mathbb R$ such that the equality holds in $\mathbb R^3$. One reason is that the third element in vector $(2,-1,0)$ is $0$ and no scalar multiple will make it equal to its corresponding element in $(4,2,5)$, 5.
+    \end{solution}
+\end{enumerate}
+\end{enumerate}
+
+\end{document}

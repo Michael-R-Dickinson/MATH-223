@@ -1,0 +1,405 @@
+\documentclass[12pt, oneside]{amsart}
+\usepackage{amsmath,amsfonts, amssymb, xcolor}
+\usepackage{fullpage}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\R}{\mathbb R}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\spn}{span}
+
+\usepackage[most]{tcolorbox} % powerful colored boxes
+\usepackage{xcolor}          % colors
+\newtcolorbox{solution}{
+  colframe=green!50!black,   % medium green border
+  coltext=black,             % body text in black for readability
+  boxrule=0.4pt,             % thin, professional border
+  enhanced,                  % enable advanced drawing features
+  left=6pt, right=6pt, top=6pt, bottom=6pt % padding
+}
+
+\theoremstyle{definition}
+\newtheorem{prob}{Problem}
+
+\title{Math 223 Fall 2025 - Homework 5}
+\author{due October 21 at 11:59pm}
+\pagenumbering{gobble}
+\begin{document}
+\maketitle
+
+Each problem is worth 10 points.
+
+\begin{prob} Let $V,W$ be $F$-vectors spaces and suppose that $W$ is finite dimensional. Let $S:V\to W$ and $T:V\to W$ be two linear map.
+Prove that $\ker T = \ker S$ if and only if there exists an isomorphism $I:W\to W$ such that $S = I\circ T$.
+\end{prob}
+
+\begin{solution}
+
+$\implies$
+
+I'll definitely be going to office hours for this one. Here is what I started with:
+
+Write a basis $A$ that is a basis for both kernels $\ker T$ and $\ker S$: $A=\{b_1,b_2,...b_n\}$
+
+We now extend it to a basis of $V$ such that $B =\{b_1,b_2,...b_n,v_1,v_2...,v_n\}$.
+
+With this basis we know that the set $\{T(B_1),T(B_2),...T(B_i)\}$ is a basis for $\operatorname{im} T$.
+
+\vspace{1em}
+$\impliedby$
+
+Consider some \(v \in \ker S\). Thus $S(v)=0$ and we can apply the equation $S=I\circ T$:
+\[
+0 = S(v) = (I \circ T)(v) = I(T(v)).
+\]
+Because $I$ is injective so the only vector $u$ such that $I(u)=0$ is $0$.
+
+So thus in $I(T(v))=0$, we know \(T(v) = 0\), hence \(v \in \ker T\).
+So \(\ker S \subseteq \ker T\).
+
+Similarly with \(v \in \ker T\). Then \(T(v)=0\):
+\[
+S(v) = (I \circ T)(v) = I(0) = 0,
+\]
+Therefore \(v \in \ker S\) for all $v$ and \(\ker T \subseteq \ker S\).
+
+As we have shown that \(\ker T \subseteq \ker S\) and \(\ker S \subseteq \ker T\), we know \(\ker S = \ker T\).
+\end{solution}
+
+\begin{prob} Suppose that $T:V\to W$ and $S:W\to U$ be linear maps. 
+\begin{enumerate}
+    \item  Suppose $T, S$ are isomorphisms. Show that the composition $S\circ T: V \to U$ is an isomorphism, and that $(S\circ T)^{-1} = T^{-1}\circ S^{-1}$
+
+\begin{solution}
+First, we prove injectivity. Assume the composition sends some \(v\) to \(0\).
+
+\[
+(S\circ T)(v)=0_U.
+\]
+
+Because \(\ker S=\{0_W\}\), this forces the input to \(S\) to be \(0_W\).
+
+\[
+T(v)=0_W.
+\]
+
+And because \(\ker T=\{0_V\}\), that in turn forces \(v\) to be \(0_V\).
+
+\[
+v=0_V.
+\]
+
+Hence \(\ker(S\circ T)=\{0_V\}\), so \(S\circ T\) is injective.
+
+Next, we prove surjectivity. Take an arbitrary \(u\in U\). Since \(S\) is onto, pick \(w\in W\) with
+\[
+S(w)=u.
+\]
+
+Since \(T\) is onto, pick \(v\in V\) with
+\[
+T(v)=w.
+\]
+
+Chasing through the composition shows \(u\) is hit:
+\[
+(S\circ T)(v)=S(T(v))=S(w)=u.
+\]
+
+Therefore \(S\circ T\) is bijective, hence an isomorphism.
+
+Finally, we identify the inverse. To undo “do \(T\), then \(S\),” we must first undo \(S\) and then undo \(T\). Define
+\[
+R:=T^{-1}\circ S^{-1}:U\to V.
+\]
+
+Composing \(R\) after \(S\circ T\) returns every \(v\) to itself:
+\[
+R\circ(S\circ T)=T^{-1}\circ(S^{-1}S)\circ T=T^{-1}\circ I_W\circ T=I_V.
+\]
+
+Composing \(S\circ T\) after \(R\) returns every \(u\) to itself:
+\[
+(S\circ T)\circ R=S\circ(TT^{-1})\circ S^{-1}=S\circ I_W\circ S^{-1}=I_U.
+\]
+
+Thus \(R\) is the inverse of \(S\circ T\), i.e.
+\[
+(S\circ T)^{-1}=T^{-1}\circ S^{-1}. \qedhere
+\]
+
+\end{solution}
+    
+    \item Let $U=V$ i.e.\ $T:V\to W$ and $S:W\to V$, and assume that $\dim V = \dim W$. Show that if $S\circ T = \id_V$, then $S,T$ are isomorphisms and $S=T^{-1}$. (This in particular means that $S\circ T = \id_V \iff T\circ S = \id_W$.) 
+
+\begin{solution}
+First we will show $T$ is an isomorphism by showing that it is both injective and surjective. 
+
+We first show \(T\) is injective. 
+
+Consider some $v$ such that \(T(v)=0_W\).
+\[
+(S\circ T)(v)=S(0_W)=0_V.
+\]
+But \(S\circ T=\operatorname{id}_V\), so \(v=0_V\). Hence \(\ker T=\{0\}\) and \(T\) is injective.
+\vspace{1em}
+
+Now we show $T$ is surjective.
+
+Because \(\dim V=\dim W\) and \(T\) is injective over these spaces with equal dimensions, \(T\) is surjective.  As $T$ is both injective and surjective, it fits the definitino of an isomorphism. 
+
+\vspace{1em}
+
+Next we show the same for \(S\), proving that it too is an isomorphism. 
+
+Consider some \(w\in W\) such that \(S(w)=0_V\). 
+We know that $T$ is surjective so we can express this $w$ as an output of $T$:
+\[
+w=T(v).
+\]
+\[
+\text{for some} \; v\in V\]
+Now we can show that 
+\[
+0_V=S(w)=S(T(v))=(S\circ T)(v)=\mathrm{id}_V(v)=v,
+\]
+Thus \(v=0_V\) and \(w=T(0_V)=0_W\). Thus we know that for any $v$ such that $S(v)=0$, $v=0$.
+
+Therefore we know that \(\ker S=\{0\}\) and \(S\) is injective.
+
+\vspace{1em}
+
+Finally we show that $S$ is surjective:
+
+Because $(S\circ T)(v)=\id_V$, we know that for any \(v\in V\),
+\[
+v=(S\circ T)(v)\in \operatorname{im} S
+\]
+Thus $V\subseteq  \operatorname{im} S$. We also know that $\operatorname{im} S \subseteq V$ by definition of the map. Thus $V=  \operatorname{im} S$ and thus $S$ is surjective.
+
+As have already shown that $S$ is injective and surjective, we know that $S$ is an isomorphism.
+
+\vspace{1em}
+
+We now can show that $S=T^{-1}$.
+We have already proved that \(T\) is bijective, so \(T^{-1}:W\to V\) must exist.
+
+We know $S\circ T$ is an identity function in $V$:
+\[
+S\circ T=\operatorname{id}_V.
+\]
+
+We can compose both sides by $T^{-1}$ and rearrange using the associative property of composition:
+
+\[
+(S\circ T)\circ T^{-1}=\operatorname{id}_V\circ T^{-1}.
+\]
+\[
+S\circ (T\circ T^{-1})=\operatorname{id}_V\circ T^{-1}.
+\]
+
+By definition of inverses \(T\circ T^{-1}=\operatorname{id}_W\) and the fact that an identity composed over a function is just the function itself:
+\[
+S\circ \operatorname{id}_W = T^{-1}.
+\]
+\[
+S=T^{-1}.
+\]
+
+As required.
+
+
+
+% so indeed \(S\circ T=\operatorname{id}_V \iff T\circ S=\operatorname{id}_W.\ 
+\end{solution}
+    \item Part 2 implies that for invertible $n\times n$ matrices we have  
+    $$AB = \id_{n\times n} \iff BA = \id_{n\times n}.$$ 
+    However, in $AB\neq BA$. Prove that by finding a pair of invertible square matrices $A,B$ where $AB\neq BA$.
+
+\begin{solution}
+
+\(A=\begin{pmatrix}1&1\\0&1\end{pmatrix}\), \(B=\begin{pmatrix}1&0\\1&1\end{pmatrix}\).
+
+
+Prove invertibility for $A$ with inverse: \(A^{-1}=\begin{pmatrix}1&-1\\0&1\end{pmatrix}\)
+
+\[
+A A^{-1}=\begin{pmatrix}1&1\\0&1\end{pmatrix}\begin{pmatrix}1&-1\\0&1\end{pmatrix}=\begin{pmatrix}1&0\\0&1\end{pmatrix}=I
+\]
+
+\vspace{1em}
+
+Prove invertibility for $B$ with inverse: $B^{-1}=\begin{pmatrix}1&0\\-1&1\end{pmatrix}$
+\[
+B B^{-1}=\begin{pmatrix}1&0\\1&1\end{pmatrix}\begin{pmatrix}1&0\\-1&1\end{pmatrix}=\begin{pmatrix}1&0\\0&1\end{pmatrix}=I
+\]
+
+
+As $AA^{-1}=BB^{-1}=I$, \(A\) and \(B\) are invertible.
+
+We now show that $AB \neq BA$:
+
+\[
+AB=\begin{pmatrix}1&1\\0&1\end{pmatrix}\begin{pmatrix}1&0\\1&1\end{pmatrix}
+=\begin{pmatrix}2&1\\1&1\end{pmatrix}
+\]
+
+\[
+BA=\begin{pmatrix}1&0\\1&1\end{pmatrix}\begin{pmatrix}1&1\\0&1\end{pmatrix}
+=\begin{pmatrix}1&1\\1&2\end{pmatrix}
+\]
+
+As these two matrices are not equal: \(AB\neq BA\) as required.
+
+\end{solution}
+\end{enumerate}
+   
+\end{prob}
+
+\begin{prob}
+Determine if the following linear map is an isomorphism. Justify.
+\begin{enumerate}
+    \item $T:\mathbb R^3\to \mathbb R^3$ given by 
+    $T(x,y,z) = (x+2y+3z, 4x+5y+6z, 7x+8y+9z)$.
+
+\begin{solution}
+\[
+A=\begin{pmatrix}
+1&2&3\\
+4&5&6\\
+7&8&9
+\end{pmatrix}
+\quad\text{is the matrix of }T.
+\]
+
+$T$ is not an isomorphism because columns of \(A\) are linearly dependent. There is a linear combination of its columns with non-zero coefficients that produces the zero vector:
+\[
+\begin{pmatrix}1\\4\\7\end{pmatrix}
+-2\begin{pmatrix}2\\5\\8\end{pmatrix}
++\begin{pmatrix}3\\6\\9\end{pmatrix}
+=\begin{pmatrix}0\\0\\0\end{pmatrix}
+\]
+
+Thus \(\ker T\neq\{0\}\), so \(T\) is not injective and hence not an isomorphism.
+\qedhere
+
+\end{solution}
+    \item $T:M_{2\times 2}(\mathbb R)\to M_{2\times 2}(\mathbb R)$ given by 
+    $T\left(\left[\begin{array}{cc} a & b \\ c & d \end{array}\right]\right) 
+    = \left[\begin{array}{cc} a+b & b \\ c & c+d \end{array}\right]$.
+
+\begin{solution}
+To test injectivity, we write
+\(
+T\!\begin{pmatrix}a&b\\ c&d\end{pmatrix}
+=\begin{pmatrix}0&0\\ 0&0\end{pmatrix}.
+\)
+
+From the entries we get:
+\[
+b=0,\ c=0,\ a+b=0\Rightarrow a=0,\ c+d=0\Rightarrow d=0
+\]
+Hence the only preimage of \(0\) is the zero matrix.
+So \(\ker T=\{0\}\) and \(T\) is injective.
+
+Since $T$ maps from $M_{2\times 2}(\mathbb R)$ to $M_{2\times 2}(\mathbb R)$ and the dimension of both (which are the same), $\dim M_{2\times 2}(\mathbb R) =4$, and $T$ is injective, it is also surjective. 
+
+So $T$ is therefore an isomorphism.
+
+
+\end{solution}
+    \item $T:M_{2\times 2}(\mathbb R) \to \mathcal P_2(\mathbb R)$ given by 
+    $T\left(\left[\begin{array}{cc} a & b \\ c & d \end{array}\right]\right) 
+    = a + 2bx + (c+d)x^2$.
+
+\begin{solution}
+To test injectivity, set the image equal to the zero polynomial:
+\[
+a+2bx+(c+d)x^2=0.
+\]
+Comparing coefficients we get:
+\[
+a=0,\qquad b=0,\qquad c+d=0.
+\]
+Now we can write:
+\[
+\ker T=\left\{\begin{pmatrix}0&0\\ t&-t\end{pmatrix}\!:\ t\in\mathbb{R}\right\},
+\]
+This contains nonzero matrices, for example with $t=1$, so \(T\) is not injective.
+
+Hence \(T\) is not an isomorphism.
+\end{solution}
+
+\end{enumerate}
+\end{prob}
+
+
+\begin{prob} Let $T:\mathbb R^3 \to \mathbb R^3$ be given (in the standard basis) by a matrix 
+
+$$M = \left[\begin{array}{ccc}1 & 1 & -1\\2 & 0 & 0 \\ 1 & 1 & 0\end{array}\right].$$
+
+Find the matrix representation $[T]_{\mathcal B}^{\mathcal B}$ where 
+$\mathcal B = 
+(\left[\begin{array}{c}1 \\1 \\ 1\end{array}\right], 
+\left[\begin{array}{c}1 \\0 \\ 1\end{array}\right], 
+\left[\begin{array}{c}1 \\1 \\ 2\end{array}\right])$. 
+Also find the matrix $Q$ such that $[T]_{\mathcal B}^{\mathcal B} = Q^{-1}MQ$.
+
+\end{prob}
+
+\begin{solution}
+We write the change-of-basis matrix that converts $\mathcal B$-coordinates to standard coordinates by placing the basis vectors as the columnsin a matrix:
+\[
+Q=\begin{bmatrix}
+1&1&1\\
+1&0&1\\
+1&1&2
+\end{bmatrix}.
+\]
+We write its inverse:
+\[
+Q^{-1}=\begin{bmatrix}
+1&1&-1\\
+1&-1&0\\
+-1&0&1
+\end{bmatrix}.
+\]
+
+The $j$-th column of $[T]_{\mathcal B}^{\mathcal B}$ is $[\,T(v_j)\,]_{\mathcal B}$. 
+
+We can compute $T(v_j)=M v_j$ in standard coordinates and convert to $\mathcal B$-coordinates with the equation $[\,T(v_j)\,]_{\mathcal B}=Q^{-1}T(v_j)$.
+
+\begin{align*}
+v_1=\begin{bmatrix}1\\1\\1\end{bmatrix}:\quad
+&T(v_1)=M v_1=\begin{bmatrix}1\\2\\2\end{bmatrix},\qquad
+[\,T(v_1)\,]_{\mathcal B}=Q^{-1}T(v_1)=\begin{bmatrix}1\\-1\\1\end{bmatrix}\\[4pt]
+v_2=\begin{bmatrix}1\\0\\1\end{bmatrix}:\quad
+&T(v_2)=M v_2=\begin{bmatrix}0\\2\\1\end{bmatrix},\qquad
+[\,T(v_2)\,]_{\mathcal B}=Q^{-1}T(v_2)=\begin{bmatrix}1\\-2\\1\end{bmatrix}\\[4pt]
+v_3=\begin{bmatrix}1\\1\\2\end{bmatrix}:\quad
+&T(v_3)=M v_3=\begin{bmatrix}0\\2\\2\end{bmatrix},\qquad
+[\,T(v_3)\,]_{\mathcal B}=Q^{-1}T(v_3)=\begin{bmatrix}0\\-2\\2\end{bmatrix}
+\end{align*}
+
+Finally we can write $[T]_{\mathcal B}^{\mathcal B}$ using these results:
+\[
+[T]_{\mathcal B}^{\mathcal B}
+=\big[\,[T(v_1)]_{\mathcal B}\ \ [T(v_2)]_{\mathcal B}\ \ [T(v_3)]_{\mathcal B}\,\big]
+=
+\begin{bmatrix}
+1&1&0\\
+-1&-2&-2\\
+1&1&2
+\end{bmatrix}.
+\]
+
+Finally, these matrices satisfy the relation:
+\[
+[T]_{\mathcal B}^{\mathcal B}=Q^{-1}MQ.
+\]
+
+As required.
+\end{solution}
+
+\noindent \textbf{Generative AI Acknowledgment}
+
+\noindent Generative AI was used in this assignment for help with latex syntax. This includes defining the "solution box" that wraps answers. This also includes transcribing verbatum from handwritten on-paper solutions to first-draft latex code.
+\end{document}

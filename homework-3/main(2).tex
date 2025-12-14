@@ -1,0 +1,438 @@
+\documentclass[12pt, oneside]{amsart}
+\usepackage{amsmath,amsfonts, amssymb, xcolor}
+\usepackage{fullpage}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\R}{\mathbb R}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\spn}{span}
+
+\usepackage[most]{tcolorbox} % powerful colored boxes
+\usepackage{xcolor}          % colors
+\newtcolorbox{solution}{
+  colframe=green!50!black,   % medium green border
+  coltext=black,             % body text in black for readability
+  boxrule=0.4pt,             % thin, professional border
+  enhanced,                  % enable advanced drawing features
+  left=6pt, right=6pt, top=6pt, bottom=6pt % padding
+}
+
+\theoremstyle{definition}
+\newtheorem{prob}{Problem}
+
+\title{Math 223 Fall 2025 - Homework 3}
+\author{due September 30 at 11:59pm}
+\pagenumbering{gobble}
+
+
+
+\begin{document}
+\maketitle
+
+Each problem is worth 10 points. %In all the problem that state that $F$ is a field, you can assume that $F=\mathbb R$. %{\color{teal}Comments in teal are additional information or review of some concepts.}
+
+\begin{prob}
+    Let $V$ be a vector space over $F$. Let $S\subseteq V$ be a nonempty set such that $S\neq\{\vec{0}\}$. Prove that the following are equivalent. 
+    \begin{enumerate}
+        \item $S$ is linearly dependent.
+        \item There exists $v\in S$ such that $v\in \spn(S-\{v\})$.
+        \item There exists $v\in S$ such that $\spn(S-\{v\}) = \spn(S)$.
+    \end{enumerate}
+{\color{teal} To prove that the three conditions are equivalent it suffices to prove three implications: 
+\begin{itemize}
+    \item $(1)\implies (2)$, 
+    \item $(2)\implies (3)$,
+    \item $(3)\implies (1)$. 
+\end{itemize}
+Indeed then any condition implies any other condition.}
+\end{prob}
+
+\begin{solution}
+\textbf{Prove: }$\mathbf{1\implies 2}$
+
+As $S$ is linearly dependent, there exist scalars $a_i \in F$ and vectors $v_i \in S$ satisfying the following equation:
+\[
+0 = a_1 v_1 + a_2 v_2 + \cdots + a_n v_n,
+\]
+Where for atleast one scalar $a_i$: \[
+a_i\neq0
+\]
+
+Pick any term $a_kv_k$ where $a_k \neq 0$. We subtract it from both sides, leaving the right hand side as a linear combination of set $S - {v_k}$:
+\[
+-a_k v_k = a_1 v_1 + \cdots + a_{k-1} v_{k-1} + a_{k+1} v_{k+1} + \cdots + a_n v_n.
+\]
+Then dividing both sides by $-a_k$:
+\[
+v_k = -\frac{1}{a_k}\bigl( a_1 v_1 + \cdots + a_{k-1} v_{k-1} + a_{k+1} v_{k+1} + \cdots + a_n v_n \bigr).
+\]
+
+As a linear combination of vectors in $S -\{v_k\}$ is equal to $v_k$, we know:
+\[
+v_k \in \spn(S - \{v_k\}).
+\]
+
+\end{solution}
+
+
+\begin{solution}
+\textbf{Prove: }$\mathbf{2\implies 3}$
+
+Because $v\in \spn(S- \{v\})$, we can write it as a linear combination of vectors in $S- \{v\}$:
+\[
+v = a_1 v_1 + a_2 v_2 + \cdots + a_i v_i
+\]
+\[
+\text{With: }\; v_i\in S- \{v\},\; a_i\in F
+\]
+
+
+We can write elements of $\spn(S)$ as linear combinations as well. In this expression vector $v$ and its coefficient have been moved to the front for clarity:
+\[
+b v + c_1 u_1 + c_2 u_2 + \cdots + c_k u_k
+\]
+with $u_k \in S - \{v\}$ and scalars $b, c_k \in F$.
+
+We already showed that $v$ can be written as a linear combination of $S-\{v\}$. Substituting this linear combination into our equation, we have: 
+\[
+b v + c_1 u_1 + c_2 u_2 + \cdots + c_k u_k
+\]
+\[
+= b (a_1 v_1 + a_2 v_2 + \cdots + a_i v_i) + c_1 u_1 + c_2 u_2 + \cdots + c_k u_k,
+\]
+As all $u_k, v_i\in S-\{v\}$, and $b, c_k\in F$ , we have now written $\spn(S)$ with only linear combinations of $S-\{v\}$. Thus,  $\spn(S)= \spn(S-\{v\})$. 
+
+\end{solution}
+
+
+\begin{solution}
+\textbf{Prove: }$\mathbf{3\implies 1}$
+
+We know $v\in \spn(S- \{v\})$ because $v\in \spn(S)$ and $\spn(S)=\spn(S-\{v\})$
+
+Thus $v$ can be written as a linear combination of $S - \{v\}$:  
+\[
+v = a_1 u_1 + a_2 u_2 + \cdots + a_i u_i
+\]  
+\[
+\text{for } u_i \in S - \{v\} \quad a_i\in F \; \text{with atleast one $a_i\neq0$}
+\]
+
+As this is a valid linear combination of $S-\{v\}$, the following combination including $v$ is also valid linear combination of $S$:
+\[
+(-1)\cdot v + a_1 u_1 + a_2 u_2 + \cdots + a_i u_i= (-1)\cdot v + v = 0
+\]
+
+As this combination of $S$ is equal to $0$ for atleast one nonzero coefficient $a_i$, this shows that $S$ is linearly dependent.
+\end{solution}
+
+
+\begin{prob}
+    Let $v, w\in V$. We say $v$ and $w$ are \emph{colinear} if there exists $a\in F$ such that $w = a\cdot v$.
+    \begin{enumerate}
+        \item Show that $\{v\}$ is linearly independent if and only if $v\neq 0$.
+
+        
+\begin{solution}
+\textbf{Forwards: We must prove:}
+\[
+\{v\} \text{ is independent } \implies v \neq 0.
+\]
+
+If $\{v\}$ is independent, its linear combinations must equal $0$ only for coefficients $a_1=0$.
+
+Thus, if $a\neq0$, then the linear combination must not equal $0$:
+\[
+0\neq a_1v
+\]
+\[
+\text{for } a_1 \in{F}, \; a_1\neq 0
+\]
+
+As $a_1 \neq 0$ we can divide it out from both sides, leaving us with: $0 \neq v$ as required.
+
+\textbf{Backwards: We must prove:}
+\[
+v \neq 0 \implies \{v\} \text{ is independent}.
+\]
+
+We can test for independence by finding the values of $a$ where linear combinations of $\{v\}$ are equal to 0:
+\[
+0 = a_1 v
+\]
+\[
+\text{for }  a_1\in F
+\]
+For the right hand side of the equation to be equal to zero, given $v \neq 0$, $a_1$ must be $0$. As $a_1 = 0$ is the only solution, $\{v\}$ is linearly independent.
+
+\end{solution}
+        \item Show that $\{v,w\}$ is linearly dependent if and only if $v$ and $w$ are colinear.
+    \end{enumerate}
+\end{prob}
+
+\begin{solution}
+\textbf{Forwards: We must prove:} 
+\[
+\{v, w\} \text{ are dependent } \implies v, w \text{ are colinear}.
+\]
+
+Because $\{v, w\}$ is dependent, there is atleast one non-zero scalar, $a_1$ or $a_2$ such that:
+\[
+0 = a_1 v + a_2 w
+\]
+\[a_1, a_2 \in F\]
+
+\textbf{Case 1: }If $a_1 \neq 0$, then we can rearrange our equation algebraically:
+\[
+0 = a_1 v + a_2 w \quad \implies \quad v = -\frac{a_2}{a_1} \, w
+\]
+As $v$ is now written as a scalar multiple of $w$, vectors $v,w$ are colinear as required.
+
+\textbf{Case 2: }Similarly, if $a_1 = 0$, then $a_2$ must be nonzero:
+\[
+0 = a_1 v + a_2 w \quad \implies \quad w = -\frac{a_1}{a_2} \, v
+\]
+Thus $w$ is written as a scalar multiple of $v$, and $v,w$ are again colinear as required.
+
+\textbf{Backwards: We must prove:}
+\[
+v, w \text{ are colinear } \implies \{v, w\} \text{ are dependent}.
+\]
+
+As $v,w$ are colinear, we have $w = c v$ for some $c \in F$. We can then test for independence by setting linear combinations of $v,w$ equal to $0$.
+\[
+0=a_1v+a_2w
+\]
+\[
+\text{for } a_1,a_2\in F
+\]
+
+We can then substitute our expression for $w$  into the equation and factor out v:
+\[
+0=a_1v+a_2(cv) \quad\implies\quad 0 = v(a_1+a_2c)
+\]
+As $a_1,a_2,c$, are arbitrary scalars, and $0 =a_1 + a_2c$  is a solution to the equation, this means that there are non-zero values for $a_1, a_2$ that satisfy the equation. For example,  if  $a_1 =c$ and $a_2=1$ are non-zero values of a satisfying the equation. Thus, $\{v,w\}$ is linearly dependent.
+
+\end{solution}
+
+\begin{prob}
+    Determine whether the set $S$ is linearly dependent or linearly independent in the vector space $V$ over $\mathbb R$. Show all your work.
+    \begin{enumerate}
+        \item $S = \left\{
+        \left(\begin{array}{c}
+        1\\-1\\ 2
+        \end{array}\right), 
+        \left(\begin{array}{c}
+        1\\-2\\ 1
+        \end{array}\right),
+        \left(\begin{array}{c}
+        1\\1\\ 4
+        \end{array}\right)
+        \right\}$ in $V = \mathbb R^3$
+
+        
+\begin{solution}
+
+We check $S$ for linear independence by writing a linear combination with its vectors and setting it to $0$. Then we determine if there are any non-zero values of $a$ that satisfy the equations:
+\[
+a_1v_1+a_2v_2+a_3v_3= 0
+\quad\implies\quad
+\begin{cases}
+a_1+a_2+a_3=0,\\
+-\,a_1-2a_2+a_3=0,\\
+2a_1+a_2+4a_3=0.
+\end{cases}
+\]
+We solve the system of equations starting with subtracting the first equation from the second and third:
+\[
+\begin{aligned}
+- a_1-2a_2+a_3-(a_1+a_2+a_3)&=0 \;\implies\; 2a_1+3a_2=0,\\
+2a_1+a_2+4a_3-(a_1+a_2+a_3)&=0 \;\implies\; a_1+3a_3=0.
+\end{aligned}
+\]
+Thus \(a_1=-3a_3\) and \(a_2=2a_3\).  
+
+Taking \(a_3=1\), we can solve for $a2,a1$:
+\[
+a_1=-3,\quad
+a_2=2,\quad
+a_3=1
+\]
+
+Thus, as there are nonzero scalars $a_i$ in a linear combination of $S$ that make that combination equal to $0$, $S$ is linearly dependent.
+
+\end{solution}
+
+
+    
+        \item $S = \left\{
+        \left(\begin{array}{cc}
+        1 & 0\\
+        -2 & 1
+        \end{array}\right), 
+        \left(\begin{array}{cc}
+        0 & -1\\
+        1 & 1
+        \end{array}\right), 
+        \left(\begin{array}{cc}
+        -1 & 2\\
+        1 & 0\\
+        \end{array}\right), 
+        \left(\begin{array}{cc}
+        2 & 1\\
+        -2 & 2
+        \end{array}\right)
+        \right\}$ in $V=M_{2\times 2}(\mathbb R)$.
+    \end{enumerate}
+\end{prob}
+
+\begin{solution}
+We check for independence by finding linear combinations of $S$ that are equal to $0$, and finding if their coefficients $a$ must be equal to zero for this solution:
+\[
+a_1\!\begin{pmatrix}1&0\\-2&1\end{pmatrix}
++a_2\!\begin{pmatrix}0&-1\\1&1\end{pmatrix}
++a_3\!\begin{pmatrix}-1&2\\1&0\end{pmatrix}
++a_4\!\begin{pmatrix}2&1\\-2&2\end{pmatrix}
+=\begin{pmatrix}0&0\\0&0\end{pmatrix}.
+\]
+
+We can get the following system of equations from these vectors:
+\[
+\begin{aligned}
+\text{Equation1 }: &\quad a_1 - a_3 + 2a_4 = 0 \\
+\text{Equation2 }: &\quad -a_2 + 2a_3 + a_4 = 0 \\
+\text{Equation3 }: &\quad -2a_1 + a_2 + a_3 - 2a_4 = 0 \\
+\text{Equation4 }: &\quad a_1 + a_2 + 2a_4 = 0
+\end{aligned}
+\]
+
+Now solving these equations:
+
+Starting with E4:  
+\[
+a_2 = -a_1 - 2a_4
+\]
+
+Plug into E3:  
+\[
+-2a_1 + (-a_1 - 2a_4) + a_3 - 2a_4 = 0 \implies a_3 = 3a_1 + 4a_4
+\]
+
+Plug that result into E1:  
+\[
+a_1 - (3a_1 + 4a_4) + 2a_4 = 0 \implies a_1 = -a_4
+\]
+
+We can plug this into the equation we derived for $a_2$: $a_2 = -a_1 - 2a_4$:
+\[
+a_2=-(-a_4) - 2a_4 \implies a_2=-a_4
+\]
+Finally, we find $a3$ by plugging in our result for $a_1$ into the equation: $a_3 = 3a_1 + 4a_4$:
+\[
+a_3 = 3(-a_4) + 4a_4 \implies a_3 = a_4.
+\]
+
+Putting all of these solutions together, this gives the relation:
+\[
+a_1=a_2=-a_3=-a_4
+\]
+
+However when we plug in this result into the last equation ($-a_2 + 2a_3 + a_4 = 0$, it does not satisfy it.
+\[
+-(a_1) + 2(-a_1) + (-a_1) =-4a_1 \neq 0
+\]
+This leaves the only remaining solution as $a_1=a_2=a_3=a_4=0$. Thus the vectors are linearly independent.
+
+\end{solution}
+
+\begin{prob}
+    Determine which of the following sets form bases for $V = \mathbb R^3$. You can (always) use facts proven in class.
+    \begin{enumerate}
+        \item $B = \left\{
+        \left(\begin{array}{c}
+        1\\0\\ 2
+        \end{array}\right), 
+        \left(\begin{array}{c}
+        1\\1\\ 1
+        \end{array}\right)\right\}$
+
+\begin{solution}
+B is not a basis. It must have three vectors to be a basis for $\mathbb{R}^3$
+\end{solution}
+
+        \item $B = \left\{
+        \left(\begin{array}{c}
+        1\\0\\ 2
+        \end{array}\right), 
+        \left(\begin{array}{c}
+        1\\1\\ 1
+        \end{array}\right),
+        \left(\begin{array}{c}
+        1\\-2\\ 4
+        \end{array}\right)\right\}$
+
+\begin{solution}
+B is not a basis. It is not linearly independent:
+\[
+3v_1-2v^2-v^3=(0,0,0)
+\]
+Thus it is not linearly independent and cannot be a basis in $\mathbb{R}^3$
+\end{solution}
+
+        
+        \item $B = \left\{
+        \left(\begin{array}{c}
+        1\\0\\ 2
+        \end{array}\right), 
+        \left(\begin{array}{c}
+        1\\1\\ 1
+        \end{array}\right),
+        \left(\begin{array}{c}
+        0\\2\\ 1
+        \end{array}\right)\right\}$
+
+\begin{solution}
+    B is a basis for $\mathbb{R}^3$ as it has three vectors and is linearly independent. 
+    
+    Linear independence can be shown by writing out equations for the linear combinations with these vectors. 
+    Given $a,b,c\in F$ and $v_i \in B$
+
+We solve \(a\,v_1+b\,v_2+c\,v_3=0\):
+\[
+\begin{aligned}
+a+b=0\\
+a+2c=0\\
+2a+b+c=0
+\end{aligned}
+\quad\quad\implies a=-b,\; b=-2c \quad\implies a=2c.
+\]
+Plug into the third: \(2(2c)+(-2c)+c=3c=0\Rightarrow c=0\Rightarrow b=0\Rightarrow a=0\).
+\end{solution}
+        
+        \item $B = \left\{
+        \left(\begin{array}{c}
+        1\\0\\ 2
+        \end{array}\right), 
+        \left(\begin{array}{c}
+        1\\1\\ 1
+        \end{array}\right),
+        \left(\begin{array}{c}
+        0\\2\\ 1
+        \end{array}\right),
+        \left(\begin{array}{c}
+        -3\\2\\ 1
+        \end{array}\right)\right\}$
+
+    \begin{solution}
+        With four vectors in $\mathbb{R}^3$ the set $B$ must be linearly dependent. Thus it cannot be a basis in $\mathbb{R}^3$.
+    \end{solution}
+    \end{enumerate}
+
+
+\end{prob}
+
+
+\noindent \textbf{Generative AI Acknowledgment}
+
+\noindent Generative AI was used in this assignment for help with latex syntax. This includes defining the "solution box" that wraps answers. This also includes transcribing verbatim from handwritten on-paper solutions to first-draft latex code.
+\end{document}
+\end{document}

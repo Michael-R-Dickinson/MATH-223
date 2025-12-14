@@ -1,0 +1,447 @@
+\documentclass[12pt, oneside]{amsart}
+\usepackage{amsmath,amsfonts, amssymb, xcolor}
+\usepackage{fullpage}
+\usepackage{enumitem}
+
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\R}{\mathbb R}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\spn}{span}
+\DeclareMathOperator{\proj}{proj}
+\newcommand\norm[1]{\left\lVert#1\right\rVert}
+
+\usepackage[most]{tcolorbox}
+\newtcolorbox{comptype}[1]{
+  colframe=blue!50!black,
+  colback=blue!5,
+  coltitle=white,
+  colbacktitle=blue!50!black,
+  title=#1,
+  boxrule=0.5pt,
+  enhanced,
+  breakable,
+  left=6pt, right=6pt, top=6pt, bottom=6pt
+}
+
+\newtcolorbox{trick}{
+  colframe=red!50!black,
+  colback=red!5,
+  boxrule=0.5pt,
+  enhanced,
+  breakable,
+  left=6pt, right=6pt, top=6pt, bottom=6pt
+}
+
+\title{MATH 223: Computation Reference Guide}
+\author{Comprehensive List of Computation Types and Tricks}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section*{Introduction}
+This document catalogs all types of computational problems encountered in homeworks 6--10, organized by category. Special tricks and insights are highlighted throughout.
+
+\tableofcontents
+
+\section{Matrix Operations}
+
+\begin{comptype}{Matrix Transpose}
+\textbf{Sources:} HW6 Problem 1.1
+
+\textbf{Computation:} Given an $m \times n$ matrix $A$, compute $A^T$ (the $n \times m$ matrix where columns of $A^T$ are rows of $A$).
+
+\textbf{Example:}
+\[
+A = \begin{bmatrix} 4 & 0 & 2 & 2 \\ 0 & 1 & 1 & 2 \end{bmatrix}
+\quad \Rightarrow \quad
+A^T = \begin{bmatrix} 4 & 0 \\ 0 & 1 \\ 2 & 1 \\ 2 & 2 \end{bmatrix}
+\]
+\end{comptype}
+
+\section{Determinant Computations}
+
+\begin{comptype}{Determinant via Row Reduction}
+\textbf{Sources:} HW6 Problem 4.1
+
+\textbf{Method:} Reduce matrix to upper triangular form via row operations, then multiply diagonal entries.
+
+\textbf{Key Points:}
+\begin{itemize}
+\item Row swaps multiply determinant by $-1$
+\item Row scaling by $c$ multiplies determinant by $c$
+\item Row addition does not change determinant
+\end{itemize}
+
+\textbf{Example:} For a 4$\times$4 matrix, after row operations:
+\[
+\begin{bmatrix}
+1 & 0 & -2 & 3 \\
+0 & 1 & -5 & 11 \\
+0 & 0 & 19 & -43 \\
+0 & 0 & 0 & 5
+\end{bmatrix}
+\quad \Rightarrow \quad \det A = 1 \cdot 1 \cdot 19 \cdot 5 = 95
+\]
+\end{comptype}
+
+\begin{comptype}{Determinant via Cofactor Expansion}
+\textbf{Sources:} HW6 Problem 4.2
+
+\textbf{Method:} Expand along a row or column (choose one with zeros for efficiency).
+
+\textbf{Formula:} For row $i$:
+\[
+\det A = \sum_{j=1}^{n} (-1)^{i+j} a_{ij} \det(M_{ij})
+\]
+where $M_{ij}$ is the $(i,j)$-minor.
+
+\textbf{Example:} For 3$\times$3 matrix, expand along first row:
+\[
+\det \begin{bmatrix} -1 & 3 & 2 \\ 4 & -8 & 1 \\ 2 & 2 & 5 \end{bmatrix}
+= -1\begin{vmatrix} -8 & 1 \\ 2 & 5 \end{vmatrix} - 3\begin{vmatrix} 4 & 1 \\ 2 & 5 \end{vmatrix} + 2\begin{vmatrix} 4 & -8 \\ 2 & 2 \end{vmatrix}
+\]
+\end{comptype}
+
+\begin{comptype}{Determinant with Row Swaps}
+\textbf{Sources:} HW6 Problem 4.3
+
+\textbf{Special Pattern:} Anti-diagonal or permutation matrices.
+
+\textbf{Trick:} Count the number of row swaps needed to reach diagonal form. Each swap contributes a factor of $-1$.
+
+\textbf{Example:}
+\[
+\begin{bmatrix}
+0 & 0 & 0 & 0 & 0 & -1 \\
+0 & 0 & 0 & 0 & 2 & 0 \\
+0 & 0 & 0 & 1 & 0 & 0 \\
+0 & 0 & 3 & 0 & 0 & 0 \\
+0 & 4 & 0 & 0 & 0 & 0 \\
+1 & 0 & 0 & 0 & 0 & 0
+\end{bmatrix}
+\]
+After 3 row swaps: diagonal product is $-24$, so $\det A = (-1)^3 \cdot (-24) = 24$.
+\end{comptype}
+
+\begin{trick}
+\textbf{Determinant from Eigenvalues (HW10 Problem 4):}
+
+If matrix has special structure (e.g., constant row sums), use this trick:
+\begin{enumerate}
+\item Notice that rows of $(A - \lambda I)$ sum to zero for some $\lambda$
+\item This means $\lambda$ is an eigenvalue (the all-ones vector is an eigenvector)
+\item Use this to factor the characteristic polynomial
+\item $\det A = $ product of all eigenvalues
+\end{enumerate}
+
+\textbf{Example:}
+\[
+A = \begin{bmatrix} 7 & 2 & 2 & 2 & 2 \\ 2 & 7 & 2 & 2 & 2 \\ 2 & 2 & 7 & 2 & 2 \\ 2 & 2 & 2 & 7 & 2 \\ 2 & 2 & 2 & 2 & 7 \end{bmatrix}
+\]
+Row sum is 15, so $\lambda = 15$ is an eigenvalue. Additionally, $(1,-1,0,0,0)^T$ and similar vectors are eigenvectors for $\lambda = 5$.
+\end{trick}
+
+\section{Eigenvalue and Eigenvector Computations}
+
+\begin{comptype}{Finding Characteristic Polynomial}
+\textbf{Sources:} HW7 Problems 3, 4.2
+
+\textbf{Method:} Compute $\det(A - \lambda I)$ using cofactor expansion or recognizing patterns.
+
+\textbf{For Upper Triangular:} Eigenvalues are on the diagonal.
+
+\textbf{Example:}
+\[
+A = \begin{bmatrix} 0 & 1 & 0 \\ 0 & 2 & 2 \\ 0 & 0 & 6 \end{bmatrix}
+\quad \Rightarrow \quad
+\det(A - \lambda I) = -\lambda(2-\lambda)(6-\lambda)
+\]
+Eigenvalues: $\lambda = 0, 2, 6$.
+\end{comptype}
+
+\begin{comptype}{Finding Eigenvectors}
+\textbf{Sources:} HW7 Problems 3, 4.1, 4.2
+
+\textbf{Method:} For each eigenvalue $\lambda$, solve $(A - \lambda I)v = 0$.
+
+\textbf{Steps:}
+\begin{enumerate}
+\item Form matrix $A - \lambda I$
+\item Row reduce to find null space
+\item Identify free variables
+\item Choose values for free variables to get basis of eigenspace
+\end{enumerate}
+
+\textbf{Example:} For $\lambda = 2$ and
+\[
+A - 2I = \begin{bmatrix} 1 & 1 & 1 \\ 2 & 2 & 2 \\ -1 & -1 & -1 \end{bmatrix}
+\quad \xrightarrow{\text{reduce}} \quad
+\begin{bmatrix} 1 & 1 & 1 \\ 0 & 0 & 0 \\ 0 & 0 & 0 \end{bmatrix}
+\]
+Free variables: $v_2, v_3$. Basis: $\left\{\begin{bmatrix} -1 \\ 1 \\ 0 \end{bmatrix}, \begin{bmatrix} -1 \\ 0 \\ 1 \end{bmatrix}\right\}$.
+\end{comptype}
+
+\begin{comptype}{Eigenvalues for Linear Operators on Polynomial Spaces}
+\textbf{Sources:} HW7 Problem 3
+
+\textbf{Method:}
+\begin{enumerate}
+\item Choose basis for polynomial space (e.g., $\{1, x, x^2\}$ for $P_2(\R)$)
+\item Apply operator to each basis element
+\item Express results as linear combinations of basis
+\item Form matrix representation
+\item Find eigenvalues and eigenvectors of matrix
+\item Convert back to polynomials
+\end{enumerate}
+
+\textbf{Example:} For $T(p) = (2x+1)p' + x^2 p''$ on $P_2(\R)$:
+\begin{align*}
+T(1) &= 0 \\
+T(x) &= 2x + 1 \\
+T(x^2) &= 6x^2 + 2x
+\end{align*}
+Matrix: $\begin{bmatrix} 0 & 1 & 0 \\ 0 & 2 & 2 \\ 0 & 0 & 6 \end{bmatrix}$
+\end{comptype}
+
+\section{Diagonalizability}
+
+\begin{comptype}{Checking Diagonalizability}
+\textbf{Sources:} HW7 Problems 4.1, 4.2
+
+\textbf{Method:} A matrix is diagonalizable if and only if the sum of dimensions of eigenspaces equals $n$ (equivalently, if there exists a basis of eigenvectors).
+
+\textbf{Steps:}
+\begin{enumerate}
+\item Find all eigenvalues
+\item For each eigenvalue, find dimension of eigenspace
+\item Sum dimensions
+\item If sum equals $n$, matrix is diagonalizable
+\end{enumerate}
+
+\textbf{Example (not diagonalizable):}
+\[
+A = \begin{bmatrix} 1 & 1 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 3 \end{bmatrix}
+\]
+Eigenvalues: $\lambda = 1$ (algebraic multiplicity 2), $\lambda = 3$.
+Eigenspace for $\lambda = 1$: dimension 1 (only $\begin{bmatrix} 1 \\ 0 \\ 0 \end{bmatrix}$).
+Total dimension: $1 + 1 = 2 < 3$, so not diagonalizable.
+\end{comptype}
+
+\section{Gram-Schmidt Orthogonalization}
+
+\begin{comptype}{Gram-Schmidt on $\R^n$ with Standard Inner Product}
+\textbf{Sources:} HW8 Problem 3.1, HW9 Problems 1.2, 2
+
+\textbf{Method:}
+\begin{enumerate}
+\item Start with basis $(u_1, \ldots, u_k)$
+\item Set $e_1 = \frac{u_1}{\|u_1\|}$
+\item For $i = 2, \ldots, k$:
+\begin{itemize}
+\item $w_i = u_i - \sum_{j=1}^{i-1} \proj_{e_j}(u_i)$ where $\proj_{e_j}(u_i) = \langle u_i, e_j \rangle e_j$
+\item $e_i = \frac{w_i}{\|w_i\|}$
+\end{itemize}
+\end{enumerate}
+
+\textbf{Example:} Starting with $u_1 = \begin{bmatrix} 1 \\ 0 \\ 1 \end{bmatrix}$, $u_2 = \begin{bmatrix} 0 \\ 1 \\ 1 \end{bmatrix}$:
+\begin{align*}
+e_1 &= \frac{1}{\sqrt{2}}\begin{bmatrix} 1 \\ 0 \\ 1 \end{bmatrix} \\
+w_2 &= \begin{bmatrix} 0 \\ 1 \\ 1 \end{bmatrix} - \frac{1}{\sqrt{2}}\begin{bmatrix} 1/\sqrt{2} \\ 0 \\ 1/\sqrt{2} \end{bmatrix} = \begin{bmatrix} -1/2 \\ 1 \\ 1/2 \end{bmatrix} \\
+e_2 &= \frac{1}{\sqrt{6}}\begin{bmatrix} -1 \\ 2 \\ 1 \end{bmatrix}
+\end{align*}
+\end{comptype}
+
+\begin{comptype}{Gram-Schmidt on Polynomial Spaces with Integral Inner Product}
+\textbf{Sources:} HW8 Problem 4.1
+
+\textbf{Inner Product:} $\langle f, g \rangle = \int_0^1 f(x)g(x)\,dx$
+
+\textbf{Method:} Same as standard Gram-Schmidt, but compute inner products using integrals.
+
+\textbf{Example:} Starting with basis $(1, x, x^2)$:
+\begin{align*}
+e_1 &= 1 \quad (\text{already normalized: } \|1\|^2 = \int_0^1 1\,dx = 1) \\
+w_2 &= x - \langle x, 1 \rangle \cdot 1 = x - \frac{1}{2} \\
+\|w_2\|^2 &= \int_0^1 \left(x - \frac{1}{2}\right)^2 dx = \frac{1}{12} \\
+e_2 &= 2\sqrt{3}\left(x - \frac{1}{2}\right)
+\end{align*}
+\end{comptype}
+
+\section{Projections}
+
+\begin{comptype}{Projection onto 1-Dimensional Subspace}
+\textbf{Sources:} HW9 Problem 1.1
+
+\textbf{Formula:} For subspace $U = \spn(u)$:
+\[
+\proj_U(v) = \frac{\langle v, u \rangle}{\|u\|^2} u
+\]
+
+\textbf{Example:} $U = \{(x,y) \mid y = 4x\}$, $v = \begin{bmatrix} 2 \\ 6 \end{bmatrix}$:
+\begin{itemize}
+\item Basis vector: $u = \begin{bmatrix} 1 \\ 4 \end{bmatrix}$
+\item $\proj_U(v) = \frac{26}{17}\begin{bmatrix} 1 \\ 4 \end{bmatrix} = \begin{bmatrix} 26/17 \\ 104/17 \end{bmatrix}$
+\end{itemize}
+\end{comptype}
+
+\begin{comptype}{Projection onto Higher-Dimensional Subspace}
+\textbf{Sources:} HW9 Problem 1.2
+
+\textbf{Method:}
+\begin{enumerate}
+\item Find basis for subspace
+\item Apply Gram-Schmidt to get orthonormal basis $(e_1, \ldots, e_k)$
+\item Compute $\proj_U(v) = \sum_{i=1}^k \langle v, e_i \rangle e_i$
+\end{enumerate}
+
+\textbf{Note:} Orthonormal basis is required for the simple projection formula.
+\end{comptype}
+
+\begin{trick}
+\textbf{Projection Requires Orthonormal Basis:}
+
+If you try to project onto a subspace with a non-orthogonal basis, you must first apply Gram-Schmidt. The projection formula $\proj_U(v) = \sum \langle v, e_i \rangle e_i$ only works for orthonormal bases.
+\end{trick}
+
+\section{Finding Bases and Coordinates}
+
+\begin{comptype}{Finding Orthonormal Basis of Orthogonal Complement}
+\textbf{Sources:} HW9 Problem 2
+
+\textbf{Method:} If $U = \spn(u_1, \ldots, u_k) \subseteq \R^n$, then:
+\begin{enumerate}
+\item Form matrix $A$ with rows $u_1^T, \ldots, u_k^T$
+\item Find basis for $\ker(A)$ by solving $Ax = 0$
+\item Apply Gram-Schmidt to basis of $\ker(A)$
+\end{enumerate}
+
+\textbf{Key Insight:} $U^\perp = \ker(A)$ where $A$ has rows that are basis vectors of $U$.
+
+\textbf{Example:} For $U = \spn\left(\begin{bmatrix} 1 \\ 2 \\ 3 \\ -4 \end{bmatrix}, \begin{bmatrix} -5 \\ 4 \\ 3 \\ 2 \end{bmatrix}\right)$:
+\[
+A = \begin{bmatrix} 1 & 2 & 3 & -4 \\ -5 & 4 & 3 & 2 \end{bmatrix}
+\]
+Solve $Ax = 0$ with free variables to get basis of $U^\perp$.
+\end{comptype}
+
+\begin{comptype}{Finding Coordinates in Orthonormal Basis}
+\textbf{Sources:} HW8 Problems 3.2, 4.2
+
+\textbf{Method:} For orthonormal basis $(e_1, \ldots, e_n)$ and vector $v$:
+\[
+v = c_1 e_1 + \cdots + c_n e_n
+\quad \text{where} \quad
+c_i = \langle v, e_i \rangle
+\]
+
+\textbf{For polynomial spaces:} Compute inner products using integrals.
+
+\textbf{Alternative:} Set up system of equations by matching coefficients (when basis is not orthonormal or when simpler).
+\end{comptype}
+
+\section{Inner Product Space Computations}
+
+\begin{comptype}{Riesz Representation Theorem}
+\textbf{Sources:} HW9 Problem 4
+
+\textbf{Problem:} Given linear functional $F: V \to \R$, find $g \in V$ such that $F(f) = \langle f, g \rangle$ for all $f \in V$.
+
+\textbf{Method:}
+\begin{enumerate}
+\item Evaluate $F$ on each basis element
+\item Write $g$ as linear combination $g = a_1 b_1 + \cdots + a_n b_n$ (basis elements $b_i$)
+\item Compute $\langle b_i, g \rangle$ for each basis element
+\item Set $\langle b_i, g \rangle = F(b_i)$ to get system of equations
+\item Solve for coefficients $a_1, \ldots, a_n$
+\end{enumerate}
+
+\textbf{Example:} For $F(f) = f(0) + f'(1)$ on $P_2(\R)$:
+\begin{itemize}
+\item $F(1) = 1$, $F(x) = 1$, $F(x^2) = 2$
+\item Write $g(x) = a + bx + cx^2$
+\item Compute $\langle 1, g \rangle = \int_0^1 g = a + \frac{b}{2} + \frac{c}{3} = 1$
+\item Similarly for other basis elements
+\item Solve system to get $g(x) = 33 - 204x + 210x^2$
+\end{itemize}
+\end{comptype}
+
+\section{Special Computational Tricks Summary}
+
+\begin{trick}
+\textbf{1. Determinant from Row Sums (HW10):}
+When all rows of $A$ sum to the same constant $s$, then $s$ is an eigenvalue with eigenvector $(1,1,\ldots,1)^T$.
+\end{trick}
+
+\begin{trick}
+\textbf{2. Upper Triangular Eigenvalues (HW7):}
+For upper (or lower) triangular matrices, eigenvalues are the diagonal entries. No computation needed.
+\end{trick}
+
+\begin{trick}
+\textbf{3. Orthogonal Complement via Kernel (HW9):}
+$U^\perp = \ker(A)$ where $A$ is the matrix with rows equal to basis vectors of $U$.
+\end{trick}
+
+\begin{trick}
+\textbf{4. Projection Formula Shortcut:}
+For orthonormal basis $(e_1, \ldots, e_k)$ of $U$:
+\[
+\proj_U(v) = \langle v, e_1 \rangle e_1 + \cdots + \langle v, e_k \rangle e_k
+\]
+No denominators needed because $\|e_i\| = 1$.
+\end{trick}
+
+\begin{trick}
+\textbf{5. Gram-Schmidt Preserves Span:}
+When applying Gram-Schmidt to $(u_1, \ldots, u_k)$ to get $(e_1, \ldots, e_k)$:
+\[
+\spn(u_1, \ldots, u_i) = \spn(e_1, \ldots, e_i) \quad \text{for all } i
+\]
+The first $i$ orthonormal vectors span the same space as the first $i$ original vectors.
+\end{trick}
+
+\begin{trick}
+\textbf{6. Coordinates in Orthonormal Basis:}
+Computing coordinates is trivial in orthonormal basis: just take inner products. This is why Gram-Schmidt is so useful.
+\end{trick}
+
+\section{Problem Index by Homework}
+
+\subsection*{Homework 6}
+\begin{itemize}
+\item Matrix transpose: Problem 1.1
+\item Determinants (row reduction): Problem 4.1
+\item Determinants (cofactor): Problem 4.2
+\item Determinants (row swaps): Problem 4.3
+\end{itemize}
+
+\subsection*{Homework 7}
+\begin{itemize}
+\item Eigenvalues for polynomial operators: Problem 3
+\item Diagonalizability: Problems 4.1, 4.2
+\item Characteristic polynomial: Problem 4.2
+\end{itemize}
+
+\subsection*{Homework 8}
+\begin{itemize}
+\item Gram-Schmidt on $\R^n$: Problem 3.1
+\item Coordinates in orthonormal basis: Problem 3.2
+\item Gram-Schmidt on polynomials: Problem 4.1
+\item Polynomial basis coordinates: Problem 4.2
+\end{itemize}
+
+\subsection*{Homework 9}
+\begin{itemize}
+\item Projection (1D subspace): Problem 1.1
+\item Projection (2D subspace): Problem 1.2
+\item Orthonormal basis of subspace and complement: Problem 2
+\item Riesz representation: Problem 4
+\end{itemize}
+
+\subsection*{Homework 10}
+\begin{itemize}
+\item Determinant from eigenvalues (row sum trick): Problem 4
+\end{itemize}
+
+\end{document}
